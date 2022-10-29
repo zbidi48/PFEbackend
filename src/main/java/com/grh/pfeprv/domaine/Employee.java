@@ -32,6 +32,8 @@ public class Employee extends  User{
     private  List<Conge> conges= new ArrayList<>();
     @OneToMany(targetEntity =Notedefraie.class,mappedBy ="employee")
     private  List<Notedefraie> notedefraies= new ArrayList<>();
+    @OneToMany(targetEntity =Visa.class,mappedBy ="employee")
+    private List<Visa> visas = new ArrayList<>();
 
 
 }
