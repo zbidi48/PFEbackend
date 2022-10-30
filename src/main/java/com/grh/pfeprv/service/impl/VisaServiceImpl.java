@@ -2,6 +2,7 @@ package com.grh.pfeprv.service.impl;
 
 import com.grh.pfeprv.domaine.Employee;
 import com.grh.pfeprv.domaine.Visa;
+import com.grh.pfeprv.enums.EStatusVisa;
 import com.grh.pfeprv.exception.NotFoundException;
 import com.grh.pfeprv.payloads.request.VisaRequest;
 import com.grh.pfeprv.payloads.response.MessageResponse;
@@ -30,11 +31,11 @@ public class VisaServiceImpl implements IVisaService {
             visaResponses.add(new VisaResponse(
                     visa.getId(),
                     visa.getDatedepot(),
-                    visa.getStatus(),
+                    visa.getStatus().name(),
                     visa.getTypevisa(),
-                    visa.getStatus(),
                     visa.getEmployee().getNom(),
                     visa.getEmployee().getPrenom(),
+                    visa.getEmployee().getPost(),
                     visa.getEmployee().getJobid()));
         });
         return visaResponses;
@@ -50,7 +51,7 @@ public class VisaServiceImpl implements IVisaService {
        }
        Employee employee1 = employee.get();
        visa.setDatedepot(visaRequest.getDatedepot());
-       visa.setStatus("en cour");
+       visa.setStatus(EStatusVisa.ENCOUR);
        visa.setTypevisa(visaRequest.getTypevisa());
        visa.setSuppr(false);
        visa.setEmployee(employee1);
@@ -61,14 +62,16 @@ public class VisaServiceImpl implements IVisaService {
     @Override
     public ResponseEntity<MessageResponse> Miseajourvisa(Long id, VisaRequest visaRequest) {
         Optional<Visa> visa = visaRepository.findById(id);
+        //Optional<Employee> employee=employeeRepository.findById(visaRequest.getEmployee_id());
         if(!visa.isPresent())
         {
             throw new NotFoundException("visa ID: " + id + " not found");
         }
-        Visa visa1 = new Visa();
+        Visa visa1 = visa.get();
         visa1.setDatedepot(visaRequest.getDatedepot());
-        visa1.setStatus("en cour");
+        visa1.setStatus(EStatusVisa.ENCOUR);
         visa1.setTypevisa(visaRequest.getTypevisa());
+        visa1.setSuppr(false);
        visaRepository.save(visa1);
 
         return   ResponseEntity.ok(new MessageResponse("visa modifier avec succeé"));
@@ -100,14 +103,19 @@ public class VisaServiceImpl implements IVisaService {
     }
 
     @Override
-    public ResponseEntity<MessageResponse> Accordvisa(Long id,VisaRequest visaRequest) {
+    public ResponseEntity<MessageResponse> Accordvisa(Long id,String status) {
         Optional<Visa> visa = visaRepository.findById(id);
         if(!visa.isPresent())
         {
             throw new NotFoundException("visa ID: "+id+" not found");
         }
         Visa visa1 = visa.get();
-        visa1.setStatus(visaRequest.getStatus());
+        if(status.equals("accepte")){
+            visa1.setStatus(EStatusVisa.ACCEPTE);
+        } else {
+            visa1.setStatus(EStatusVisa.REFUSE);
+        }
+
         visaRepository.save(visa1);
         return ResponseEntity.ok(new MessageResponse("visa congé valide"));
     }
@@ -120,7 +128,7 @@ public class VisaServiceImpl implements IVisaService {
                     visaResponses.add(new VisaResponse(
                             visa.getId(),
                             visa.getDatedepot(),
-                            visa.getStatus(),
+                            visa.getStatus().name(),
                             visa.getTypevisa(),
                             visa.getEmployee().getNom(),
                             visa.getEmployee().getPrenom(),
@@ -140,11 +148,11 @@ public class VisaServiceImpl implements IVisaService {
             visaResponses.add(new VisaResponse(
                     visa.getId(),
                     visa.getDatedepot(),
-                    visa.getStatus(),
+                    visa.getStatus().name(),
                     visa.getTypevisa(),
-                    visa.getStatus(),
                     visa.getEmployee().getNom(),
                     visa.getEmployee().getPrenom(),
+                    visa.getEmployee().getPost(),
                     visa.getEmployee().getJobid()));
         });
         return visaResponses;

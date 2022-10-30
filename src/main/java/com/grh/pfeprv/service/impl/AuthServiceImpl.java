@@ -94,9 +94,9 @@ public class AuthServiceImpl  implements IAuthService {
 
     @Override
     public ResponseEntity<MessageResponse> signupCondidat(SignupRequest request) {
-        Role role_RH = roleRepository.findByName(ERole.ROLE_Condidat).get();
+        Role role_cond = roleRepository.findByName(ERole.ROLE_Condidat).get();
         Set<Role> roles = new HashSet<>();
-        roles.add(role_RH);
+        roles.add(role_cond);
         //User condidat = new User();
         Condidats condidat = new Condidats();
         condidat.setEmail(request.getEmail());

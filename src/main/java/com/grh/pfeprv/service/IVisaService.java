@@ -14,7 +14,7 @@ public interface IVisaService {
     public ResponseEntity<MessageResponse> Miseajourvisa(Long id,VisaRequest visaRequest);
     public ResponseEntity<MessageResponse> Supprimervisa(Long id);
     public Visa Detailvisa(Long id);
-    public ResponseEntity<MessageResponse> Accordvisa(Long id,VisaRequest visaRequest);
+    public ResponseEntity<MessageResponse> Accordvisa(Long id,String status);
     public List<VisaResponse> affichervisaparmail(String email);
     public List<VisaResponse> Cherchervisa(String nom,String prenom);
 

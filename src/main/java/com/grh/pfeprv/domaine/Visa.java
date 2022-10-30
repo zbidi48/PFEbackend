@@ -1,6 +1,7 @@
 package com.grh.pfeprv.domaine;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.grh.pfeprv.enums.EStatusVisa;
 import com.grh.pfeprv.enums.ETypeVisa;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,8 +20,10 @@ public class Visa implements Serializable {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Long id;
+
     private Date datedepot;
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private EStatusVisa status;
     @Enumerated(EnumType.STRING)
     private ETypeVisa typevisa;
     private Boolean suppr;

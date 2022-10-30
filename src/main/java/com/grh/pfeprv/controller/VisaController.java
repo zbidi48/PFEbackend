@@ -50,5 +50,16 @@ public List<VisaResponse> Affichervisaparmail(@PathVariable(value="email") Strin
 {
     return iVisaService.affichervisaparmail(email);
 }
-
+@PutMapping("/accordvisa/{id}/{status}")
+public ResponseEntity<MessageResponse> Accordvisa(@PathVariable(value="id") Long id,
+                                                  @PathVariable(value="status") String status)
+{
+    return iVisaService.Accordvisa(id,status);
+}
+@GetMapping("/cherchervisa/{nom}/{prenom}")
+public List<VisaResponse> cherchervisa(@PathVariable(value="nom") String nom,
+                                       @PathVariable(value="prenom") String prenom)
+{
+    return iVisaService.Cherchervisa(nom,prenom);
+}
 }
