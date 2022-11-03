@@ -41,11 +41,10 @@ public class NotedefraieController  {
     {
         return iNotedefraieService.Supprimernotedefraie(id);
     }
-    @GetMapping("/cherchernotedefraie/{nom}/{prenom}")
-    public List<NotedefraieResponse> cherchernotedefraie(@PathVariable(value="nom") String nom,
-                                                         @PathVariable(value="prenom") String prenom)
+    @GetMapping("/cherchernotedefraie/{jobid}")
+    public List<NotedefraieResponse> cherchernotedefraie(@PathVariable(value="jobid") String jobid)
     {
-        return iNotedefraieService.Cherchernotedefraie(nom,prenom);
+        return iNotedefraieService.Cherchernotedefraie(jobid);
     }
     @RequestMapping("/affichernotedefraieparmail/{email}")
     public List<NotedefraieResponse> Affichernotedefraieparmail(@PathVariable(value="email") String email)

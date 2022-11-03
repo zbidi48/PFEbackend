@@ -8,4 +8,6 @@ import java.util.List;
 public interface ContratRepository extends JpaRepository<Contrat, Long> {
 
     List<Contrat> findAllByDeletedIsFalse();
+    Contrat findByEmployee_Jobid(String jobid);
+
 }

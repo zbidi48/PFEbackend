@@ -19,6 +19,10 @@ public class ContratResponse {
     private  String prenom;
     private  String post;
     private  String jobid;
+    public ContratResponse()
+    {
+
+    }
 
    public  ContratResponse(Long id,String code,String libelle,Date datedebut,Date datefin,String nom,String prenom,String post,String jobid)
    {

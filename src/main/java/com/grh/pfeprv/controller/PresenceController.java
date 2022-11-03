@@ -36,8 +36,8 @@ public class PresenceController {
                     presence.getId(),
                     presence.getDate(),
                     presence.getNbreheure(),
-                    presence.getUser().getNom(),
-                    presence.getUser().getPrenom()));
+                    presence.getEmployee().getNom(),
+                    presence.getEmployee().getPrenom()));
         });
         return response;
     }

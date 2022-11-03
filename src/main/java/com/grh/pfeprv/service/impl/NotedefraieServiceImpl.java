@@ -89,9 +89,9 @@ public class NotedefraieServiceImpl implements INotedefraieService {
         return ResponseEntity.ok(new MessageResponse("suppression  avec succeé"));
     }
     @Override
-    public List<NotedefraieResponse> Cherchernotedefraie(String nom, String prenom) {
+    public List<NotedefraieResponse> Cherchernotedefraie(String jobid) {
         List<NotedefraieResponse> responses= new ArrayList<>();
-        notedefraieRepository.findByEmployee_NomAndAndEmployee_Prenom(nom,prenom).forEach(notedefraie ->
+        notedefraieRepository.findByEmployee_Jobid(jobid).forEach(notedefraie ->
         {
             responses.add(new NotedefraieResponse(
                     notedefraie.getId(),

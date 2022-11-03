@@ -13,18 +13,16 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "fichedepaie")
-public class Fichedepaie implements Serializable {
+@Table(name = "entretient")
+public class Entretient implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Long id;
     private Date date;
-    private String salairenet;
-    private String salairebrut;
-    private Boolean suppr;
-    @ManyToOne
-    @JoinColumn( name="employee_id" )
-    @JsonIgnore
-    private Employee employee;
+    private String heure;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "condidats_id", referencedColumnName = "id")
+    private Condidats condidat;
+
 }

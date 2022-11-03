@@ -7,10 +7,12 @@ import java.util.Date;
 @Data
 
 public class PresenceRequest {
+    /*
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     private Date date;
+     */
 
     private  double nbreheure;
 
-    private long user_id;
+    private long employee_id;
 }

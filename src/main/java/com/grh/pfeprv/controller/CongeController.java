@@ -38,11 +38,10 @@ public class CongeController {
    {
        return icongeService.supprimerconge(id);
    }
-   @RequestMapping("/chercherdemandeconge/{nom}/{prenom}")
-    public  List<CongeResponse> Chercherconge(@PathVariable(value="nom") String nom,
-                                              @PathVariable(value="prenom") String prenom)
+   @RequestMapping("/chercherdemandeconge/{jobid}")
+    public  List<CongeResponse> Chercherconge(@PathVariable(value="jobid") String jobid)
    {
-       return icongeService.chercherconge(nom,prenom);
+       return icongeService.chercherconge(jobid);
    }
    @GetMapping("/detailconge/{id}")
     public Conge Detailconge(@PathVariable(value="id") long id){

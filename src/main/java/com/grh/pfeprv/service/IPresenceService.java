@@ -18,4 +18,5 @@ public interface IPresenceService {
     public Presence AffPresencebyid(Long id);
     public List<PresenceResponse> Affpresencebyuser(Long id);
     public List<PresenceResponse> Affpresencebyusermail(String email);
+    public  List<PresenceResponse> cherchervisa(String jobid);
 }

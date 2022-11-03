@@ -42,9 +42,7 @@ public class User implements Serializable {
 
 
 
-    @OneToMany(targetEntity=Presence.class,mappedBy="user")
-    @JsonIgnore
-    private  List<Presence> presences = new ArrayList<>();
+
 
 
 

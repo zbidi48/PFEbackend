@@ -15,6 +15,6 @@ public interface IEmployeService {
     public ResponseEntity<MessageResponse> Miseajouremploye(Long id,EmployeeRequest employeeRequest);
     public  ResponseEntity<MessageResponse> Effaceremplyee(Long id);
     public  Employee DetailEmployee(Long id);
-    public  List<Employee> chercheremployee(String nom,String prenom);
+    public  Employee chercheremployee(String jobid);
 
 }

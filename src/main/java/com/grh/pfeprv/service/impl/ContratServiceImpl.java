@@ -116,4 +116,12 @@ public class ContratServiceImpl  implements IContratService {
 
         return con;
     }
+
+    @Override
+    public Contrat Cherchercontrat(String jobid) {
+
+
+
+        return contratRepository.findByEmployee_Jobid(jobid);
+    }
 }

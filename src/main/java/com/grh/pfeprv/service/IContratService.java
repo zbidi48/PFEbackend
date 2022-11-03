@@ -17,4 +17,5 @@ public interface IContratService {
     public ResponseEntity<MessageResponse> Effcontrat(Long id);
 
     public Contrat Affcontratid(Long id);
+    public  Contrat Cherchercontrat(String jobid);
 }

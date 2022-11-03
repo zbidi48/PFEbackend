@@ -134,9 +134,9 @@ public class CongeServiceImpl implements ICongeService {
     }
 
     @Override
-    public List<CongeResponse> chercherconge(String nom, String prenom) {
+    public List<CongeResponse> chercherconge(String jobid) {
         List<CongeResponse> responses=new ArrayList<>();
-        congeRepository.findCongeByEmployee_NomAndEmployee_Prenom(nom, prenom).forEach(conge -> {
+        congeRepository.findByEmployee_Jobid(jobid).forEach(conge -> {
             responses.add(new CongeResponse(
                     conge.getId(),
                     conge.getDatedebut(),

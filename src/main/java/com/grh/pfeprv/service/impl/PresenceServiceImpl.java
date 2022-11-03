@@ -1,12 +1,14 @@
 package com.grh.pfeprv.service.impl;
 
 
+import com.grh.pfeprv.domaine.Employee;
 import com.grh.pfeprv.domaine.Presence;
 import com.grh.pfeprv.domaine.User;
 import com.grh.pfeprv.exception.NotFoundException;
 import com.grh.pfeprv.payloads.request.PresenceRequest;
 import com.grh.pfeprv.payloads.response.MessageResponse;
 import com.grh.pfeprv.payloads.response.PresenceResponse;
+import com.grh.pfeprv.repository.EmployeeRepository;
 import com.grh.pfeprv.repository.PresenceRepository;
 import com.grh.pfeprv.repository.UserRepository;
 import com.grh.pfeprv.service.IPresenceService;
@@ -16,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,7 +27,7 @@ public class PresenceServiceImpl implements IPresenceService {
     @Autowired
     PresenceRepository presenceRepository;
     @Autowired
-    UserRepository userRepository;
+    EmployeeRepository employeeRepository;
     @Override
     public List<Presence> AffPresence() {
 
@@ -34,16 +37,16 @@ public class PresenceServiceImpl implements IPresenceService {
     @Override
     public ResponseEntity<MessageResponse> Ajouprsence(PresenceRequest pr) {
         Presence presence = new Presence();
-        Optional<User> user = userRepository.findById(pr.getUser_id());
-        if(!user.isPresent())
+        Optional<Employee> employee = employeeRepository.findById(pr.getEmployee_id());
+        if(!employee.isPresent())
         {
 
             throw new NotFoundException("Ajout impossible");
         }
-        User us = user.get();
-        presence.setDate(pr.getDate());
+        Employee employee1 = employee.get();
+        presence.setDate(new Date());
         presence.setNbreheure(pr.getNbreheure());
-        presence.setUser(us);
+        presence.setEmployee(employee1);
         presenceRepository.save(presence);
         return   ResponseEntity.ok(new MessageResponse("presence ajouter avec succeé"));
     }
@@ -56,7 +59,7 @@ public class PresenceServiceImpl implements IPresenceService {
             throw new NotFoundException("presence ID: "+id+" not found");
         }
         Presence prs = presence.get();
-        prs.setDate(pr.getDate());
+        //prs.setDate(new Date());
         prs.setNbreheure(pr.getNbreheure());
         presenceRepository.save(prs);
 
@@ -92,14 +95,16 @@ public class PresenceServiceImpl implements IPresenceService {
     @Override
     public List<PresenceResponse> Affpresencebyuser(Long id) {
         List<PresenceResponse> response = new ArrayList<>();
-        presenceRepository.findAllByUser_Id(id).forEach(presence -> {
+        presenceRepository.findAllByEmployee_Id(id).forEach(presence -> {
             response.add(new PresenceResponse(
                     presence.getId(),
                     presence.getDate(),
                     presence.getNbreheure(),
-                    presence.getUser().getNom(),
-                    presence.getUser().getPrenom()));
-        });
+                    presence.getEmployee().getNom(),
+                    presence.getEmployee().getPrenom())
+            );
+
+            });
 
         return response;
     }
@@ -107,15 +112,38 @@ public class PresenceServiceImpl implements IPresenceService {
     @Override
     public List<PresenceResponse> Affpresencebyusermail(String email) {
         List<PresenceResponse> response = new ArrayList<>();
-        presenceRepository.findAllByUser_Email(email).forEach(presence -> {
+        presenceRepository.findAllByEmployee_Email(email).forEach(presence -> {
             response.add(new PresenceResponse(
                     presence.getId(),
                     presence.getDate(),
                     presence.getNbreheure(),
-                    presence.getUser().getNom(),
-                    presence.getUser().getPrenom()));
+                    //presence.getUser().getNom(),
+                    //presence.getUser().getPrenom()
+                    presence.getEmployee().getNom(),
+                    presence.getEmployee().getPrenom()
+                    )
+            );
 
         });
+        return response;
+    }
+
+    @Override
+    public List<PresenceResponse> cherchervisa(String jobid) {
+        List<PresenceResponse> response = new ArrayList<>();
+        presenceRepository.findByEmployee_Jobid(jobid).forEach(presence -> {
+            response.add(new PresenceResponse(
+                            presence.getId(),
+                            presence.getDate(),
+                            presence.getNbreheure(),
+
+                            presence.getEmployee().getNom(),
+                            presence.getEmployee().getPrenom()
+                    )
+            );
+
+        });
+
         return response;
     }
 }

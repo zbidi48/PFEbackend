@@ -7,7 +7,9 @@ import java.util.List;
 
 public interface PresenceRepository extends JpaRepository<Presence,Long> {
 
-    List<Presence> findAllByUser_Id(Long id);
-    List<Presence> findAllByUser_Email(String email);
+    List<Presence> findAllByEmployee_Id(Long id);
+    List<Presence> findAllByEmployee_Email(String email);
+    List<Presence> findByEmployee_Jobid(String jobid);
+
 
 }

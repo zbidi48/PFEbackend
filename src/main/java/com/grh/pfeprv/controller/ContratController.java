@@ -47,6 +47,11 @@ public class ContratController {
     {
        return iContratService.Effcontrat(id);
     }
+    @GetMapping("/cherchercontrat/{jobid}")
+    public Contrat cherchercontrat(@PathVariable(value ="jobid") String jobid)
+    {
+        return iContratService.Cherchercontrat(jobid);
+    }
     @GetMapping ("/detaillcontrat/{id}")
     public  Contrat DetaitContrat(@PathVariable(value="id") Long id)
     {

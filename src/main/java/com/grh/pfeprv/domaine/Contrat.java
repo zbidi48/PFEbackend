@@ -1,6 +1,7 @@
 package com.grh.pfeprv.domaine;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,8 +31,9 @@ public class Contrat implements Serializable {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "employee_id", referencedColumnName = "id")
+    @JsonIgnore
     private  Employee employee;
-
+    @JsonIgnore
     private boolean deleted;
 
 

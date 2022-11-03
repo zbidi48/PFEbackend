@@ -48,7 +48,7 @@ public class FichedepaieServiceImpl implements IFichedepaieservice {
     @Override
     public List<FichedepaieResponse> Affichageficheuser() {
         List<FichedepaieResponse> responses = new ArrayList<>();
-        fichedepaieRepository.findAll().forEach(fichedepaie -> {
+        fichedepaieRepository.findAllBySupprIsFalse().forEach(fichedepaie -> {
             responses.add(new FichedepaieResponse(
                     fichedepaie.getId(),
                     fichedepaie.getDate(),
@@ -81,6 +81,7 @@ public class FichedepaieServiceImpl implements IFichedepaieservice {
         fichedepaie.setSalairebrut(f.getSalairebrut());
         fichedepaie.setSalairenet(f.getSalairenet());
         //fichedepaie.setUser(usr);
+        fichedepaie.setSuppr(false);
         fichedepaie.setEmployee(usr);
         fichedepaieRepository.save(fichedepaie);
         return ResponseEntity.ok(new MessageResponse("fichedepaie ajouter avec succeé"));
@@ -107,7 +108,9 @@ public class FichedepaieServiceImpl implements IFichedepaieservice {
             throw new NotFoundException("fichedepaie ID: " + id + " not found");
         }
         Fichedepaie fp = fichedepaie.get();
-        fichedepaieRepository.delete(fp);
+        fp.setSuppr(true);
+
+
 
         return ResponseEntity.ok(new MessageResponse("suppression avec success !"));
     }
@@ -146,11 +149,35 @@ public class FichedepaieServiceImpl implements IFichedepaieservice {
     }
 
     @Override
+    public List<FichedepaieResponse> chercherficheparjobid(String jobid) {
+        List<FichedepaieResponse> responses = new ArrayList<>();
+        fichedepaieRepository.findByEmployee_Jobid(jobid).forEach(fichedepaie -> {
+            responses.add(new FichedepaieResponse(
+                    fichedepaie.getId(),
+                    fichedepaie.getDate(),
+                    fichedepaie.getSalairebrut(),
+                    fichedepaie.getSalairenet(),
+                    fichedepaie.getEmployee().getNom(),
+                    fichedepaie.getEmployee().getPrenom(),
+                    fichedepaie.getEmployee().getPost(),
+                    fichedepaie.getEmployee().getJobid()
+
+            ));
+        });
+
+        return responses;
+
+    }
+
+
+/*
+@Override
     public List<FichedepaieResponse> chercherfiche(String nom, String prenom) {
         List<FichedepaieResponse> responses = new ArrayList<>();
         fichedepaieRepository.findByEmployee_NomAndAndEmployee_Prenom(nom, prenom).forEach(fichedepaie -> {
             responses.add(
-                    new FichedepaieResponse(fichedepaie.getId(),
+                    new FichedepaieResponse(
+                            fichedepaie.getId(),
                             fichedepaie.getDate(),
                             fichedepaie.getSalairebrut(),
                             fichedepaie.getSalairenet(),
@@ -163,12 +190,12 @@ public class FichedepaieServiceImpl implements IFichedepaieservice {
                             fichedepaie.getUser().getPrenom(),
                             fichedepaie.getUser().getPost()
                             */
-                    ));
-        });
 
 
-        return responses;
-    }
+
+
+
+
 
    /*
     @Override

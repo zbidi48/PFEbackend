@@ -1,5 +1,6 @@
 package com.grh.pfeprv.domaine;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,6 +35,9 @@ public class Employee extends  User{
     private  List<Notedefraie> notedefraies= new ArrayList<>();
     @OneToMany(targetEntity =Visa.class,mappedBy ="employee")
     private List<Visa> visas = new ArrayList<>();
+    @OneToMany(targetEntity=Presence.class,mappedBy="employee")
+    @JsonIgnore
+    private  List<Presence> presences = new ArrayList<>();
 
 
 }

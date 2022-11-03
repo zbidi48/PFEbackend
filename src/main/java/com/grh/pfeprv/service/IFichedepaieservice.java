@@ -19,9 +19,10 @@ public interface IFichedepaieservice {
     public ResponseEntity<MessageResponse> Effacerfiche(Long id);
     public List<FichedepaieResponse> Affichageuserid(Long id);
     public Fichedepaie Detailfiche(Long id);
-    public List<FichedepaieResponse> chercherfiche(String nom,String prenom);
+    //public List<FichedepaieResponse> chercherfiche(String nom,String prenom);
     //public String exportfichedepaie(Long id) throws FileNotFoundException, JRException;
     //public ByteArrayInputStream exportfichep(FichdepaieRequest fichdepaieRequest);
+    public  List<FichedepaieResponse> chercherficheparjobid(String jobid);
 
 
 

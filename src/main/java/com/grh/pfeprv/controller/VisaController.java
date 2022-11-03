@@ -56,10 +56,9 @@ public ResponseEntity<MessageResponse> Accordvisa(@PathVariable(value="id") Long
 {
     return iVisaService.Accordvisa(id,status);
 }
-@GetMapping("/cherchervisa/{nom}/{prenom}")
-public List<VisaResponse> cherchervisa(@PathVariable(value="nom") String nom,
-                                       @PathVariable(value="prenom") String prenom)
+@GetMapping("/cherchervisa/{jobid}")
+public List<VisaResponse> cherchervisa(@PathVariable(value="jobid") String jobid)
 {
-    return iVisaService.Cherchervisa(nom,prenom);
+    return iVisaService.Cherchervisa(jobid);
 }
 }

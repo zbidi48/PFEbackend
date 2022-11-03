@@ -101,8 +101,8 @@ public class EmployeeServiceImpl implements IEmployeService {
     }
 
     @Override
-    public List<Employee> chercheremployee(String nom, String prenom) {
+    public Employee chercheremployee(String jobid) {
 
-        return employeeRepository.findByNomAndPrenom(nom,prenom);
+        return employeeRepository.findByJobid(jobid);
     }
 }

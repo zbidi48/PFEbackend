@@ -12,6 +12,7 @@ public class FichdepaieRequest {
     private Date date;
     private String salairenet;
     private String salairebrut;
+    private Boolean suppr;
 
     private long employee_id;
 
