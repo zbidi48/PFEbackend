@@ -3,10 +3,7 @@ package com.grh.pfeprv.controller;
 import com.grh.pfeprv.domaine.Condidats;
 import com.grh.pfeprv.service.ICondidatService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
@@ -19,5 +16,10 @@ public class CondidatController {
     public List<Condidats> Affichercondidat()
     {
         return iCondidatService.Affichercondidat();
+    }
+    @GetMapping("/detaillecandidats/{id}")
+    public Condidats detaillecandidat(@PathVariable(value="id") Long id)
+    {
+        return iCondidatService.detaillecondidats(id);
     }
 }

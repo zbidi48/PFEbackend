@@ -3,6 +3,7 @@ package com.grh.pfeprv.service.impl;
 
 import com.grh.pfeprv.enums.ERole;
 import com.grh.pfeprv.payloads.request.LoginRequest;
+import com.grh.pfeprv.payloads.request.SignupCandidatRequest;
 import com.grh.pfeprv.payloads.request.SignupRequest;
 import com.grh.pfeprv.payloads.response.JwtResponse;
 import com.grh.pfeprv.payloads.response.MessageResponse;
@@ -93,17 +94,29 @@ public class AuthServiceImpl  implements IAuthService {
     }
 
     @Override
-    public ResponseEntity<MessageResponse> signupCondidat(SignupRequest request) {
+    public ResponseEntity<MessageResponse> signupCondidat(SignupCandidatRequest request) {
         Role role_cond = roleRepository.findByName(ERole.ROLE_Condidat).get();
         Set<Role> roles = new HashSet<>();
         roles.add(role_cond);
-        //User condidat = new User();
         Condidats condidat = new Condidats();
         condidat.setEmail(request.getEmail());
         condidat.setPassword(encoder.encode(request.getPassword()));
+        condidat.setNom(request.getNom());
+        condidat.setPrenom(request.getPrenom());
+        condidat.setPost(request.getPost());
+        condidat.setDateOfBirth(request.getDateOfBirth());
+        condidat.setAdresse(request.getAdresse());
+        condidat.setExperience(request.getExperience());
+        condidat.setTitreDiplome(request.getTitreDiplome());
+        condidat.setNationality(request.getNationality());
+        condidat.setNiveauEtud(request.getNiveauEtud());
+        condidat.setNiveauExp(request.getNiveauExp());
+        condidat.setPhone(request.getPhone());
+        condidat.setUniversity(request.getUniversity());
+        condidat.setVille(request.getVille());
         condidat.setRoles(roles);
         userRepository.save(condidat);
-        return ResponseEntity.ok(new MessageResponse("ajout avec success !"));
+        return ResponseEntity.ok(new MessageResponse("compte crier avec success !"));
     }
 
 

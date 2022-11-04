@@ -2,6 +2,7 @@ package com.grh.pfeprv.controller;
 
 
 import com.grh.pfeprv.payloads.request.LoginRequest;
+import com.grh.pfeprv.payloads.request.SignupCandidatRequest;
 import com.grh.pfeprv.payloads.request.SignupRequest;
 import com.grh.pfeprv.payloads.response.MessageResponse;
 import com.grh.pfeprv.service.IAuthService;
@@ -28,8 +29,8 @@ public class AuthController {
         return  service.signupEmp(signupRequest);
     }
     @PostMapping("/condidat/signup")
-    public ResponseEntity<MessageResponse> signupCond(@RequestBody SignupRequest signupRequest) {
-        return  service.signupCondidat(signupRequest);
+    public ResponseEntity<MessageResponse> signupCond(@RequestBody SignupCandidatRequest request ) {
+        return  service.signupCondidat(request);
     }
     @PostMapping("/serviceRH/signup")
     public ResponseEntity<MessageResponse> signupRH(@RequestBody SignupRequest signupRequest) {
