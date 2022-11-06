@@ -24,10 +24,15 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import static com.grh.pfeprv.enums.ERole.ROLE_Condidat;
+import static com.grh.pfeprv.enums.ERole.ROLE_Employee;
 
 @Service
 public class AuthServiceImpl  implements IAuthService {
@@ -95,11 +100,15 @@ public class AuthServiceImpl  implements IAuthService {
 
     @Override
     public ResponseEntity<MessageResponse> signupCondidat(SignupCandidatRequest request) {
-        Role role_cond = roleRepository.findByName(ERole.ROLE_Condidat).get();
+        //Role role_cond = roleRepository.findByName(ROLE_Condidat).get();
+        /*
         Set<Role> roles = new HashSet<>();
         roles.add(role_cond);
+         */
         Condidats condidat = new Condidats();
         condidat.setEmail(request.getEmail());
+        List<ERole> roles = new ArrayList<>();
+        roles.add(ROLE_Condidat);
         condidat.setPassword(encoder.encode(request.getPassword()));
         condidat.setNom(request.getNom());
         condidat.setPrenom(request.getPrenom());
@@ -114,7 +123,7 @@ public class AuthServiceImpl  implements IAuthService {
         condidat.setPhone(request.getPhone());
         condidat.setUniversity(request.getUniversity());
         condidat.setVille(request.getVille());
-        condidat.setRoles(roles);
+        //condidat.setRoles(roles);
         userRepository.save(condidat);
         return ResponseEntity.ok(new MessageResponse("compte crier avec success !"));
     }

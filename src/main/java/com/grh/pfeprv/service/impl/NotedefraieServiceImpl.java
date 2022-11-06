@@ -91,7 +91,7 @@ public class NotedefraieServiceImpl implements INotedefraieService {
     @Override
     public List<NotedefraieResponse> Cherchernotedefraie(String jobid) {
         List<NotedefraieResponse> responses= new ArrayList<>();
-        notedefraieRepository.findByEmployee_Jobid(jobid).forEach(notedefraie ->
+        notedefraieRepository.findByEmployee_JobidAndAndSupprimerIsFalse(jobid).forEach(notedefraie ->
         {
             responses.add(new NotedefraieResponse(
                     notedefraie.getId(),

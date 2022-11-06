@@ -32,6 +32,11 @@ public class EmployeeController {
 
          return iEmployeService.Miseajouremploye(id,employeeRequest);
      }
+     @PostMapping("/crieremployee")
+     public  ResponseEntity<MessageResponse> Crieremployee(@RequestBody EmployeeRequest employeeRequest)
+     {
+         return iEmployeService.AjoutEmployee(employeeRequest);
+     }
      @DeleteMapping("/effaceremployee/{id}")
      public ResponseEntity<MessageResponse> EffEmpl(@PathVariable(value = "id") Long id)
      {

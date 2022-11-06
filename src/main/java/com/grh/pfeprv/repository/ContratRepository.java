@@ -9,5 +9,6 @@ public interface ContratRepository extends JpaRepository<Contrat, Long> {
 
     List<Contrat> findAllByDeletedIsFalse();
     Contrat findByEmployee_Jobid(String jobid);
+    Contrat findAllByCode(String code);
 
 }

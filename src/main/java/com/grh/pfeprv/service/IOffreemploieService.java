@@ -13,6 +13,6 @@ public interface IOffreemploieService {
     public  ResponseEntity<MessageResponse> Miseajouroffre(Long id,OffreemploieRequest offreemploieRequest);
     public  ResponseEntity<MessageResponse> Supprimeroffre(Long id);
     public  Offreemploie Detailoffre(Long id);
-    public List<Offreemploie> rechercheoffer(String type);
-    public Long getidoffre();
+    public List<Offreemploie> rechercheoffer(String titredoffre);
+
 }

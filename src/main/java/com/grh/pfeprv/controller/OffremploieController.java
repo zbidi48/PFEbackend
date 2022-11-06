@@ -48,9 +48,5 @@ public class OffremploieController {
     {
         return iOffreemploieService.Detailoffre(id);
     }
-    @GetMapping("/afficheridoffre")
-    public Long Afficheroffre()
-    {
-        return iOffreemploieService.getidoffre();
-    }
+
 }

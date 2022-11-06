@@ -22,6 +22,7 @@ public class Employee extends  User{
     private String cnss;
     private String departement;
     private String jobid;
+    private Boolean suppr;
 
 
     @OneToOne(mappedBy = "employee")

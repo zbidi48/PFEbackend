@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface NotedefraieRepository extends JpaRepository<Notedefraie,Long> {
     List<Notedefraie> findAllBySupprimerIsFalse();
-    List<Notedefraie> findByEmployee_NomAndAndEmployee_Prenom(String nom,String prenom);
+    //List<Notedefraie> findByEmployee_NomAndAndEmployee_Prenom(String nom,String prenom);
     List<Notedefraie> findByEmployee_Email(String mail);
-    List<Notedefraie> findByEmployee_Jobid(String jobid);
+    List<Notedefraie> findByEmployee_JobidAndAndSupprimerIsFalse(String jobid);
 }

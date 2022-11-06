@@ -109,6 +109,7 @@ public class FichedepaieServiceImpl implements IFichedepaieservice {
         }
         Fichedepaie fp = fichedepaie.get();
         fp.setSuppr(true);
+        fichedepaieRepository.save(fp);
 
 
 

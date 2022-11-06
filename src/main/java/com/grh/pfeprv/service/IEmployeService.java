@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface IEmployeService {
     public List<EmployeeResponse> AfficherEmployee();
-    //public ResponseEntity<MessageResponse> AjoutEmployee( EmployeeRequest employeeRequest);
+    public ResponseEntity<MessageResponse> AjoutEmployee( EmployeeRequest employeeRequest);
     public ResponseEntity<MessageResponse> Miseajouremploye(Long id,EmployeeRequest employeeRequest);
     public  ResponseEntity<MessageResponse> Effaceremplyee(Long id);
     public  Employee DetailEmployee(Long id);

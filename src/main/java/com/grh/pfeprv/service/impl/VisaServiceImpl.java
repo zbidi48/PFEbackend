@@ -144,7 +144,7 @@ public class VisaServiceImpl implements IVisaService {
     @Override
     public List<VisaResponse> Cherchervisa(String jobid) {
         List<VisaResponse> visaResponses = new ArrayList<>();
-        visaRepository.findByEmployee_Jobid(jobid).forEach(visa -> {
+        visaRepository.findByEmployee_JobidAndAndSupprIsFalse(jobid).forEach(visa -> {
             visaResponses.add(new VisaResponse(
                     visa.getId(),
                     visa.getDatedepot(),

@@ -1,19 +1,14 @@
 package com.grh.pfeprv.service.impl;
-
-
 import com.grh.pfeprv.domaine.Employee;
 import com.grh.pfeprv.domaine.Presence;
-import com.grh.pfeprv.domaine.User;
 import com.grh.pfeprv.exception.NotFoundException;
 import com.grh.pfeprv.payloads.request.PresenceRequest;
 import com.grh.pfeprv.payloads.response.MessageResponse;
 import com.grh.pfeprv.payloads.response.PresenceResponse;
 import com.grh.pfeprv.repository.EmployeeRepository;
 import com.grh.pfeprv.repository.PresenceRepository;
-import com.grh.pfeprv.repository.UserRepository;
 import com.grh.pfeprv.service.IPresenceService;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 

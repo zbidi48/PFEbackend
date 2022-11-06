@@ -13,8 +13,9 @@ import java.util.Date;
 @Entity
 @Data
 @AllArgsConstructor
+
 @NoArgsConstructor
-@Table(name = "contrat")
+@Table(name = "contrat", uniqueConstraints = {@UniqueConstraint(columnNames = "code")})
 public class Contrat implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
