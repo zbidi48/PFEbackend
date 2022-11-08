@@ -47,17 +47,16 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
         });
         return responses;
     }
+    //changement au niveau de methode postuler au lieux de request on passe idoffre,idcandidat tout cour
 
     @Override
-    public ResponseEntity<MessageResponse> postuleroffre(OffrecondidatRequest offrecondidatRequest) {
+    public ResponseEntity<MessageResponse> postuleroffre(Long idoffre,Long idcondidat) {
         OffreemploieCondidat offreemploieCondidat = new OffreemploieCondidat();
         //System.out.println("idcondidat"+offrecondidatRequest.getCondidats_id());
-        Optional<Condidats> condidats = condidatRepository.findById(offrecondidatRequest
-                .getCondidats_id());
+        Optional<Condidats> condidats = condidatRepository.findById(idcondidat);
         //System.out.println("idoffre"+offrecondidatRequest.getOffreemploie_id());
-        Optional<Offreemploie> offreemploie =offeemploieRepository.findById(offrecondidatRequest
-                .getOffreemploie_id());
-        if(!condidats.isPresent()&&!offreemploie.isPresent())
+        Optional<Offreemploie> offreemploie =offeemploieRepository.findById(idoffre);
+        if(!condidats.isPresent() && !offreemploie.isPresent())
         {
             throw new NotFoundException("vous ne pouvez pas postuler");
         }

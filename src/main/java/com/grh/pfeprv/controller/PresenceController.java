@@ -37,7 +37,8 @@ public class PresenceController {
                     presence.getDate(),
                     presence.getNbreheure(),
                     presence.getEmployee().getNom(),
-                    presence.getEmployee().getPrenom()));
+                    presence.getEmployee().getPrenom(),
+                    presence.getEmployee().getJobid()));
         });
         return response;
     }
@@ -73,6 +74,11 @@ public class PresenceController {
     public  List<PresenceResponse> Affusermail(@PathVariable(value ="email") String email)
     {
         return iPresenceService.Affpresencebyusermail(email);
+    }
+    @GetMapping("/checherpresence/{jobid}")
+    public  List<PresenceResponse> cherchervisa(@PathVariable(value ="jobid") String jobid)
+    {
+        return iPresenceService.chercherpresence(jobid);
     }
 }
 

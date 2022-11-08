@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface IOffeCondidatService {
     public List<OffrecondidatResponse> Afficherinscriptionoffre();
-    public ResponseEntity<MessageResponse> postuleroffre(OffrecondidatRequest offrecondidatRequest);
+    public ResponseEntity<MessageResponse> postuleroffre(Long idoffre,Long idcondidat);
     public  ResponseEntity<MessageResponse> miseajourinscoffre(Long id,OffrecondidatRequest offrecondidatRequest);
     public ResponseEntity<MessageResponse> supprimerinscroffre(Long id);
     public  OffreemploieCondidat Afficherinscripparid(Long id);

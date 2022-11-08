@@ -1,6 +1,7 @@
 package com.grh.pfeprv.service.impl;
 
 import com.grh.pfeprv.domaine.Employee;
+import com.grh.pfeprv.domaine.Role;
 import com.grh.pfeprv.enums.ERole;
 import com.grh.pfeprv.exception.NotFoundException;
 import com.grh.pfeprv.payloads.request.EmployeeRequest;
@@ -8,6 +9,7 @@ import com.grh.pfeprv.payloads.response.EmployeeResponse;
 import com.grh.pfeprv.payloads.response.MessageResponse;
 import com.grh.pfeprv.repository.EmployeeRepository;
 import com.grh.pfeprv.repository.RoleRepository;
+import com.grh.pfeprv.repository.UserRepository;
 import com.grh.pfeprv.service.IEmployeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +26,8 @@ import static com.grh.pfeprv.enums.ERole.ROLE_Employee;
 public class EmployeeServiceImpl implements IEmployeService {
     @Autowired
     PasswordEncoder encoder;
+    @Autowired
+    UserRepository userRepository;
     @Autowired
     EmployeeRepository employeeRepository;
     @Autowired
@@ -46,8 +50,10 @@ public class EmployeeServiceImpl implements IEmployeService {
     @Override
     public ResponseEntity<MessageResponse> AjoutEmployee(EmployeeRequest employeeRequest) {
         Employee employee = new Employee();
+
         List<ERole> roles = new ArrayList<>();
         roles.add(ROLE_Employee);
+
         employee.setNom(employeeRequest.getNom());
         employee.setPrenom(employeeRequest.getPrenom());
         employee.setEmail(employeeRequest.getEmail());
@@ -59,7 +65,10 @@ public class EmployeeServiceImpl implements IEmployeService {
         employee.setStatus(employeeRequest.getStatus());
         employee.setJobid(employeeRequest.getJobid());
         employee.setSuppr(false);
-        employeeRepository.save(employee);
+        //employeeRepository.save(employee);
+        userRepository.save(employee);
+        //roleRepository.save(ROLE_Employee.name());
+
 
         return ResponseEntity.ok(new MessageResponse("employee ajouter avec success !"));
     }

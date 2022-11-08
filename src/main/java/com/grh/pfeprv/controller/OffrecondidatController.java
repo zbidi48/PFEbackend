@@ -32,11 +32,11 @@ public class OffrecondidatController {
     {
         return service.miseajourinscoffre(id,offrecondidatRequest);
     }
-    @PostMapping("/postuleroffre")
-    public  ResponseEntity<MessageResponse> Postuleroffre(@RequestBody OffrecondidatRequest
-                                                                      offrecondidatRequest)
+    @PostMapping("/postuleroffre/{idoffre}/{idcondidat}")
+    public  ResponseEntity<MessageResponse> Postuleroffre(@PathVariable(value="idoffre") Long idoffre,
+                                                          @PathVariable(value ="idcondidat") Long idcondidat)
     {
-        return service.postuleroffre(offrecondidatRequest);
+        return service.postuleroffre(idoffre,idcondidat);
     }
     @DeleteMapping("/supprimernscritoffre/{id}")
     public  ResponseEntity<MessageResponse> Supprimerinscritoffre(@PathVariable(value="id") Long id )

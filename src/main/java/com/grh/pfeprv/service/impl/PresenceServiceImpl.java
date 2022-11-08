@@ -96,7 +96,8 @@ public class PresenceServiceImpl implements IPresenceService {
                     presence.getDate(),
                     presence.getNbreheure(),
                     presence.getEmployee().getNom(),
-                    presence.getEmployee().getPrenom())
+                    presence.getEmployee().getPrenom(),
+                    presence.getEmployee().getJobid())
             );
 
             });
@@ -112,10 +113,9 @@ public class PresenceServiceImpl implements IPresenceService {
                     presence.getId(),
                     presence.getDate(),
                     presence.getNbreheure(),
-                    //presence.getUser().getNom(),
-                    //presence.getUser().getPrenom()
                     presence.getEmployee().getNom(),
-                    presence.getEmployee().getPrenom()
+                    presence.getEmployee().getPrenom(),
+                    presence.getEmployee().getJobid()
                     )
             );
 
@@ -124,16 +124,16 @@ public class PresenceServiceImpl implements IPresenceService {
     }
 
     @Override
-    public List<PresenceResponse> cherchervisa(String jobid) {
+    public List<PresenceResponse> chercherpresence(String jobid) {
         List<PresenceResponse> response = new ArrayList<>();
         presenceRepository.findByEmployee_Jobid(jobid).forEach(presence -> {
             response.add(new PresenceResponse(
                             presence.getId(),
                             presence.getDate(),
                             presence.getNbreheure(),
-
                             presence.getEmployee().getNom(),
-                            presence.getEmployee().getPrenom()
+                            presence.getEmployee().getPrenom(),
+                            presence.getEmployee().getJobid()
                     )
             );
 
