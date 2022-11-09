@@ -1,6 +1,7 @@
 package com.grh.pfeprv.domaine;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.grh.pfeprv.enums.EStatusEntretient;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,8 +22,13 @@ public class Entretient implements Serializable {
     private Long id;
     private Date date;
     private String heure;
+    @Enumerated(EnumType.STRING)
+    private EStatusEntretient status;
+    @JsonIgnore
+    private boolean suppr;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "condidats_id", referencedColumnName = "id")
+    @JsonIgnore
     private Condidats condidat;
 
 }

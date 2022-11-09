@@ -97,6 +97,7 @@ public class FichedepaieServiceImpl implements IFichedepaieservice {
         fp.setDate(f.getDate());
         fp.setSalairenet(f.getSalairenet());
         fp.setSalairebrut(f.getSalairebrut());
+        fichedepaieRepository.save(fp);
 
         return ResponseEntity.ok(new MessageResponse("fichdepaie modifier avec succeé"));
     }
