@@ -59,7 +59,7 @@ public class NotedefraieServiceImpl implements INotedefraieService {
         return ResponseEntity.ok(new MessageResponse("ajout avec success !"));
     }
 
-    /*
+
     @Override
     public ResponseEntity<MessageResponse> Miseajournotedefraie(Long id,
                                                                 NotedefraieRequest notedefraieRequest) {
@@ -70,11 +70,11 @@ public class NotedefraieServiceImpl implements INotedefraieService {
         }
         Notedefraie notedefraie1 = notedefraie.get();
         notedefraie1.setDescription(notedefraieRequest.getDescription());
-        notedefraie1.setStatus(notedefraieRequest.getStatus());
+        notedefraie1.setFraie(notedefraieRequest.getFraie());
         notedefraieRepository.save(notedefraie1);
         return ResponseEntity.ok(new MessageResponse(" modification avec succeé"));
     }
-     */
+
 
     @Override
     public ResponseEntity<MessageResponse> Supprimernotedefraie(Long id) {

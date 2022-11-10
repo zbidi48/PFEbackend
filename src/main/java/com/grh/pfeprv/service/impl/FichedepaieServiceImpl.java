@@ -153,7 +153,7 @@ public class FichedepaieServiceImpl implements IFichedepaieservice {
     @Override
     public List<FichedepaieResponse> chercherficheparjobid(String jobid) {
         List<FichedepaieResponse> responses = new ArrayList<>();
-        fichedepaieRepository.findByEmployee_Jobid(jobid).forEach(fichedepaie -> {
+        fichedepaieRepository.findByEmployee_JobidAndAndSupprIsFalse(jobid).forEach(fichedepaie -> {
             responses.add(new FichedepaieResponse(
                     fichedepaie.getId(),
                     fichedepaie.getDate(),

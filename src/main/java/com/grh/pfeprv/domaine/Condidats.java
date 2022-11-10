@@ -28,6 +28,7 @@ public class Condidats extends User{
     private String university;
     private String niveauExp;
     private String experience;
+    private Boolean suppr;
     /*
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "entretient_id", referencedColumnName = "id")

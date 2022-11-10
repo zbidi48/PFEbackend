@@ -31,7 +31,7 @@ public class PresenceController {
     public List<PresenceResponse> AFFPresence()
     {
         List<PresenceResponse> response = new ArrayList<>();
-        repository.findAll().forEach(presence -> {
+        repository.findBySupprIsFalse().forEach(presence -> {
             response.add(new PresenceResponse(
                     presence.getId(),
                     presence.getDate(),

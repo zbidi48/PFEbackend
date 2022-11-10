@@ -22,5 +22,6 @@ public class CongeRequest {
     private String statusConge;
     @Enumerated(EnumType.STRING)
     private ETypeConge typeConge;
+    private Boolean suppr;
     private Long employee_id;
 }

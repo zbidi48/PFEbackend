@@ -42,6 +42,7 @@ public class PresenceServiceImpl implements IPresenceService {
         presence.setDate(new Date());
         presence.setNbreheure(pr.getNbreheure());
         presence.setEmployee(employee1);
+        presence.setSuppr(false);
         presenceRepository.save(presence);
         return   ResponseEntity.ok(new MessageResponse("presence ajouter avec succeé"));
     }
@@ -69,7 +70,8 @@ public class PresenceServiceImpl implements IPresenceService {
             throw new NotFoundException("presence ID: "+id+" not found");
         }
         Presence prs = presence.get();
-        presenceRepository.delete(prs);
+        prs.setSuppr(true);
+        presenceRepository.save(prs);
         return ResponseEntity.ok(new MessageResponse("suppression avec success !"));
 
       
@@ -126,7 +128,7 @@ public class PresenceServiceImpl implements IPresenceService {
     @Override
     public List<PresenceResponse> chercherpresence(String jobid) {
         List<PresenceResponse> response = new ArrayList<>();
-        presenceRepository.findByEmployee_Jobid(jobid).forEach(presence -> {
+        presenceRepository.findByEmployee_JobidAndAndSupprIsFalse(jobid).forEach(presence -> {
             response.add(new PresenceResponse(
                             presence.getId(),
                             presence.getDate(),

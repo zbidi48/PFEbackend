@@ -123,6 +123,7 @@ public class AuthServiceImpl  implements IAuthService {
         condidat.setPhone(request.getPhone());
         condidat.setUniversity(request.getUniversity());
         condidat.setVille(request.getVille());
+        condidat.setSuppr(false);
         //condidat.setRoles(roles);
         userRepository.save(condidat);
         return ResponseEntity.ok(new MessageResponse("compte crier avec success !"));

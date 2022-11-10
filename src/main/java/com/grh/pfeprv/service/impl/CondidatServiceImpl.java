@@ -17,7 +17,7 @@ public class CondidatServiceImpl implements ICondidatService {
 CondidatRepository condidatRepository;
     @Override
     public List<Condidats> Affichercondidat() {
-        return condidatRepository.findAll();
+        return condidatRepository.findBySupprIsFalse();
     }
 
     @Override

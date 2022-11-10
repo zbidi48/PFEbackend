@@ -28,7 +28,7 @@ public class CongeServiceImpl implements ICongeService {
     @Override
     public List<CongeResponse> afficherconge() {
         List<CongeResponse> responses = new ArrayList<>();
-        congeRepository.findAll().forEach(
+        congeRepository.findBySupprIsFalse().forEach(
                 conge -> {
                     responses.add(new CongeResponse(
                             conge.getId(),
@@ -59,6 +59,7 @@ public class CongeServiceImpl implements ICongeService {
         conge.setDatedebut(congeRequest.getDatedebut());
         conge.setDatefin(congeRequest.getDatefin());
         conge.setStatusConge("DEMANDEENCOUR");
+        conge.setSuppr(false);
        /*
         if(congeRequest.getTypeConge().equals("anuelle"))
         {
@@ -117,7 +118,8 @@ public class CongeServiceImpl implements ICongeService {
             throw new NotFoundException("congé ID: "+id+" not found");
         }
         Conge conge1 =conge.get();
-        congeRepository.delete(conge1);
+        conge1.setSuppr(true);
+        congeRepository.save(conge1);
        return ResponseEntity.ok(new MessageResponse("congé supprimer avec succeé"));
     }
 
@@ -136,7 +138,7 @@ public class CongeServiceImpl implements ICongeService {
     @Override
     public List<CongeResponse> chercherconge(String jobid) {
         List<CongeResponse> responses=new ArrayList<>();
-        congeRepository.findByEmployee_Jobid(jobid).forEach(conge -> {
+        congeRepository.findByEmployee_JobidAndAndSupprIsFalse(jobid).forEach(conge -> {
             responses.add(new CongeResponse(
                     conge.getId(),
                     conge.getDatedebut(),

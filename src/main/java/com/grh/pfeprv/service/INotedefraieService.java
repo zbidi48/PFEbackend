@@ -10,7 +10,7 @@ import java.util.List;
 public interface INotedefraieService {
     public List<NotedefraieResponse> Affichernotedefraie();
     public ResponseEntity<MessageResponse> Ajoutnotedefraie(NotedefraieRequest notedefraieRequest);
-    //public ResponseEntity<MessageResponse> Miseajournotedefraie(Long id,NotedefraieRequest notedefraieRequest);
+    public ResponseEntity<MessageResponse> Miseajournotedefraie(Long id,NotedefraieRequest notedefraieRequest);
     public ResponseEntity<MessageResponse> Supprimernotedefraie(Long id);
     public List<NotedefraieResponse> Cherchernotedefraie(String jobid);
     public Notedefraie Affichernotedefraieparid(Long id);

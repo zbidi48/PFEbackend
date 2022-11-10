@@ -15,4 +15,5 @@ public class PresenceRequest {
     private  double nbreheure;
 
     private long employee_id;
+    private Boolean suppr;
 }

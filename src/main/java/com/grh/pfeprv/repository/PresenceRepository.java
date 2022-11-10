@@ -9,7 +9,8 @@ public interface PresenceRepository extends JpaRepository<Presence,Long> {
 
     List<Presence> findAllByEmployee_Id(Long id);
     List<Presence> findAllByEmployee_Email(String email);
-    List<Presence> findByEmployee_Jobid(String jobid);
+    List<Presence> findByEmployee_JobidAndAndSupprIsFalse(String jobid);
+    List<Presence> findBySupprIsFalse();
 
 
 }

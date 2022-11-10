@@ -28,14 +28,14 @@ public class NotedefraieController  {
     {
         return  iNotedefraieService.Ajoutnotedefraie(notedefraieRequest);
     }
-    /*
+
     @PutMapping("/miseajournotedefraie/{id}")
     public ResponseEntity<MessageResponse> Miseajournotedefraie(@PathVariable(value="id") Long id,
                                                                 @RequestBody NotedefraieRequest notedefraieRequest)
     {
         return iNotedefraieService.Miseajournotedefraie(id, notedefraieRequest);
     }
-     */
+
     @DeleteMapping("/supprimernotedefraie/{id}")
     ResponseEntity<MessageResponse> Supprimernotedefraie(@PathVariable(value="id") Long id)
     {

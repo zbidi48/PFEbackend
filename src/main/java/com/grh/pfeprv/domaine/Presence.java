@@ -24,6 +24,7 @@ public class Presence implements Serializable {
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     private Date date;
     private double nbreheure;
+    private Boolean suppr;
     @ManyToOne
     @JoinColumn( name="employee_id" )
     @JsonIgnore

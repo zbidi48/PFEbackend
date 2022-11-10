@@ -8,5 +8,6 @@ import java.util.List;
 public interface CongeRepository extends JpaRepository<Conge,Long> {
    //List<Conge> findCongeByEmployee_NomAndEmployee_Prenom(String nom,String prenom);
    List<Conge> findByEmployee_Email(String mail);
-   List<Conge> findByEmployee_Jobid(String jobid);
+   List<Conge> findByEmployee_JobidAndAndSupprIsFalse(String jobid);
+   List<Conge> findBySupprIsFalse();
 }

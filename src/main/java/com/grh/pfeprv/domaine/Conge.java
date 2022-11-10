@@ -27,6 +27,8 @@ public class Conge  implements Serializable {
     private Date datedebut;
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     private Date datefin;
+    private Boolean suppr;
+
     /*
     @Enumerated(EnumType.STRING)
     private EStatusConge statusConge;
