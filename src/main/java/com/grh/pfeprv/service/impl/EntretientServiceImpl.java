@@ -34,7 +34,8 @@ public class EntretientServiceImpl implements IEntretientService {
                     entretient.getHeure(),
                     entretient.getStatus().name(),
                     entretient.getCondidat().getNom(),
-                    entretient.getCondidat().getPrenom()
+                    entretient.getCondidat().getPrenom(),
+                    entretient.getCondidat().getCin()
             ));
         });
 
@@ -53,6 +54,7 @@ public class EntretientServiceImpl implements IEntretientService {
         entretient.setDate(entretientRequest.getDate());
         entretient.setHeure(entretientRequest.getHeure());
         entretient.setStatus(EStatusEntretient.ENCOUR);
+
         entretient.setSuppr(false);
         entretient.setCondidat(condidat);
         entretientRepository.save(entretient);
@@ -108,7 +110,8 @@ public class EntretientServiceImpl implements IEntretientService {
                             entretient.getHeure(),
                             entretient.getStatus().name(),
                             entretient.getCondidat().getNom(),
-                            entretient.getCondidat().getPrenom()
+                            entretient.getCondidat().getPrenom(),
+                            entretient.getCondidat().getCin()
                     ));
                 }
         );
@@ -127,7 +130,8 @@ public class EntretientServiceImpl implements IEntretientService {
                             entretient.getHeure(),
                             entretient.getStatus().name(),
                             entretient.getCondidat().getNom(),
-                            entretient.getCondidat().getPrenom()
+                            entretient.getCondidat().getPrenom(),
+                            entretient.getCondidat().getCin()
                     ));
                 }
         );

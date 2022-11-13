@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface CondidatRepository extends JpaRepository<Condidats,Long> {
    List<Condidats> findBySupprIsFalse();
+   List<Condidats> findAllByNomAndPrenomAndSupprIsFalse(String nom,String prenom);
 }

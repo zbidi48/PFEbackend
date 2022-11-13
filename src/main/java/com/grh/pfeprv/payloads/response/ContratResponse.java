@@ -12,7 +12,7 @@ import java.util.Date;
 public class ContratResponse {
     private  Long id;
     private  String code;
-    private  String libelle;
+    private  String type;
     private Date datedebut;
     private Date datefin;
     private  String nom;
@@ -24,11 +24,11 @@ public class ContratResponse {
 
     }
 
-   public  ContratResponse(Long id,String code,String libelle,Date datedebut,Date datefin,String nom,String prenom,String post,String jobid)
+   public  ContratResponse(Long id,String code,String type,Date datedebut,Date datefin,String nom,String prenom,String post,String jobid)
    {
        this.id=id;
        this.code=code;
-       this.libelle=libelle;
+       this.type=type;
        this.datedebut=datedebut;
        this.datefin=datefin;
        this.nom=nom;

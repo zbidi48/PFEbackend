@@ -24,6 +24,7 @@ public class OffrecondidatController {
     {
         return service.Afficherinscriptionoffre();
     }
+    /*
     @PutMapping("/miseajourinscript/{id}")
     public ResponseEntity<MessageResponse> Miseajourinscripoffre(@PathVariable(value="id")
                                                                      Long id,
@@ -32,6 +33,7 @@ public class OffrecondidatController {
     {
         return service.miseajourinscoffre(id,offrecondidatRequest);
     }
+     */
     @PostMapping("/postuleroffre/{idoffre}/{idcondidat}")
     public  ResponseEntity<MessageResponse> Postuleroffre(@PathVariable(value="idoffre") Long idoffre,
                                                           @PathVariable(value ="idcondidat") Long idcondidat)
@@ -59,17 +61,19 @@ public class OffrecondidatController {
     {
         return service.Afficherinscripparid(id);
     }
-    @PutMapping("/chagestatus/{id}")
+    @PutMapping("/chagestatus/{id}/{status}")
        public ResponseEntity<MessageResponse> Statuspostuleoffre(@PathVariable(value="id") Long id
-                                                       , @RequestBody OffrecondidatRequest offrecondidatRequest)
+                                                       , @PathVariable(value="status") String status)
     {
-        return service.Statuspostule(id,offrecondidatRequest);
+        return service.Statuspostule(id,status);
     }
 
+    /*
     @GetMapping("/acceptentretient/{status}")
     public  List<OffrecondidatResponse>  Postuleaccepte(@PathVariable(value="status") String status)
     {
         return service.Affichercondidatentretient(status);
     }
+     */
 
 }

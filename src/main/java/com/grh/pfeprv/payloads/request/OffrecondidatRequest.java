@@ -24,6 +24,7 @@ public class OffrecondidatRequest {
     private Date datecreation;
     @Enumerated(EnumType.STRING)
     private EStatusOffreCondidat status;
+    private Boolean suppr;
 
 
 }

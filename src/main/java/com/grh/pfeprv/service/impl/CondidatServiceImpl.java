@@ -29,4 +29,9 @@ CondidatRepository condidatRepository;
         }
         return condidats.get();
     }
+
+    @Override
+    public List<Condidats> cherchercandidat(String nom, String prenom) {
+        return condidatRepository.findAllByNomAndPrenomAndSupprIsFalse(nom,prenom);
+    }
 }

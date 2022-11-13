@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name ="condidats" )
+@Table(name ="condidats" ,uniqueConstraints = {@UniqueConstraint(columnNames = "cin")} )
 @DiscriminatorValue("condidat")
 @Data
 @AllArgsConstructor
@@ -28,6 +28,7 @@ public class Condidats extends User{
     private String university;
     private String niveauExp;
     private String experience;
+    private String cin;
     private Boolean suppr;
     /*
     @OneToOne(cascade = CascadeType.ALL)

@@ -4,6 +4,7 @@ import com.grh.pfeprv.domaine.Condidats;
 import com.grh.pfeprv.domaine.Offreemploie;
 import com.grh.pfeprv.domaine.OffreemploieCondidat;
 import com.grh.pfeprv.enums.EStatusOffreCondidat;
+import com.grh.pfeprv.enums.EStatusVisa;
 import com.grh.pfeprv.exception.NotFoundException;
 import com.grh.pfeprv.payloads.request.OffrecondidatRequest;
 import com.grh.pfeprv.payloads.response.MessageResponse;
@@ -36,13 +37,23 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
     @Override
     public List<OffrecondidatResponse> Afficherinscriptionoffre() {
         List<OffrecondidatResponse> responses= new ArrayList<>();
-        offrecondidatRepository.findAll().forEach(offreemploieCondidat -> {
+        offrecondidatRepository.findBySupprIsFalse().forEach(offreemploieCondidat -> {
             responses.add(new OffrecondidatResponse(
                     offreemploieCondidat.getId(),
                     offreemploieCondidat.getOffreemploie().getDatecreation(),
                     offreemploieCondidat.getCondidats().getNom(),
                     offreemploieCondidat.getCondidats().getPrenom(),
-                    offreemploieCondidat.getCondidats().getPost()));
+                    offreemploieCondidat.getCondidats().getCin(),
+                    offreemploieCondidat.getCondidats().getPost(),
+                    offreemploieCondidat.getOffreemploie().getTitredoffre(),
+                    offreemploieCondidat.getOffreemploie().getDescription(),
+                    offreemploieCondidat.getOffreemploie().getDatelimite(),
+                    offreemploieCondidat.getOffreemploie().getLangue(),
+                    offreemploieCondidat.getOffreemploie().getExperience(),
+                    offreemploieCondidat.getOffreemploie().getExigenceemploie(),
+                    offreemploieCondidat.getStatus().name()
+            ));
+
 
         });
         return responses;
@@ -64,6 +75,7 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
         Offreemploie offreemploie1 =offreemploie.get();
         offreemploieCondidat.setStatus(EStatusOffreCondidat.ENCOUR);
         offreemploieCondidat.setDatecreation(new Date());
+        offreemploieCondidat.setSuppr(false);
         offreemploieCondidat.setCondidats(condidats1);
         offreemploieCondidat.setOffreemploie(offreemploie1);
         offrecondidatRepository.save(offreemploieCondidat);
@@ -71,6 +83,7 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
         return ResponseEntity.ok(new MessageResponse("offre postuler avec succé !"));
     }
 
+   /*
     @Override
     public ResponseEntity<MessageResponse> miseajourinscoffre(Long id, OffrecondidatRequest offrecondidatRequest) {
           Optional<OffreemploieCondidat> offreemploieCondidat=offrecondidatRepository.
@@ -85,6 +98,7 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
           offrecondidatRepository.save(offreemploieCondidat1);
         return ResponseEntity.ok(new MessageResponse(" modification avec succeé"));
     }
+    */
 
     @Override
     public ResponseEntity<MessageResponse> supprimerinscroffre(Long id) {
@@ -94,7 +108,8 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
             throw new NotFoundException("inscrition offre ID: " + id + " not found");
         }
         OffreemploieCondidat offreemploieCondidat1 =offreemploieCondidat.get();
-        offrecondidatRepository.delete(offreemploieCondidat1);
+        offreemploieCondidat1.setSuppr(true);
+        offrecondidatRepository.save(offreemploieCondidat1);
         return ResponseEntity.ok(new MessageResponse(" suppresion d inscription d offre avec succeé"));
     }
 
@@ -122,7 +137,16 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
                                     offreemploieCondidat.getOffreemploie().getDatecreation(),
                                     offreemploieCondidat.getCondidats().getNom(),
                                     offreemploieCondidat.getCondidats().getPrenom(),
-                                    offreemploieCondidat.getCondidats().getPost()));
+                                    offreemploieCondidat.getCondidats().getCin(),
+                                    offreemploieCondidat.getCondidats().getPost(),
+                                    offreemploieCondidat.getOffreemploie().getTitredoffre(),
+                                    offreemploieCondidat.getOffreemploie().getDescription(),
+                                    offreemploieCondidat.getOffreemploie().getDatelimite(),
+                                    offreemploieCondidat.getOffreemploie().getLangue(),
+                                    offreemploieCondidat.getOffreemploie().getExperience(),
+                                    offreemploieCondidat.getOffreemploie().getExigenceemploie(),
+                                    offreemploieCondidat.getStatus().name()
+                                    ));
                 });
 
         return response;
@@ -137,7 +161,15 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
                     offreemploieCondidat.getOffreemploie().getDatecreation(),
                     offreemploieCondidat.getCondidats().getNom(),
                     offreemploieCondidat.getCondidats().getPrenom(),
-                    offreemploieCondidat.getCondidats().getPost()
+                    offreemploieCondidat.getCondidats().getCin(),
+                    offreemploieCondidat.getCondidats().getPost(),
+                    offreemploieCondidat.getOffreemploie().getTitredoffre(),
+                    offreemploieCondidat.getOffreemploie().getDescription(),
+                    offreemploieCondidat.getOffreemploie().getDatelimite(),
+                    offreemploieCondidat.getOffreemploie().getLangue(),
+                    offreemploieCondidat.getOffreemploie().getExperience(),
+                    offreemploieCondidat.getOffreemploie().getExigenceemploie(),
+                    offreemploieCondidat.getStatus().name()
 
                   ));
         });
@@ -145,6 +177,7 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
     }
 
 
+    /*
     @Override
     public List<OffrecondidatResponse> Affichercondidatentretient(String status) {
         List<OffrecondidatResponse> responses= new ArrayList<>();
@@ -154,22 +187,29 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
                     offreemploieCondidat.getOffreemploie().getDatecreation(),
                     offreemploieCondidat.getCondidats().getNom(),
                     offreemploieCondidat.getCondidats().getPrenom(),
-                    offreemploieCondidat.getCondidats().getPost()
-            ));
+                    offreemploieCondidat.getCondidats().getPost(),
+                    offreemploieCondidat.getOffreemploie().getTitredoffre(),
+                    offreemploieCondidat.getOffreemploie().getDescription()));
         });
         return responses;
     }
+     */
 
 
     @Override
-    public ResponseEntity<MessageResponse> Statuspostule(Long id, OffrecondidatRequest offrecondidatRequest) {
+    public ResponseEntity<MessageResponse> Statuspostule(Long id, String status) {
          Optional<OffreemploieCondidat> offreemploieCondidat = offrecondidatRepository.findById(id);
          if(!offreemploieCondidat.isPresent())
          {
              throw new NotFoundException("postuleoffre ID: "+id+" not found");
          }
          OffreemploieCondidat offreemploieCondidat1 =offreemploieCondidat.get();
-         offreemploieCondidat1.setStatus(offrecondidatRequest.getStatus());
+        if(status.equals("accepte")){
+            offreemploieCondidat1.setStatus(EStatusOffreCondidat.ACCEPTE);
+        } else {
+            offreemploieCondidat1.setStatus(EStatusOffreCondidat.REFUSE);
+        }
+
         offrecondidatRepository.save(offreemploieCondidat1);
         return ResponseEntity.ok(new MessageResponse("etat postuleoffre changé "));
     }

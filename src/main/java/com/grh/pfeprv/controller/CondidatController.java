@@ -22,4 +22,10 @@ public class CondidatController {
     {
         return iCondidatService.detaillecondidats(id);
     }
+    @PostMapping("/cherchercandidat/{nom}/{prenom}")
+    public List<Condidats>  cherchercandidats(@PathVariable(value="nom") String nom
+            ,@PathVariable(value="prenom") String prenom)
+    {
+        return iCondidatService.cherchercandidat(nom,prenom);
+    }
 }

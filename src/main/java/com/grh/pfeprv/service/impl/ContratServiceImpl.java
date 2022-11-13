@@ -39,7 +39,8 @@ public class ContratServiceImpl  implements IContratService {
             response.add(new ContratResponse(
                     contrat.getId(),
                     contrat.getCode(),
-                    contrat.getLibelle(),
+                    //contrat.getLibelle(),
+                    contrat.getType(),
                     contrat.getDatedebut(),
                     contrat.getDatefin(),
                     contrat.getEmployee().getNom(),
@@ -66,7 +67,8 @@ public class ContratServiceImpl  implements IContratService {
         //User us = user.get();
         Employee emp= employee.get();
         contrat.setCode(c.getCode());
-        contrat.setLibelle(c.getLibelle());
+        //contrat.setLibelle(c.getLibelle());
+        contrat.setType(c.getType());
         contrat.setDatedebut(c.getDatedebut());
         contrat.setDatefin(c.getDatefin());
         contrat.setEmployee(emp);
@@ -85,7 +87,7 @@ public class ContratServiceImpl  implements IContratService {
         }
         Contrat con = contrat.get();
         con.setCode(c.getCode());
-        con.setLibelle(c.getLibelle());
+        con.setType(c.getType());
         con.setDatefin(c.getDatefin());
         con.setDatedebut(c.getDatedebut());
        contratRepository.save(con);

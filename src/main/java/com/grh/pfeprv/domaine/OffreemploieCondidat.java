@@ -31,6 +31,7 @@ public class OffreemploieCondidat {
     private Date datecreation;
     @Enumerated(EnumType.STRING)
     private EStatusOffreCondidat status;
+    private Boolean suppr;
 
 
 }

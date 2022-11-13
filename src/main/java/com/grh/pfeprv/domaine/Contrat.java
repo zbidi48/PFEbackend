@@ -24,7 +24,7 @@ public class Contrat implements Serializable {
 
     private  String code;
 
-    private  String libelle;
+    private  String type;
 
     private Date datedebut;
 
