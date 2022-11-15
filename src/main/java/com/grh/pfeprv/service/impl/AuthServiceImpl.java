@@ -100,15 +100,12 @@ public class AuthServiceImpl  implements IAuthService {
 
     @Override
     public ResponseEntity<MessageResponse> signupCondidat(SignupCandidatRequest request) {
-        //Role role_cond = roleRepository.findByName(ROLE_Condidat).get();
-        /*
-        Set<Role> roles = new HashSet<>();
-        roles.add(role_cond);
-         */
+
         Condidats condidat = new Condidats();
         condidat.setEmail(request.getEmail());
-        List<ERole> roles = new ArrayList<>();
-        roles.add(ROLE_Condidat);
+        Role role = roleRepository.findByName(ROLE_Condidat).get();
+        Set<Role> roles = new HashSet<>();
+        roles.add(role);
         condidat.setPassword(encoder.encode(request.getPassword()));
         condidat.setNom(request.getNom());
         condidat.setPrenom(request.getPrenom());
@@ -124,7 +121,7 @@ public class AuthServiceImpl  implements IAuthService {
         condidat.setUniversity(request.getUniversity());
         condidat.setVille(request.getVille());
         condidat.setSuppr(false);
-        //condidat.setRoles(roles);
+        condidat.setRoles(roles);
         userRepository.save(condidat);
         return ResponseEntity.ok(new MessageResponse("compte crier avec success !"));
     }

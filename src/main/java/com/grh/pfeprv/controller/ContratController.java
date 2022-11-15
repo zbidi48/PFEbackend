@@ -53,9 +53,9 @@ public class ContratController {
         return iContratService.Cherchercontrat(code);
     }
     @GetMapping("/cherchercontratparjobid/{jobid}")
-    public Contrat cherchercontratparjobid(@PathVariable(value ="jobid") String jobid)
+    public ResponseEntity<List<Contrat>> cherchercontratparjobid(@PathVariable(value ="jobid") String jobid)
     {
-        return iContratService.recherchecontratparjobid(jobid);
+        return ResponseEntity.ok(iContratService.recherchecontratparjobid(jobid));
     }
     @GetMapping ("/detaillcontrat/{id}")
     public  Contrat DetaitContrat(@PathVariable(value="id") Long id)

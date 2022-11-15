@@ -13,7 +13,7 @@ public interface IOffeCondidatService {
     public ResponseEntity<MessageResponse> postuleroffre(Long idoffre,Long idcondidat);
     //public  ResponseEntity<MessageResponse> miseajourinscoffre(Long id,OffrecondidatRequest offrecondidatRequest);
     public ResponseEntity<MessageResponse> supprimerinscroffre(Long id);
-    public  OffreemploieCondidat Afficherinscripparid(Long id);
+    //public  OffreemploieCondidat Afficherinscripparid(Long id);
     public List<OffrecondidatResponse> Chercherinscriptionoffre(String type);
     public List<OffrecondidatResponse> Afficherinscriptionoffreparmail(String mail);
     //public  List<OffrecondidatResponse> Affichercondidatentretient(String status);

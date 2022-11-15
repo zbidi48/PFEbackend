@@ -43,7 +43,7 @@ public class EmployeeController {
          return iEmployeService.Effaceremplyee(id);
      }
      @GetMapping("/chercheremployee/{jobid}")
-     public  Employee ChercherEmpl(@PathVariable(value = "jobid") String jobid)
+     public  ResponseEntity<List<Employee>> ChercherEmpl(@PathVariable(value = "jobid") String jobid)
      {
          return iEmployeService.chercheremployee(jobid);
      }

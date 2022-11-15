@@ -113,18 +113,26 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
         return ResponseEntity.ok(new MessageResponse(" suppresion d inscription d offre avec succeé"));
     }
 
+  /*
     @Override
     public OffreemploieCondidat Afficherinscripparid(Long id) {
-
+        OffrecondidatResponse response = new OffrecondidatResponse();
 
         Optional<OffreemploieCondidat> offreemploieCondidat=offrecondidatRepository.findById(id);
         if(!offreemploieCondidat.isPresent())
         {
             throw new NotFoundException("inscrition offre ID: " + id + " not found");
         }
-        return offreemploieCondidat.get();
+        else {
+            offrecondidatRepository.findById(id).
+
+
+            });
+
+        }
 
     }
+   */
 
     @Override
     public List<OffrecondidatResponse> Chercherinscriptionoffre(String titredoffre) {

@@ -30,11 +30,14 @@ CommandLineRunner start(RoleRepository roleRepository,
                         EmployeeRepository employeeRepository,
                         CondidatRepository condidatRepository) {
        return args -> {
-           Stream.of(ERole.ROLE_Condidat,  ERole.ROLE_Employee, ERole.ROLE_serviceRH).forEach(r -> {
-               Role role = new Role();
-               role.setName(r);
-               roleRepository.save(role);
-           });
+           if(roleRepository.findAll().isEmpty()){
+               Stream.of(ERole.ROLE_Condidat,  ERole.ROLE_Employee, ERole.ROLE_serviceRH).forEach(r -> {
+                   Role role = new Role();
+                   role.setName(r);
+                   roleRepository.save(role);
+               });
+           }
+
 
            Set<Role> roles = new HashSet<>();
            roles.add(roleRepository.findByName(ERole.ROLE_serviceRH).get());

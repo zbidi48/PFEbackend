@@ -12,12 +12,13 @@ import com.grh.pfeprv.repository.RoleRepository;
 import com.grh.pfeprv.repository.UserRepository;
 import com.grh.pfeprv.service.IEmployeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Stream;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import static com.grh.pfeprv.enums.ERole.ROLE_Employee;
@@ -51,9 +52,11 @@ public class EmployeeServiceImpl implements IEmployeService {
     public ResponseEntity<MessageResponse> AjoutEmployee(EmployeeRequest employeeRequest) {
         Employee employee = new Employee();
 
-        List<ERole> roles = new ArrayList<>();
-        roles.add(ROLE_Employee);
 
+
+        Role role = roleRepository.findByName(ERole.ROLE_Employee).get();
+        Set<Role> roles = new HashSet<>();
+        roles.add(role);
         employee.setNom(employeeRequest.getNom());
         employee.setPrenom(employeeRequest.getPrenom());
         employee.setEmail(employeeRequest.getEmail());
@@ -65,9 +68,8 @@ public class EmployeeServiceImpl implements IEmployeService {
         employee.setStatus(employeeRequest.getStatus());
         employee.setJobid(employeeRequest.getJobid());
         employee.setSuppr(false);
-        //employeeRepository.save(employee);
+        employee.setRoles(roles);
         userRepository.save(employee);
-        //roleRepository.save(ROLE_Employee.name());
 
 
         return ResponseEntity.ok(new MessageResponse("employee ajouter avec success !"));
@@ -125,8 +127,8 @@ public class EmployeeServiceImpl implements IEmployeService {
     }
 
     @Override
-    public Employee chercheremployee(String jobid) {
+    public ResponseEntity<List<Employee> > chercheremployee(String jobid) {
 
-        return employeeRepository.findByJobidAndAndSupprIsFalse(jobid);
+        return ResponseEntity.ok(employeeRepository.findByJobidAndAndSupprIsFalse(jobid));
     }
 }

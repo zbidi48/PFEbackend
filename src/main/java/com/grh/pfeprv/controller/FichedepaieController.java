@@ -68,12 +68,12 @@ public class FichedepaieController {
         return  iFichedepaieservice.chercherfiche(nom,prenom);
     }
      */
-    /*
+
     @GetMapping("/exporterpdf/{id}")
     public  String exporterpdf(@PathVariable(value="id") long id) throws JRException, FileNotFoundException {
         return iFichedepaieservice.exportfichedepaie(id);
     }
-     */
+
 
 
 }

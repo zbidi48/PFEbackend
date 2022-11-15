@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 import java.io.Serializable;
+import java.sql.Time;
 import java.util.Date;
 
 @Entity
@@ -23,7 +24,10 @@ public class Presence implements Serializable {
     private Long id;
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     private Date date;
-    private double nbreheure;
+    @JsonFormat(pattern="HH:mm:ss")
+    private Time tempentre;
+    @JsonFormat(pattern="HH:mm:ss")
+    private Time tempsortie;
     private Boolean suppr;
     @ManyToOne
     @JoinColumn( name="employee_id" )

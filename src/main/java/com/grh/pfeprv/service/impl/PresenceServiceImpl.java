@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.sql.Time;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -40,7 +42,10 @@ public class PresenceServiceImpl implements IPresenceService {
         }
         Employee employee1 = employee.get();
         presence.setDate(new Date());
-        presence.setNbreheure(pr.getNbreheure());
+
+        presence.setTempentre(Time.valueOf(LocalTime.now()));
+        presence.setTempsortie(pr.getTempsortie());
+
         presence.setEmployee(employee1);
         presence.setSuppr(false);
         presenceRepository.save(presence);
@@ -56,7 +61,9 @@ public class PresenceServiceImpl implements IPresenceService {
         }
         Presence prs = presence.get();
         //prs.setDate(new Date());
-        prs.setNbreheure(pr.getNbreheure());
+
+        prs.setTempsortie(pr.getTempsortie());
+
         presenceRepository.save(prs);
 
         return   ResponseEntity.ok(new MessageResponse("presence modifier avec succeé"));
@@ -96,7 +103,8 @@ public class PresenceServiceImpl implements IPresenceService {
             response.add(new PresenceResponse(
                     presence.getId(),
                     presence.getDate(),
-                    presence.getNbreheure(),
+                    presence.getTempentre(),
+                    presence.getTempsortie(),
                     presence.getEmployee().getNom(),
                     presence.getEmployee().getPrenom(),
                     presence.getEmployee().getJobid())
@@ -114,7 +122,8 @@ public class PresenceServiceImpl implements IPresenceService {
             response.add(new PresenceResponse(
                     presence.getId(),
                     presence.getDate(),
-                    presence.getNbreheure(),
+                    presence.getTempentre(),
+                    presence.getTempsortie(),
                     presence.getEmployee().getNom(),
                     presence.getEmployee().getPrenom(),
                     presence.getEmployee().getJobid()
@@ -132,13 +141,13 @@ public class PresenceServiceImpl implements IPresenceService {
             response.add(new PresenceResponse(
                             presence.getId(),
                             presence.getDate(),
-                            presence.getNbreheure(),
+                            presence.getTempentre(),
+                            presence.getTempsortie(),
                             presence.getEmployee().getNom(),
                             presence.getEmployee().getPrenom(),
                             presence.getEmployee().getJobid()
                     )
             );
-
         });
 
         return response;

@@ -35,10 +35,12 @@ public class PresenceController {
             response.add(new PresenceResponse(
                     presence.getId(),
                     presence.getDate(),
-                    presence.getNbreheure(),
+                    presence.getTempentre(),
+                    presence.getTempsortie(),
                     presence.getEmployee().getNom(),
                     presence.getEmployee().getPrenom(),
-                    presence.getEmployee().getJobid()));
+                    presence.getEmployee().getJobid()
+            ));
         });
         return response;
     }

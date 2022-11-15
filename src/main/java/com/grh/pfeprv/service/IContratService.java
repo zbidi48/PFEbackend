@@ -18,5 +18,5 @@ public interface IContratService {
 
     public Contrat Affcontratid(Long id);
     public  Contrat Cherchercontrat(String code);
-    public Contrat recherchecontratparjobid(String jobid);
+    public List<Contrat> recherchecontratparjobid(String jobid);
 }

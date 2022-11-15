@@ -56,11 +56,13 @@ public class OffrecondidatController {
     {
         return  service.Afficherinscriptionoffreparmail(mail);
     }
+   /*
     @GetMapping("/detailinscriptoffre/{id}")
     public OffreemploieCondidat Detailinscriptoffre(@PathVariable(value="id") Long id)
     {
         return service.Afficherinscripparid(id);
     }
+    */
     @PutMapping("/chagestatus/{id}/{status}")
        public ResponseEntity<MessageResponse> Statuspostuleoffre(@PathVariable(value="id") Long id
                                                        , @PathVariable(value="status") String status)

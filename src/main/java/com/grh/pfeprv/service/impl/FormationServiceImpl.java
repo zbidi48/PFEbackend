@@ -35,8 +35,9 @@ public class FormationServiceImpl implements IFormationService {
     public ResponseEntity<MessageResponse> AjouForm(FormationRequest fr) {
         Formation formation = new Formation();
         formation.setNomdeforamtion(fr.getNomdeforamtion());
-
         formation.setTypedeformation(fr.getTypedeformation());
+        formation.setHeure(fr.getHeure());
+        formation.setDatedebut(fr.getDatedebut());
        formationRepository.save(formation);
 
 
@@ -52,8 +53,9 @@ public class FormationServiceImpl implements IFormationService {
         }
         Formation form = formation.get();
         form.setNomdeforamtion(fr.getNomdeforamtion());
-
         form.setTypedeformation(fr.getTypedeformation());
+        form.setHeure(fr.getHeure());
+        form.setDatedebut(fr.getDatedebut());
         formationRepository.save(form);
 
 

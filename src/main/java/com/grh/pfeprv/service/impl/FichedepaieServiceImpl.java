@@ -268,7 +268,7 @@ public class FichedepaieServiceImpl implements IFichedepaieservice {
     }
     */
 
-/*
+
     @Override
     public String exportfichedepaie(Long id) throws FileNotFoundException , JRException {
 
@@ -280,7 +280,7 @@ public class FichedepaieServiceImpl implements IFichedepaieservice {
 
         Map<String, Object> parameters = new HashMap<String, Object>();
         //parameters.put("prenom", employee.get().getPrenom());
-        //parameters.put("nom", employee.get().getNom());
+       // parameters.put("nom", employee.get().getNom());
         //parameters.put("jobid",employee.get().getJobid());
         //parameters.put("post",employee.get().getPost());
         parameters.put("date", fichedepaie.get().getDate());
@@ -304,7 +304,7 @@ public class FichedepaieServiceImpl implements IFichedepaieservice {
         return "report generated in path : " + path;
 
     }
- */
+
 
 }
 
