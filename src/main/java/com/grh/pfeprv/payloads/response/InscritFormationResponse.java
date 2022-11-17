@@ -16,4 +16,14 @@ public class InscritFormationResponse {
     private  String nomdeforamtion;
     private  String typedeformation;
 
+    public InscritFormationResponse(Long id, EStatusInscritFormation status, String nom, String prenom,
+                                    String jobid, String nomdeforamtion, String typedeformation) {
+        this.id = id;
+        this.status = status;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.jobid = jobid;
+        this.nomdeforamtion = nomdeforamtion;
+        this.typedeformation = typedeformation;
+    }
 }

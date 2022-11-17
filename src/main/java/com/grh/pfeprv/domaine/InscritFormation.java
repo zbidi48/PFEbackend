@@ -29,5 +29,6 @@ public class InscritFormation implements Serializable {
     private Formation formation;
     @Enumerated(EnumType.STRING)
     private EStatusInscritFormation status;
+    private Boolean suppr;
 
 }

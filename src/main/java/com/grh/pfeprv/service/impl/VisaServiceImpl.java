@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 @Service
@@ -50,7 +51,7 @@ public class VisaServiceImpl implements IVisaService {
            throw new NotFoundException("Ajout impossible");
        }
        Employee employee1 = employee.get();
-       visa.setDatedepot(visaRequest.getDatedepot());
+       visa.setDatedepot(new Date());
        visa.setStatus(EStatusVisa.ENCOUR);
        visa.setTypevisa(visaRequest.getTypevisa());
        visa.setSuppr(false);
@@ -68,7 +69,7 @@ public class VisaServiceImpl implements IVisaService {
             throw new NotFoundException("visa ID: " + id + " not found");
         }
         Visa visa1 = visa.get();
-        visa1.setDatedepot(visaRequest.getDatedepot());
+        //visa1.setDatedepot(visaRequest.getDatedepot());
         visa1.setStatus(EStatusVisa.ENCOUR);
         visa1.setTypevisa(visaRequest.getTypevisa());
         visa1.setSuppr(false);
@@ -136,8 +137,7 @@ public class VisaServiceImpl implements IVisaService {
                             visa.getEmployee().getJobid()
                     ));
                 }
-        );
-
+                );
         return visaResponses;
     }
 
