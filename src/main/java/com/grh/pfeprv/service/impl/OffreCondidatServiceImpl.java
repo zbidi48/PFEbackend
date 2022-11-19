@@ -83,22 +83,7 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
         return ResponseEntity.ok(new MessageResponse("offre postuler avec succé !"));
     }
 
-   /*
-    @Override
-    public ResponseEntity<MessageResponse> miseajourinscoffre(Long id, OffrecondidatRequest offrecondidatRequest) {
-          Optional<OffreemploieCondidat> offreemploieCondidat=offrecondidatRepository.
-                  findById(id);
-          if(!offreemploieCondidat.isPresent())
-          {
-              throw new NotFoundException("inscripttion offre ID: " + id + " not found");
-          }
-          OffreemploieCondidat offreemploieCondidat1= offreemploieCondidat.get();
 
-
-          offrecondidatRepository.save(offreemploieCondidat1);
-        return ResponseEntity.ok(new MessageResponse(" modification avec succeé"));
-    }
-    */
 
     @Override
     public ResponseEntity<MessageResponse> supprimerinscroffre(Long id) {

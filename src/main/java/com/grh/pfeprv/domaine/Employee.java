@@ -23,11 +23,8 @@ public class Employee extends  User{
     private String departement;
     private String jobid;
     private Boolean suppr;
-
-
     @OneToOne(mappedBy = "employee")
     private  Contrat contrat;
-
     @OneToMany(targetEntity =Fichedepaie.class,mappedBy ="employee")
     private List<Fichedepaie> fichedepaies = new ArrayList<>();
     @OneToMany(targetEntity =Conge.class,mappedBy ="employee")
@@ -39,6 +36,10 @@ public class Employee extends  User{
     @OneToMany(targetEntity=Presence.class,mappedBy="employee")
     @JsonIgnore
     private  List<Presence> presences = new ArrayList<>();
+    @OneToMany
+    @JsonIgnore
+    private  List<Meeting> meetings = new ArrayList<>();
+
 
 
 }
