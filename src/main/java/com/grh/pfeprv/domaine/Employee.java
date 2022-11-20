@@ -39,7 +39,4 @@ public class Employee extends  User{
     @OneToMany
     @JsonIgnore
     private  List<Meeting> meetings = new ArrayList<>();
-
-
-
 }

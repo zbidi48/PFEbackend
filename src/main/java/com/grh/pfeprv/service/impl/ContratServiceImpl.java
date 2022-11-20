@@ -12,13 +12,16 @@ import com.grh.pfeprv.repository.ContratRepository;
 import com.grh.pfeprv.repository.EmployeeRepository;
 
 import com.grh.pfeprv.service.IContratService;
+import net.sf.jasperreports.engine.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ResourceUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.*;
+
 @Service
 public class ContratServiceImpl  implements IContratService {
     @Autowired
@@ -127,5 +130,29 @@ public class ContratServiceImpl  implements IContratService {
     @Override
     public List<Contrat> recherchecontratparjobid(String jobid) {
         return contratRepository.findByEmployee_JobidAndDeletedIsFalse(jobid);
+    }
+
+    @Override
+    public ResponseEntity<MessageResponse> exportcontratpdf(Long id, Long emplid) throws
+            FileNotFoundException, JRException {
+        String path = "C:\\Users\\ASUS\\Downloads";
+        Optional<Contrat> contrat = contratRepository.findById(id);
+        Optional<Employee> employee = employeeRepository.findById(emplid);
+        Map<String, Object> parameters = new HashMap<String, Object>();
+        parameters.put("codecontrat",contrat.get().getCode() );
+        parameters.put("typecontrat",contrat.get().getType() );
+        parameters.put("datedebut", contrat.get().getDatedebut());
+        parameters.put("datefin",contrat.get().getDatefin() );
+        parameters.put("nom", employee.get().getNom());
+        parameters.put("prenom", employee.get().getPrenom());
+        parameters.put("post",employee.get().getPost());
+        parameters.put("jobid",employee.get().getJobid());
+        //load file and compile it
+        File file = ResourceUtils.getFile("classpath:contrat.jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+        //JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(data);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, new JREmptyDataSource());
+        JasperExportManager.exportReportToPdfFile(jasperPrint, path + "//contrat.pdf");
+        return ResponseEntity.ok(new MessageResponse("contrat génerer sous format pdf dans le path :" +path));
     }
 }

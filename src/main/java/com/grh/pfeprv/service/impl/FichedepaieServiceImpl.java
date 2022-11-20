@@ -54,11 +54,6 @@ public class FichedepaieServiceImpl implements IFichedepaieservice {
                     fichedepaie.getDate(),
                     fichedepaie.getSalairebrut(),
                     fichedepaie.getSalairenet(),
-                /*
-                fichedepaie.getUser().getNom(),
-                fichedepaie.getUser().getPrenom(),
-                fichedepaie.getUser().getPost()
-                 */
                     fichedepaie.getEmployee().getNom(),
                     fichedepaie.getEmployee().getPrenom(),
                     fichedepaie.getEmployee().getPost(),
@@ -130,12 +125,6 @@ public class FichedepaieServiceImpl implements IFichedepaieservice {
                     fichedepaie.getEmployee().getPrenom(),
                     fichedepaie.getEmployee().getPost(),
                     fichedepaie.getEmployee().getJobid()));
-
-                    /*
-                    fichedepaie.getUser().getNom(),
-                    fichedepaie.getUser().getPrenom(),
-                    fichedepaie.getUser().getPost()));
-                     */
         });
         return fichedepaieResponses;
     }
@@ -192,115 +181,29 @@ public class FichedepaieServiceImpl implements IFichedepaieservice {
                             fichedepaie.getUser().getPrenom(),
                             fichedepaie.getUser().getPost()
                             */
-
-
-
-
-
-
-
-   /*
     @Override
-    public  ByteArrayInputStream exportfichep(FichdepaieRequest fichdepaieRequest) {
-        Document document = new Document();
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-
-
-
-        try {
-
-
-            PdfPTable table = new PdfPTable(3);
-            table.setWidthPercentage(60);
-            table.setWidths(new int[]{1, 3, 3});
-
-            Font headFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
-
-            PdfPCell hcell;
-            hcell = new PdfPCell(new Phrase("date", headFont));
-            hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            table.addCell(hcell);
-
-            hcell = new PdfPCell(new Phrase("salairenet", headFont));
-            hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            table.addCell(hcell);
-
-            hcell = new PdfPCell(new Phrase("salairebrut", headFont));
-            hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            table.addCell(hcell);
-
-
-
-                PdfPCell cell;
-
-                cell = new PdfPCell(new Phrase(String.valueOf(fichdepaieRequest.getDate())));
-                cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                table.addCell(cell);
-
-                cell = new PdfPCell(new Phrase((String.valueOf(fichdepaieRequest.getSalairenet()))));
-                cell.setPaddingLeft(5);
-                cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                cell.setHorizontalAlignment(Element.ALIGN_LEFT);
-                table.addCell(cell);
-
-                cell = new PdfPCell(new Phrase(String.valueOf(fichdepaieRequest.getSalairebrut())));
-                cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
-                cell.setPaddingRight(5);
-                table.addCell(cell);
-
-
-
-            PdfWriter.getInstance(document, out);
-            document.open();
-            document.add(table);
-
-            document.close();
-
-        } catch (DocumentException ex) {
-
-            logger.error("Error occurred: {0}", ex);
-        }
-
-        return new ByteArrayInputStream(out.toByteArray());
-    }
-    }
-    */
-
-
-    @Override
-    public String exportfichedepaie(Long id) throws FileNotFoundException , JRException {
+    public String exportfichedepaie(Long id,Long emplid) throws FileNotFoundException , JRException {
 
         String path = "C:\\Users\\ASUS\\Downloads";
 
         Optional<Fichedepaie> fichedepaie= fichedepaieRepository.findById(id);
-        //Optional<Employee> employee= employeeRepository.findById(id);
+        Optional<Employee> employee= employeeRepository.findById(emplid);
 
 
         Map<String, Object> parameters = new HashMap<String, Object>();
-        //parameters.put("prenom", employee.get().getPrenom());
-       // parameters.put("nom", employee.get().getNom());
-        //parameters.put("jobid",employee.get().getJobid());
-        //parameters.put("post",employee.get().getPost());
+        parameters.put("prenom", employee.get().getPrenom());
+        parameters.put("nom", employee.get().getNom());
+        parameters.put("jobid",employee.get().getJobid());
+        parameters.put("post",employee.get().getPost());
         parameters.put("date", fichedepaie.get().getDate());
         parameters.put("salairenet", fichedepaie.get().getSalairenet());
         parameters.put("salairebrut", fichedepaie.get().getSalairebrut());
-
-
-
-
         //load file and compile it
         File file = ResourceUtils.getFile("classpath:fichedepaie.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
         //JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(data);
-
-
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, new JREmptyDataSource());
-
         JasperExportManager.exportReportToPdfFile(jasperPrint, path + "//fichedepaie.pdf");
-
-
         return "report generated in path : " + path;
 
     }

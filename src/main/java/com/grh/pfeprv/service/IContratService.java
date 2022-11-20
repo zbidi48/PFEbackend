@@ -5,8 +5,10 @@ import com.grh.pfeprv.payloads.request.ContratRequest;
 
 import com.grh.pfeprv.payloads.response.ContratResponse;
 import com.grh.pfeprv.payloads.response.MessageResponse;
+import net.sf.jasperreports.engine.JRException;
 import org.springframework.http.ResponseEntity;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 public interface IContratService {
@@ -19,4 +21,6 @@ public interface IContratService {
     public Contrat Affcontratid(Long id);
     public  Contrat Cherchercontrat(String code);
     public List<Contrat> recherchecontratparjobid(String jobid);
+    public ResponseEntity<MessageResponse> exportcontratpdf(Long id,Long emplid) throws FileNotFoundException,
+            JRException;
 }

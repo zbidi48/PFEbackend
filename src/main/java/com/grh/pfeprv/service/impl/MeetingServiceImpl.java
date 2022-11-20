@@ -85,9 +85,9 @@ public class MeetingServiceImpl implements IMeetingService {
         }
         Meeting meeting1 = meeting.get();
 
-        if(status.equals("ok"))
+        if(status.equals("suspendu"))
         {
-            meeting1.setStatus(EStatusMetting.OK);
+            meeting1.setStatus(EStatusMetting.SUSPENDU);
         }
         else
         {

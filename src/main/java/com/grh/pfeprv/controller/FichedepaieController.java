@@ -70,8 +70,9 @@ public class FichedepaieController {
      */
 
     @GetMapping("/exporterpdf/{id}")
-    public  String exporterpdf(@PathVariable(value="id") long id) throws JRException, FileNotFoundException {
-        return iFichedepaieservice.exportfichedepaie(id);
+    public  String exporterpdf(@PathVariable(value="id") Long id,
+                               @PathVariable(value="emplid") Long emplid) throws JRException, FileNotFoundException {
+        return iFichedepaieservice.exportfichedepaie(id,emplid);
     }
 
 

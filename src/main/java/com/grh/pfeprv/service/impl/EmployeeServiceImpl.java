@@ -51,9 +51,6 @@ public class EmployeeServiceImpl implements IEmployeService {
     @Override
     public ResponseEntity<MessageResponse> AjoutEmployee(EmployeeRequest employeeRequest) {
         Employee employee = new Employee();
-
-
-
         Role role = roleRepository.findByName(ERole.ROLE_Employee).get();
         Set<Role> roles = new HashSet<>();
         roles.add(role);
@@ -63,15 +60,13 @@ public class EmployeeServiceImpl implements IEmployeService {
         employee.setPost(employeeRequest.getPost());
         employee.setDepartement(employeeRequest.getDepartement());
         employee.setSalary(employeeRequest.getSalary());
-        employee.setCnss(employee.getCnss());
+        employee.setCnss(employeeRequest.getCnss());
         employee.setPassword(encoder.encode(employeeRequest.getPassword()));
         employee.setStatus(employeeRequest.getStatus());
         employee.setJobid(employeeRequest.getJobid());
         employee.setSuppr(false);
         employee.setRoles(roles);
         userRepository.save(employee);
-
-
         return ResponseEntity.ok(new MessageResponse("employee ajouter avec success !"));
     }
 

@@ -84,8 +84,8 @@ public class EmailController {
         mail.setSubject(" reminds for meeting ");
         mail.setContent("Dear "+employee.get().getPrenom()+""+employee.get().getNom()+","+"\r\n" +
                 "\r\n" +
-                "Thank you for to consult your menu meet in your account \r\n" +
-                "if the meeting is online you find the link  of meeting \r\n" +
+                "Thank you for consulting your menu meet in your account \r\n" +
+                "if the meeting is online you find the link \r\n" +
                 " else the meting is face to face  \r\n" +
                 " Please you respect the hour and be punctual \r\n" +
                 " thank you \r\n" +

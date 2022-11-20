@@ -7,10 +7,12 @@ import com.grh.pfeprv.payloads.response.ContratResponse;
 import com.grh.pfeprv.payloads.response.MessageResponse;
 import com.grh.pfeprv.service.IContratService;
 
+import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 @RestController
@@ -61,6 +63,13 @@ public class ContratController {
     public  Contrat DetaitContrat(@PathVariable(value="id") Long id)
     {
         return iContratService.Affcontratid(id);
+    }
+    @GetMapping("/exportcontratpdf/{id}/{emplid}")
+    public ResponseEntity<MessageResponse> exportcontratpdf(@PathVariable(value="id") Long id,
+                                                            @PathVariable(value="emplid") Long emplid)
+            throws JRException, FileNotFoundException
+    {
+        return iContratService.exportcontratpdf(id,emplid);
     }
 
 }
