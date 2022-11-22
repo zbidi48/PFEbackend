@@ -9,6 +9,7 @@ import net.sf.jasperreports.engine.JRException;
 import org.springframework.http.ResponseEntity;
 
 import java.io.FileNotFoundException;
+import java.net.MalformedURLException;
 import java.util.List;
 
 public interface IContratService {
@@ -22,5 +23,5 @@ public interface IContratService {
     public  Contrat Cherchercontrat(String code);
     public List<Contrat> recherchecontratparjobid(String jobid);
     public ResponseEntity<MessageResponse> exportcontratpdf(Long id,Long emplid) throws FileNotFoundException,
-            JRException;
+            JRException, MalformedURLException;
 }

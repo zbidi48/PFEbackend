@@ -20,6 +20,8 @@ import org.springframework.util.ResourceUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.*;
 
 @Service
@@ -49,7 +51,8 @@ public class ContratServiceImpl  implements IContratService {
                     contrat.getEmployee().getNom(),
                     contrat.getEmployee().getPrenom(),
                     contrat.getEmployee().getPost(),
-                    contrat.getEmployee().getJobid()
+                    contrat.getEmployee().getJobid(),
+                    contrat.getUrl()
                     //contrat.getUser().getNom()
                     //,contrat.getUser().getPrenom(),
                    // contrat.getUser().getPost()
@@ -134,25 +137,32 @@ public class ContratServiceImpl  implements IContratService {
 
     @Override
     public ResponseEntity<MessageResponse> exportcontratpdf(Long id, Long emplid) throws
-            FileNotFoundException, JRException {
-        String path = "C:\\Users\\ASUS\\Downloads";
-        Optional<Contrat> contrat = contratRepository.findById(id);
-        Optional<Employee> employee = employeeRepository.findById(emplid);
+            FileNotFoundException, JRException, MalformedURLException {
+        //String path = "C:\\Users\\ASUS\\Downloads";
+        String path = "C:\\Users\\ASUS\\IdeaProjects\\PFEbackend\\contrat\\";
+        Contrat contrat = contratRepository.findById(id).get();
+
+        Employee employee = employeeRepository.findById(emplid).get();
+
         Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("codecontrat",contrat.get().getCode() );
-        parameters.put("typecontrat",contrat.get().getType() );
-        parameters.put("datedebut", contrat.get().getDatedebut());
-        parameters.put("datefin",contrat.get().getDatefin() );
-        parameters.put("nom", employee.get().getNom());
-        parameters.put("prenom", employee.get().getPrenom());
-        parameters.put("post",employee.get().getPost());
-        parameters.put("jobid",employee.get().getJobid());
+        parameters.put("codecontrat",contrat.getCode() );
+        parameters.put("typecontrat",contrat.getType() );
+       // parameters.put("datedeb", contrat.get().getDatedebut());
+       // parameters.put("datefin",contrat.get().getDatefin() );
+        parameters.put("nom", employee.getNom());
+        parameters.put("prenom", employee.getPrenom());
+       /* parameters.put("post",employee.get().getPost());
+        parameters.put("jobid",employee.get().getJobid());*/
         //load file and compile it
         File file = ResourceUtils.getFile("classpath:contrat.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
         //JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(data);
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, new JREmptyDataSource());
-        JasperExportManager.exportReportToPdfFile(jasperPrint, path + "//contrat.pdf");
-        return ResponseEntity.ok(new MessageResponse("contrat génerer sous format pdf dans le path :" +path));
+        JasperExportManager.exportReportToPdfFile(jasperPrint, path +"contrat_"+ employee.getId()+".pdf");
+
+       contrat.setUrl( "C:\\Users\\ASUS\\IdeaProjects\\PFEbackend\\contrat\\" +"contrat_"+ employee.getId()+".pdf");
+
+        contratRepository.save(contrat);
+        return ResponseEntity.ok(new MessageResponse("contrat génerer sous format pdf dans le path :" +path +"contrat_"+ employee.getId()+".pdf"));
     }
 }

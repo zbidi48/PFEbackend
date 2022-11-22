@@ -46,6 +46,7 @@ public class AuthServiceImpl  implements IAuthService {
     PasswordEncoder encoder;
     @Autowired
     JwtUtils jwtUtils;
+
     @Override
     public ResponseEntity<JwtResponse> signin(LoginRequest request) {
        // System.out.println("Email : "+request.getEmail()+" Password : "+request.getPassword());
@@ -66,6 +67,26 @@ public class AuthServiceImpl  implements IAuthService {
                 userDetails.getEmail(),
                 roles));
     }
+
+   /* public JwtResponse signin(LoginRequest request) {
+        // System.out.println("Email : "+request.getEmail()+" Password : "+request.getPassword());
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
+        //System.out.println("Principal : "+authentication.getPrincipal());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        //System.out.println("AVANT JWT");
+        String jwt = jwtUtils.generateJwtToken(authentication);
+        //System.out.println("JWT");
+
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        List<String> roles = userDetails.getAuthorities().stream()
+                .map(item -> item.getAuthority())
+                .collect(Collectors.toList());
+        return new JwtResponse(jwt,
+                userDetails.getId(),
+                userDetails.getEmail(),
+                roles);
+    }*/
 
     @Override
     public ResponseEntity<MessageResponse> signupEmp(SignupRequest request) {

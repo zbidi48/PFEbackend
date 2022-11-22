@@ -18,9 +18,9 @@ public class CongeController {
     @Autowired
     ICongeService icongeService;
     @GetMapping("/listconge")
-    public List<CongeResponse> AfficheConge()
+    public ResponseEntity<List<CongeResponse>> AfficheConge()
     {
-        return icongeService.afficherconge();
+        return ResponseEntity.ok(icongeService.afficherconge());
     }
     @PostMapping("/ajoutedemandeconge")
     public ResponseEntity<MessageResponse> Ajoutdemandeconge(@RequestBody CongeRequest congeRequest)
@@ -39,18 +39,19 @@ public class CongeController {
        return icongeService.supprimerconge(id);
    }
    @RequestMapping("/chercherdemandeconge/{jobid}")
-    public  List<CongeResponse> Chercherconge(@PathVariable(value="jobid") String jobid)
+    public  ResponseEntity<List<CongeResponse>> Chercherconge(@PathVariable(value="jobid") String jobid)
    {
-       return icongeService.chercherconge(jobid);
+       return ResponseEntity.ok(icongeService.chercherconge(jobid));
    }
    @GetMapping("/detailconge/{id}")
-    public Conge Detailconge(@PathVariable(value="id") long id){
-        return icongeService.detailconge(id);
+    public ResponseEntity<Conge>  Detailconge(@PathVariable(value="id") long id){
+
+        return ResponseEntity.ok( icongeService.detailconge(id));
    }
    @GetMapping("/affichercongeparmail/{mail}")
-    public  List<CongeResponse> Afficherdemandecongeparmail(@PathVariable(value="mail") String mail)
+    public  ResponseEntity<List<CongeResponse>> Afficherdemandecongeparmail(@PathVariable(value="mail") String mail)
    {
-       return icongeService.affichercongeparmail(mail);
+       return ResponseEntity.ok(icongeService.affichercongeparmail(mail));
    }
     @PutMapping("/statusconge/{id}")
     public ResponseEntity<MessageResponse> AccordConge(@PathVariable(value="id") Long id,

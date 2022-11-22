@@ -13,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.FileNotFoundException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
@@ -67,8 +69,7 @@ public class ContratController {
     @GetMapping("/exportcontratpdf/{id}/{emplid}")
     public ResponseEntity<MessageResponse> exportcontratpdf(@PathVariable(value="id") Long id,
                                                             @PathVariable(value="emplid") Long emplid)
-            throws JRException, FileNotFoundException
-    {
+            throws JRException, FileNotFoundException, MalformedURLException, URISyntaxException {
         return iContratService.exportcontratpdf(id,emplid);
     }
 

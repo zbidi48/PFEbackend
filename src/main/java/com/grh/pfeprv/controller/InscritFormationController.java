@@ -2,7 +2,7 @@ package com.grh.pfeprv.controller;
 
 import com.grh.pfeprv.payloads.response.InscritFormationResponse;
 import com.grh.pfeprv.payloads.response.MessageResponse;
-import com.grh.pfeprv.repository.InscritFormationRepository;
+
 import com.grh.pfeprv.service.InscritFormationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +21,11 @@ public class InscritFormationController {
     public ResponseEntity<List<InscritFormationResponse>> afficherinscritformation()
     {
         return new ResponseEntity(service.Afficherinscritformation(), HttpStatus.ACCEPTED);
+    }
+    @GetMapping("/deatilleinscrit/{id}")
+    public ResponseEntity<InscritFormationResponse> detaillinscrit(@PathVariable(value="id") Long id)
+    {
+        return service.Detailleinscritformation(id);
     }
     @PostMapping("/inscritformation/{idemployee}/{idformation}")
     public  ResponseEntity<MessageResponse> inscritformation(@PathVariable(value="idemployee") Long idemployee,

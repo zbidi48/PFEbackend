@@ -21,9 +21,9 @@ public class EmployeeController {
     IEmployeService iEmployeService;
 
      @GetMapping("/listemployee")
-     public List<EmployeeResponse> AffEmp()
+     public ResponseEntity<List<EmployeeResponse>> AffEmp()
      {
-         return  iEmployeService.AfficherEmployee();
+         return  ResponseEntity.ok(iEmployeService.AfficherEmployee());
      }
      @PutMapping("/miseajouemplyee/{id}")
     public ResponseEntity<MessageResponse> MAEmpl(@PathVariable(value = "id") Long id
@@ -48,8 +48,9 @@ public class EmployeeController {
          return iEmployeService.chercheremployee(jobid);
      }
      @GetMapping("/detailempl/{id}")
-    public Employee DetailEmpl(@PathVariable(value = "id") Long id)
+    public ResponseEntity<Employee> DetailEmpl(@PathVariable(value = "id") Long id)
      {
-         return  iEmployeService.DetailEmployee(id);
+
+         return  ResponseEntity.ok(iEmployeService.DetailEmployee(id));
      }
 }

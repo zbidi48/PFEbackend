@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.net.URI;
+import java.net.URL;
 import java.util.Date;
 
 @Entity
@@ -36,6 +38,8 @@ public class Contrat implements Serializable {
     private  Employee employee;
     @JsonIgnore
     private boolean deleted;
+
+    private String url;
 
 
 

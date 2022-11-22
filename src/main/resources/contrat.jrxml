@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="test" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="codecontrat" class="java.lang.String"/>
+	<parameter name="typecontrat" class="java.lang.String"/>
+	<parameter name="datedeb" class="java.lang.String"/>
+	<parameter name="datefin" class="java.lang.String"/>
+	<parameter name="nom" class="java.lang.String"/>
+	<parameter name="prenom" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="594" height="92" backcolor="#006699"/>
+				<staticText>
+					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" />
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Contrat]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" />
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[contrat document]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<detail>
+		<band height="578" splitType="Stretch">
+			<frame>
+				<reportElement x="0" y="0" width="555" height="200" >
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+				</reportElement>
+				<frame>
+					<reportElement x="0" y="0" width="555" height="35" >
+						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+					</reportElement>
+					<staticText>
+						<reportElement mode="Opaque" x="0" y="0" width="100" height="29" forecolor="#FFFFFF" backcolor="#737373"/>
+						<textElement textAlignment="Center"/>
+						<text><![CDATA[  Code contrat :]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="100" y="0" width="455" height="29"/>
+						<textFieldExpression><![CDATA[$P{codecontrat}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="0" y="35" width="555" height="33" >
+						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+					</reportElement>
+					<staticText>
+						<reportElement mode="Opaque" x="0" y="0" width="100" height="29" forecolor="#FFFFFF" backcolor="#737373" />
+						<textElement textAlignment="Center"/>
+						<text><![CDATA[  Type de contrat :]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="100" y="0" width="455" height="29"/>
+						<textFieldExpression><![CDATA[$P{typecontrat}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="0" y="68" width="555" height="33">
+						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+					</reportElement>
+					<staticText>
+						<reportElement mode="Opaque" x="0" y="0" width="100" height="29" forecolor="#FFFFFF" backcolor="#737373"/>
+						<textElement textAlignment="Center"/>
+						<text><![CDATA[  Date debut:]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="100" y="0" width="455" height="29"/>
+						<textFieldExpression><![CDATA[$P{datedeb}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="0" y="101" width="555" height="33">
+						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+					</reportElement>
+					<staticText>
+						<reportElement mode="Opaque" x="0" y="0" width="100" height="29" forecolor="#FFFFFF" backcolor="#737373"/>
+						<textElement textAlignment="Center"/>
+						<text><![CDATA[  Date fin :]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="100" y="0" width="455" height="29"/>
+						<textFieldExpression><![CDATA[$P{datefin}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="0" y="134" width="555" height="33">
+						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+					</reportElement>
+					<staticText>
+						<reportElement mode="Opaque" x="0" y="0" width="100" height="29" forecolor="#FFFFFF" backcolor="#737373"/>
+						<textElement textAlignment="Center"/>
+						<text><![CDATA[  nom :]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="100" y="0" width="455" height="29"/>
+						<textFieldExpression><![CDATA[$P{nom}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="0" y="167" width="555" height="33">
+						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+					</reportElement>
+					<staticText>
+						<reportElement mode="Opaque" x="0" y="0" width="100" height="29" forecolor="#FFFFFF" backcolor="#737373"/>
+						<textElement textAlignment="Center"/>
+						<text><![CDATA[  prenom:]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="100" y="0" width="455" height="29"/>
+						<textFieldExpression><![CDATA[$P{prenom}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</frame>
+		</band>
+	</detail>
+</jasperReport>

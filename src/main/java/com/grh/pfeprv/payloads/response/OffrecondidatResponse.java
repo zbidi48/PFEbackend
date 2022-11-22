@@ -1,9 +1,11 @@
 package com.grh.pfeprv.payloads.response;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 @Data
+@NoArgsConstructor
 public class OffrecondidatResponse {
     private  Long id;
     private  Date datecreation;

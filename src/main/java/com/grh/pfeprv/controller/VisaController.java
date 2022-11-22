@@ -19,9 +19,11 @@ public class VisaController {
 @Autowired
 IVisaService iVisaService;
 @GetMapping("/listvisas")
-public List<VisaResponse> Affichervisas()
+public ResponseEntity<List<VisaResponse>> Affichervisas()
 {
-    return iVisaService.Affichervisa();
+
+    return  ResponseEntity.ok(  iVisaService.Affichervisa());
+
 }
 @PostMapping("/ajoutervisa")
 public ResponseEntity<MessageResponse> Ajoutervisa(@RequestBody VisaRequest visaRequest)
@@ -41,14 +43,15 @@ public  ResponseEntity<MessageResponse> Supprimervisa(@PathVariable(value="id") 
     return iVisaService.Supprimervisa(id);
 }
 @GetMapping("/detailvisa/{id}")
-public Visa Detaillvisa(@PathVariable(value="id") Long id)
+public ResponseEntity<Visa> Detaillvisa(@PathVariable(value="id") Long id)
 {
-    return iVisaService.Detailvisa(id);
+
+    return ResponseEntity.ok(iVisaService.Detailvisa(id));
 }
 @GetMapping("/affichervisaemployee/{email}")
-public List<VisaResponse> Affichervisaparmail(@PathVariable(value="email") String email)
+public ResponseEntity<List<VisaResponse> > Affichervisaparmail(@PathVariable(value="email") String email)
 {
-    return iVisaService.affichervisaparmail(email);
+    return ResponseEntity.ok(iVisaService.affichervisaparmail(email));
 }
 @PutMapping("/accordvisa/{id}/{status}")
 public ResponseEntity<MessageResponse> Accordvisa(@PathVariable(value="id") Long id,
@@ -57,8 +60,8 @@ public ResponseEntity<MessageResponse> Accordvisa(@PathVariable(value="id") Long
     return iVisaService.Accordvisa(id,status);
 }
 @GetMapping("/cherchervisa/{jobid}")
-public List<VisaResponse> cherchervisa(@PathVariable(value="jobid") String jobid)
+public ResponseEntity<List<VisaResponse>> cherchervisa(@PathVariable(value="jobid") String jobid)
 {
-    return iVisaService.Cherchervisa(jobid);
+    return ResponseEntity.ok(iVisaService.Cherchervisa(jobid));
 }
 }

@@ -17,9 +17,9 @@ public class OffremploieController {
     @Autowired
     IOffreemploieService iOffreemploieService;
     @GetMapping("/afficheroffre")
-    public List<Offreemploie> AffOff()
+    public ResponseEntity<List<Offreemploie>> AffOff()
     {
-        return iOffreemploieService.Afficheroffres();
+       return ResponseEntity.ok( iOffreemploieService.Afficheroffres());
     }
     @PutMapping("/miseajouroffre/{id}")
     public ResponseEntity<MessageResponse> MAOffre(@PathVariable(value="id") Long id,
@@ -38,15 +38,16 @@ public class OffremploieController {
         return iOffreemploieService.Supprimeroffre(id);
     }
     @RequestMapping("/chercheroffrepartype/{titredoffre}")
-    public List<Offreemploie> chercheroffre( @PathVariable("titredoffre") String titredoffre)
+    public ResponseEntity<List<Offreemploie>> chercheroffre( @PathVariable("titredoffre") String titredoffre)
 
     {
-        return  iOffreemploieService.rechercheoffer(titredoffre);
+        return ResponseEntity.ok(iOffreemploieService.rechercheoffer(titredoffre));
     }
     @GetMapping("/detailoffre/{id}")
-    public Offreemploie Detailoffre(@PathVariable(value="id") Long id)
+    public ResponseEntity<Offreemploie> Detailoffre(@PathVariable(value="id") Long id)
     {
-        return iOffreemploieService.Detailoffre(id);
+
+        return ResponseEntity.ok(iOffreemploieService.Detailoffre(id));
     }
 
 }

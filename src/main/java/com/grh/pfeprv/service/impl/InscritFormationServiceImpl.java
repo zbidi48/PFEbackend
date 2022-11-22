@@ -10,7 +10,7 @@ import com.grh.pfeprv.repository.EmployeeRepository;
 import com.grh.pfeprv.repository.FormationRepository;
 import com.grh.pfeprv.repository.InscritFormationRepository;
 import com.grh.pfeprv.service.InscritFormationService;
-import lombok.Data;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
@@ -40,8 +40,11 @@ public class InscritFormationServiceImpl implements InscritFormationService {
                     inscritFormation.getEmployee().getNom(),
                     inscritFormation.getEmployee().getPrenom(),
                     inscritFormation.getEmployee().getJobid(),
+                    inscritFormation.getDateinscrit(),
                     inscritFormation.getFormation().getNomdeforamtion(),
-                    inscritFormation.getFormation().getTypedeformation()
+                    inscritFormation.getFormation().getTypedeformation(),
+                    inscritFormation.getFormation().getDatedebut(),
+                    inscritFormation.getFormation().getHeure()
             ));
         });
 
@@ -84,9 +87,27 @@ public class InscritFormationServiceImpl implements InscritFormationService {
 
     @Override
     public ResponseEntity<InscritFormationResponse> Detailleinscritformation(Long id) {
-        return null;
-    }
+       InscritFormationResponse response = new InscritFormationResponse();
 
+        //InscritFormation inscritFormation = inscritFormationRepository.findById(id).get();
+
+        Optional<InscritFormation> inscritFormation = inscritFormationRepository.findById(id);
+        if(!inscritFormation.isPresent())
+        {
+            throw new NotFoundException("inscritformation ID: "+id+" not found");
+        }
+        response.setId(inscritFormation.get().getId());
+        response.setStatus(inscritFormation.get().getStatus());
+        response.setNom(inscritFormation.get().getEmployee().getNom());
+        response.setPrenom(inscritFormation.get().getEmployee().getPrenom());
+        response.setJobid(inscritFormation.get().getEmployee().getJobid());
+        response.setNomdeforamtion(inscritFormation.get().getFormation().getNomdeforamtion());
+        response.setTypedeformation(inscritFormation.get().getFormation().getTypedeformation());
+        response.setDatedebut(inscritFormation.get().getFormation().getDatedebut());
+        response.setHeure(inscritFormation.get().getFormation().getHeure());
+        response.setDateinscrit(inscritFormation.get().getDateinscrit());
+        return  ResponseEntity.ok(response);
+    }
     @Override
     public List<InscritFormationResponse> Chercherinscritformationparjobid(String jobid) {
         List<InscritFormationResponse> responses = new ArrayList<>();
@@ -98,13 +119,14 @@ public class InscritFormationServiceImpl implements InscritFormationService {
                     inscritFormation.getEmployee().getNom(),
                     inscritFormation.getEmployee().getPrenom(),
                     inscritFormation.getEmployee().getJobid(),
+                    inscritFormation.getDateinscrit(),
                     inscritFormation.getFormation().getNomdeforamtion(),
-                    inscritFormation.getFormation().getTypedeformation()
+                    inscritFormation.getFormation().getTypedeformation(),
+                    inscritFormation.getFormation().getDatedebut(),
+                    inscritFormation.getFormation().getHeure()
             ));
         });
         return responses;
-
-
     }
 
     /*
@@ -143,6 +165,7 @@ public class InscritFormationServiceImpl implements InscritFormationService {
             inscritFormation1.setStatus(EStatusInscritFormation.REFUSE);
 
         }
+        inscritFormationRepository.save(inscritFormation1);
 
         return ResponseEntity.ok(new MessageResponse(" status modifier avec succeé"));
     }
@@ -159,8 +182,11 @@ public class InscritFormationServiceImpl implements InscritFormationService {
                     inscritFormation.getEmployee().getNom(),
                     inscritFormation.getEmployee().getPrenom(),
                     inscritFormation.getEmployee().getJobid(),
+                    inscritFormation.getDateinscrit(),
                     inscritFormation.getFormation().getNomdeforamtion(),
-                    inscritFormation.getFormation().getTypedeformation()
+                    inscritFormation.getFormation().getTypedeformation(),
+                    inscritFormation.getFormation().getDatedebut(),
+                    inscritFormation.getFormation().getHeure()
             ));
         });
 

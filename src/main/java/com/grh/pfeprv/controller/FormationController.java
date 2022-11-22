@@ -39,14 +39,15 @@ public class FormationController {
         return iFormationService.EffForma(id);
     }
     @GetMapping("/listformation/{typeformation}")
-    public  List<Formation> RechercheFormation(@PathVariable(value="typeformation") String typeformation )
+    public  ResponseEntity<List<Formation> > RechercheFormation(@PathVariable(value="typeformation") String typeformation )
     {
-        return iFormationService.RechercheFormation(typeformation);
+        return ResponseEntity.ok(iFormationService.RechercheFormation(typeformation));
     }
     @GetMapping("affformid/{id}")
-    public Formation AfficherFormationid(@PathVariable(value="id") Long id)
+    public ResponseEntity<Formation> AfficherFormationid(@PathVariable(value="id") Long id)
     {
-        return iFormationService.AffFormid(id);
+
+        return ResponseEntity.ok( iFormationService.AffFormid(id));
     }
 
 }

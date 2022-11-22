@@ -98,26 +98,31 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
         return ResponseEntity.ok(new MessageResponse(" suppresion d inscription d offre avec succeé"));
     }
 
-  /*
     @Override
-    public OffreemploieCondidat Afficherinscripparid(Long id) {
+    public OffrecondidatResponse Afficherinscripparid(Long id) {
         OffrecondidatResponse response = new OffrecondidatResponse();
-
-        Optional<OffreemploieCondidat> offreemploieCondidat=offrecondidatRepository.findById(id);
+        Optional<OffreemploieCondidat> offreemploieCondidat= offrecondidatRepository.findById(id);
         if(!offreemploieCondidat.isPresent())
         {
             throw new NotFoundException("inscrition offre ID: " + id + " not found");
         }
-        else {
-            offrecondidatRepository.findById(id).
+        response.setId(offreemploieCondidat.get().getId());
+        response.setDatecreation(offreemploieCondidat.get().getDatecreation());
+        response.setNom(offreemploieCondidat.get().getCondidats().getNom());
+        response.setPrenom(offreemploieCondidat.get().getCondidats().getPrenom());
+        response.setCin(offreemploieCondidat.get().getCondidats().getCin());
+        response.setPoste(offreemploieCondidat.get().getCondidats().getPost());
+        response.setTitredoffre(offreemploieCondidat.get().getOffreemploie().getTitredoffre());
+        response.setDescription(offreemploieCondidat.get().getOffreemploie().getDescription());
+        response.setDatelimite(offreemploieCondidat.get().getOffreemploie().getDatelimite());
+        response.setLangue(offreemploieCondidat.get().getOffreemploie().getLangue());
+        response.setExperience(offreemploieCondidat.get().getOffreemploie().getExperience());
+        response.setExigenceemploie(offreemploieCondidat.get().getOffreemploie().getExigenceemploie());
+        response.setStatus(offreemploieCondidat.get().getStatus().name());
 
-
-            });
-
-        }
-
+        return response;
     }
-   */
+
 
     @Override
     public List<OffrecondidatResponse> Chercherinscriptionoffre(String titredoffre) {

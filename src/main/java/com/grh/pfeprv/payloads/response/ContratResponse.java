@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.net.URI;
+import java.net.URL;
 import java.util.Date;
 
 @Data
@@ -19,12 +21,14 @@ public class ContratResponse {
     private  String prenom;
     private  String post;
     private  String jobid;
+    private  String url;
     public ContratResponse()
     {
 
     }
 
-   public  ContratResponse(Long id,String code,String type,Date datedebut,Date datefin,String nom,String prenom,String post,String jobid)
+   public  ContratResponse(Long id,String code,String type,Date datedebut,Date datefin,
+                           String nom,String prenom,String post,String jobid, String url)
    {
        this.id=id;
        this.code=code;
@@ -35,5 +39,6 @@ public class ContratResponse {
        this.prenom=prenom;
        this.post=post;
        this.jobid=jobid;
+       this.url=url;
    }
 }

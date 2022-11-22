@@ -9,6 +9,7 @@ import com.grh.pfeprv.payloads.response.MessageResponse;
 import org.springframework.http.ResponseEntity;
 
 public interface IAuthService {
+   //JwtResponse signin(LoginRequest request);
     ResponseEntity<JwtResponse> signin(LoginRequest request);
    ResponseEntity<MessageResponse> signupEmp(SignupRequest request);
    ResponseEntity<MessageResponse> signupRH(SignupRequest request);

@@ -18,9 +18,9 @@ public class EntretientController {
     @Autowired
     IEntretientService iEntretientService;
     @GetMapping("/afficherentretient")
-    public List<EntretientResponse> Affichertoutentret()
+    public ResponseEntity<List<EntretientResponse> > Affichertoutentret()
     {
-        return iEntretientService.Afficherentretient();
+        return ResponseEntity.ok(iEntretientService.Afficherentretient());
     }
     @PostMapping("/ajouterentretient")
     public ResponseEntity<MessageResponse> Ajouterentret(@RequestBody EntretientRequest request)
@@ -44,16 +44,16 @@ public class EntretientController {
         return iEntretientService.afficherentretientparmail(email);
     }
     @PostMapping ("/chercherentretient/{nom}/{prenom}")
-    public List<EntretientResponse> Chercherentret(@PathVariable(value="nom") String nom,
+    public ResponseEntity<List<EntretientResponse>> Chercherentret(@PathVariable(value="nom") String nom,
                                                    @PathVariable(value="prenom") String prenom)
     {
-        return iEntretientService.Chercherentretient(nom, prenom);
+        return ResponseEntity.ok( iEntretientService.Chercherentretient(nom, prenom));
     }
     @GetMapping("/detailentretient/{id}")
-    public Entretient Detailentret(@PathVariable(value="id") Long id)
+    public ResponseEntity<Entretient> Detailentret(@PathVariable(value="id") Long id)
     {
 
-      return   iEntretientService.Detailentretient(id);
+      return  ResponseEntity.ok( iEntretientService.Detailentretient(id));
     }
     @PutMapping ("/statusentretient/{id}/{status}")
     public  ResponseEntity<MessageResponse> Accordentret(@PathVariable(value="id") Long id,

@@ -35,14 +35,15 @@ public class FichedepaieController {
         return iFichedepaieservice.Affichageuserid(id);
     }
     @GetMapping("/affichageficheuser")
-    public  List<FichedepaieResponse> Afffchuser()
+    public ResponseEntity<List<FichedepaieResponse>>  Afffchuser()
     {
-        return iFichedepaieservice.Affichageficheuser();
+
+        return ResponseEntity.ok(iFichedepaieservice.Affichageficheuser());
     }
     @GetMapping("/chercherfichedepaie/{jobid}")
-    public  List<FichedepaieResponse> chercherfichedepaie(@PathVariable(value="jobid") String jobid)
+    public  ResponseEntity<List<FichedepaieResponse>> chercherfichedepaie(@PathVariable(value="jobid") String jobid)
     {
-        return iFichedepaieservice.chercherficheparjobid(jobid);
+        return ResponseEntity.ok(iFichedepaieservice.chercherficheparjobid(jobid));
     }
     @PostMapping("/ajouterfiche")
     public ResponseEntity<MessageResponse> Ajouterfiche(@RequestBody FichdepaieRequest fichdepaieRequest)
@@ -70,8 +71,8 @@ public class FichedepaieController {
      */
 
     @GetMapping("/exporterpdf/{id}")
-    public  String exporterpdf(@PathVariable(value="id") Long id,
-                               @PathVariable(value="emplid") Long emplid) throws JRException, FileNotFoundException {
+    public  ResponseEntity<MessageResponse> exporterpdf(@PathVariable(value="id") Long id,
+                                                        @PathVariable(value="emplid") Long emplid) throws JRException, FileNotFoundException {
         return iFichedepaieservice.exportfichedepaie(id,emplid);
     }
 

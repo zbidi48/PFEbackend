@@ -3,6 +3,7 @@ package com.grh.pfeprv.controller;
 import com.grh.pfeprv.domaine.Condidats;
 import com.grh.pfeprv.service.ICondidatService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,19 +14,20 @@ public class CondidatController {
     @Autowired
     ICondidatService iCondidatService;
     @GetMapping("/affichercondidats")
-    public List<Condidats> Affichercondidat()
+    public ResponseEntity<List<Condidats> > Affichercondidat()
     {
-        return iCondidatService.Affichercondidat();
+
+        return ResponseEntity.ok( iCondidatService.Affichercondidat());
     }
     @GetMapping("/detaillecandidats/{id}")
-    public Condidats detaillecandidat(@PathVariable(value="id") Long id)
+    public ResponseEntity<Condidats> detaillecandidat(@PathVariable(value="id") Long id)
     {
-        return iCondidatService.detaillecondidats(id);
+        return ResponseEntity.ok( iCondidatService.detaillecondidats(id));
     }
     @PostMapping("/cherchercandidat/{nom}/{prenom}")
-    public List<Condidats>  cherchercandidats(@PathVariable(value="nom") String nom
+    public ResponseEntity<List<Condidats>>  cherchercandidats(@PathVariable(value="nom") String nom
             ,@PathVariable(value="prenom") String prenom)
     {
-        return iCondidatService.cherchercandidat(nom,prenom);
+        return ResponseEntity.ok(iCondidatService.cherchercandidat(nom,prenom));
     }
 }

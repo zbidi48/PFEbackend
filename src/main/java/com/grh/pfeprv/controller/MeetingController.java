@@ -18,9 +18,10 @@ public class MeetingController {
     @Autowired
     private  IMeetingService service;
     @GetMapping("/listmeeting")
-    public List<Meeting> Affichermeet()
+    public ResponseEntity<List<Meeting>> Affichermeet()
     {
-        return service.Affichermeeting();
+
+        return ResponseEntity.ok(service.Affichermeeting());
     }
     @PostMapping("/ajoutmeet")
     public ResponseEntity<MessageResponse> AjoutMeet(@RequestBody MeetingRequest request)

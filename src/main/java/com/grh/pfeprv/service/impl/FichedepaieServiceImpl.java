@@ -14,10 +14,7 @@ import com.grh.pfeprv.repository.EmployeeRepository;
 import com.grh.pfeprv.repository.FichedepaieRepository;
 import com.grh.pfeprv.repository.UserRepository;
 import com.grh.pfeprv.service.IFichedepaieservice;
-import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
+
 import net.sf.jasperreports.engine.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,7 +31,7 @@ import java.util.List;
 
 @Service
 public class FichedepaieServiceImpl implements IFichedepaieservice {
-    private static final Logger logger = LoggerFactory.getLogger(Fichedepaie.class);
+
     @Autowired
     FichedepaieRepository fichedepaieRepository;
     @Autowired
@@ -75,7 +72,6 @@ public class FichedepaieServiceImpl implements IFichedepaieservice {
         fichedepaie.setDate(f.getDate());
         fichedepaie.setSalairebrut(f.getSalairebrut());
         fichedepaie.setSalairenet(f.getSalairenet());
-        //fichedepaie.setUser(usr);
         fichedepaie.setSuppr(false);
         fichedepaie.setEmployee(usr);
         fichedepaieRepository.save(fichedepaie);
@@ -135,8 +131,8 @@ public class FichedepaieServiceImpl implements IFichedepaieservice {
         if (!fichedepaie.isPresent()) {
             throw new NotFoundException("fichedepaie ID: " + id + " not found");
         }
-        Fichedepaie fp = fichedepaie.get();
-        return fp;
+
+        return fichedepaie.get();
     }
 
     @Override
@@ -182,14 +178,11 @@ public class FichedepaieServiceImpl implements IFichedepaieservice {
                             fichedepaie.getUser().getPost()
                             */
     @Override
-    public String exportfichedepaie(Long id,Long emplid) throws FileNotFoundException , JRException {
+    public ResponseEntity<MessageResponse> exportfichedepaie(Long id,Long emplid) throws FileNotFoundException , JRException {
 
         String path = "C:\\Users\\ASUS\\Downloads";
-
         Optional<Fichedepaie> fichedepaie= fichedepaieRepository.findById(id);
         Optional<Employee> employee= employeeRepository.findById(emplid);
-
-
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("prenom", employee.get().getPrenom());
         parameters.put("nom", employee.get().getNom());
@@ -204,7 +197,8 @@ public class FichedepaieServiceImpl implements IFichedepaieservice {
         //JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(data);
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, new JREmptyDataSource());
         JasperExportManager.exportReportToPdfFile(jasperPrint, path + "//fichedepaie.pdf");
-        return "report generated in path : " + path;
+        return ResponseEntity.ok(new MessageResponse("report generated in path : " + path));
+
 
     }
 
