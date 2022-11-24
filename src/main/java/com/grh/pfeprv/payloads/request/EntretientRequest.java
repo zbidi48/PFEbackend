@@ -6,12 +6,14 @@ import lombok.Data;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import java.sql.Time;
 import java.util.Date;
 @Data
 public class EntretientRequest {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date date;
-    private String heure;
+    @JsonFormat(pattern="HH:mm:ss")
+    private Time heure;
     @Enumerated(EnumType.STRING)
     private EStatusEntretient status;
     private Long condidats_id;

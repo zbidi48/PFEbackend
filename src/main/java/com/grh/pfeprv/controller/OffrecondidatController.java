@@ -42,10 +42,10 @@ public class OffrecondidatController {
     {
         return service.supprimerinscroffre(id);
     }
-    @RequestMapping("/chercherinscritoffre/{titredoffre}")
-    public  ResponseEntity<List<OffrecondidatResponse>> Chercherinscritoffre(@PathVariable(value="titredoffre") String titredoffre)
+    @RequestMapping("/chercherinscritoffre/{cin}")
+    public  ResponseEntity<List<OffrecondidatResponse>> Chercherinscritoffre(@PathVariable(value="cin") String cin)
     {
-        return ResponseEntity.ok(service.Chercherinscriptionoffre(titredoffre));
+        return ResponseEntity.ok(service.Chercherinscriptionoffre(cin));
     }
     @GetMapping("/afficherinscroffreparmail/{mail}")
     public  ResponseEntity<List<OffrecondidatResponse>> Afficherinscriptoffreparmail(@PathVariable(value="mail")

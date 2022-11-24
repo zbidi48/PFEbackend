@@ -9,4 +9,5 @@ public interface EntretientRepository extends JpaRepository<Entretient,Long> {
    List<Entretient> findAllBySupprIsFalse();
    List<Entretient> findAllByCondidat_Email(String email);
    List<Entretient> findByCondidat_NomAndCondidat_PrenomAndSupprIsFalse(String nom,String prenom);
+   List<Entretient> findAllByCondidat_CinAndSupprIsFalse(String cin);
 }

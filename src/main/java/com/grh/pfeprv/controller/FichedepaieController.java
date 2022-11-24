@@ -20,19 +20,21 @@ public class FichedepaieController {
     @Autowired
     IFichedepaieservice iFichedepaieservice;
     @GetMapping("/affichagefichesimp")
-    public List<Fichedepaie> Afffichsimp()
+    public ResponseEntity<List<Fichedepaie>> Afffichsimp()
     {
-        return iFichedepaieservice.affichagesimple();
+
+        return ResponseEntity.ok(iFichedepaieservice.affichagesimple());
     }
     @GetMapping("/detailfiche/{id}")
-    public  Fichedepaie Detailfiche(@PathVariable(value="id") long id)
+    public ResponseEntity< Fichedepaie> Detailfiche(@PathVariable(value="id") long id)
     {
-        return iFichedepaieservice.Detailfiche(id);
+
+        return ResponseEntity.ok(iFichedepaieservice.Detailfiche(id));
     }
     @RequestMapping(value = "/detailficheuserid/{id}", method = RequestMethod.GET)
-    public  List<FichedepaieResponse> Affficheuserid(@PathVariable(value="id") long id)
+    public ResponseEntity< List<FichedepaieResponse> > Affficheuserid(@PathVariable(value="id") long id)
     {
-        return iFichedepaieservice.Affichageuserid(id);
+        return ResponseEntity.ok(iFichedepaieservice.Affichageuserid(id));
     }
     @GetMapping("/affichageficheuser")
     public ResponseEntity<List<FichedepaieResponse>>  Afffchuser()
@@ -70,7 +72,7 @@ public class FichedepaieController {
     }
      */
 
-    @GetMapping("/exporterpdf/{id}")
+    @PostMapping("/exporterpdf/{id}/{emplid}")
     public  ResponseEntity<MessageResponse> exporterpdf(@PathVariable(value="id") Long id,
                                                         @PathVariable(value="emplid") Long emplid) throws JRException, FileNotFoundException {
         return iFichedepaieservice.exportfichedepaie(id,emplid);

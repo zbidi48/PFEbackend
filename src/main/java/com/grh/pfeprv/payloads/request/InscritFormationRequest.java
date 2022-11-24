@@ -1,5 +1,6 @@
 package com.grh.pfeprv.payloads.request;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.grh.pfeprv.domaine.Employee;
 import com.grh.pfeprv.domaine.Formation;
 import com.grh.pfeprv.enums.EStatusInscritFormation;
@@ -12,6 +13,7 @@ import javax.persistence.ManyToOne;
 import java.util.Date;
 @Data
 public class InscritFormationRequest {
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     private Date dateinscrit;
 
     private Long employee_id;

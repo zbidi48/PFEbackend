@@ -34,4 +34,9 @@ CondidatRepository condidatRepository;
     public List<Condidats> cherchercandidat(String nom, String prenom) {
         return condidatRepository.findAllByNomAndPrenomAndSupprIsFalse(nom,prenom);
     }
+
+    @Override
+    public List<Condidats> cherchecondidatparCIN(String cin) {
+        return condidatRepository.findAllByCinAndSupprIsFalse(cin);
+    }
 }

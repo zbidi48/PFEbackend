@@ -6,6 +6,7 @@ import com.grh.pfeprv.payloads.response.EntretientResponse;
 import com.grh.pfeprv.payloads.response.MessageResponse;
 import com.grh.pfeprv.service.IEntretientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -60,6 +61,11 @@ public class EntretientController {
                                                          @PathVariable(value="status") String status)
     {
         return iEntretientService.accordentretient(id,status);
+    }
+    @GetMapping("/chercherentretientparcin/{cin}")
+    public ResponseEntity<List<EntretientResponse>> chercherparcin(@PathVariable(value="cin") String cin)
+    {
+        return new ResponseEntity(iEntretientService.chercherentretientparCIN(cin), HttpStatus.ACCEPTED);
     }
 
 }

@@ -52,9 +52,9 @@ public class ContratController {
        return iContratService.Effcontrat(id);
     }
     @GetMapping("/cherchercontrat/{code}")
-    public Contrat cherchercontratparcode(@PathVariable(value ="code") String code)
+    public ResponseEntity<List<ContratResponse>> cherchercontratparcode(@PathVariable(value ="code") String code)
     {
-        return iContratService.Cherchercontrat(code);
+        return ResponseEntity.ok(iContratService.Cherchercontrat(code));
     }
     @GetMapping("/cherchercontratparjobid/{jobid}")
     public ResponseEntity<List<Contrat>> cherchercontratparjobid(@PathVariable(value ="jobid") String jobid)
@@ -62,15 +62,20 @@ public class ContratController {
         return ResponseEntity.ok(iContratService.recherchecontratparjobid(jobid));
     }
     @GetMapping ("/detaillcontrat/{id}")
-    public  Contrat DetaitContrat(@PathVariable(value="id") Long id)
+    public  ResponseEntity<Contrat> DetaitContrat(@PathVariable(value="id") Long id)
     {
-        return iContratService.Affcontratid(id);
+
+        return ResponseEntity.ok(iContratService.Affcontratid(id));
     }
-    @GetMapping("/exportcontratpdf/{id}/{emplid}")
+    @PostMapping ("/exportcontratpdf/{id}/{emplid}")
     public ResponseEntity<MessageResponse> exportcontratpdf(@PathVariable(value="id") Long id,
                                                             @PathVariable(value="emplid") Long emplid)
             throws JRException, FileNotFoundException, MalformedURLException, URISyntaxException {
         return iContratService.exportcontratpdf(id,emplid);
     }
-
+    @GetMapping("/affichercontratparemployeeid/{emplid}")
+    public ResponseEntity<List<ContratResponse>> afficherparemployeeid(  @PathVariable(value="emplid") Long emplid)
+    {
+        return iContratService.Affichercontratparemplid(emplid);
+    }
 }

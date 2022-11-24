@@ -9,7 +9,7 @@ public interface FichedepaieRepository extends JpaRepository<Fichedepaie,Long> {
 
    //List<Fichedepaie> findAllByUser_Id(Long id);
    //List<Fichedepaie> findAllByUser_NomAndUser_Prenom(String nom,String prenom);
-   List<Fichedepaie> findByEmployee_Id(Long id);
+   List<Fichedepaie> findByEmployee_IdAndSupprIsFalse(Long id);
    //List<Fichedepaie> findByEmployee_NomAndAndEmployee_Prenom(String nom,String prenom);
    List<Fichedepaie> findAllBySupprIsFalse();
    List<Fichedepaie> findByEmployee_JobidAndAndSupprIsFalse(String jobid);

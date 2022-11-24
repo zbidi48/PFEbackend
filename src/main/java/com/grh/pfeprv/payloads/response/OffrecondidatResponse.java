@@ -1,5 +1,6 @@
 package com.grh.pfeprv.payloads.response;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,6 +9,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class OffrecondidatResponse {
     private  Long id;
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     private  Date datecreation;
     private String nom;
     private String prenom;
@@ -16,6 +18,7 @@ public class OffrecondidatResponse {
 
     private String titredoffre;
     private String description;
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
 
     private Date datelimite;
     private String langue;

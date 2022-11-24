@@ -125,9 +125,9 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
 
 
     @Override
-    public List<OffrecondidatResponse> Chercherinscriptionoffre(String titredoffre) {
+    public List<OffrecondidatResponse> Chercherinscriptionoffre(String cin) {
         List<OffrecondidatResponse> response=new ArrayList<>();
-        offrecondidatRepository.findByOffreemploie_Titredoffre(titredoffre).forEach(
+        offrecondidatRepository.findAllByCondidats_Cin(cin).forEach(
                 offreemploieCondidat -> {
                     response.add(
                             new OffrecondidatResponse(

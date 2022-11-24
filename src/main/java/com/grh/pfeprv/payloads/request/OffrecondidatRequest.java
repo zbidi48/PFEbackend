@@ -21,6 +21,7 @@ public class OffrecondidatRequest {
 
     private  Long condidats_id;
     private Long offreemploie_id;
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     private Date datecreation;
     @Enumerated(EnumType.STRING)
     private EStatusOffreCondidat status;

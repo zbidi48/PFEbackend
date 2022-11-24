@@ -1,5 +1,6 @@
 package com.grh.pfeprv.payloads.response;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.grh.pfeprv.enums.EStatusInscritFormation;
 import lombok.Data;
 
@@ -16,9 +17,11 @@ public class InscritFormationResponse {
     private String nom;
     private String prenom;
     private String jobid;
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     private Date dateinscrit;
     private  String nomdeforamtion;
     private  String typedeformation;
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     private Date datedebut;
     private Time heure;
 

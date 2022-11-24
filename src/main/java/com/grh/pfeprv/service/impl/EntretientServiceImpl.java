@@ -120,6 +120,26 @@ public class EntretientServiceImpl implements IEntretientService {
     }
 
     @Override
+    public List<EntretientResponse> chercherentretientparCIN(String cin) {
+        List<EntretientResponse> responses = new ArrayList<>();
+        entretientRepository.findAllByCondidat_CinAndSupprIsFalse(cin).forEach(
+                entretient -> {
+                    responses.add(new EntretientResponse(
+                            entretient.getId(),
+                            entretient.getDate(),
+                            entretient.getHeure(),
+                            entretient.getStatus().name(),
+                            entretient.getCondidat().getNom(),
+                            entretient.getCondidat().getPrenom(),
+                            entretient.getCondidat().getCin()
+                    ));
+                }
+        );
+
+        return responses;
+    }
+
+    @Override
     public List<EntretientResponse> afficherentretientparmail(String email) {
         List<EntretientResponse> responses = new ArrayList<>();
         entretientRepository.findAllByCondidat_Email(email).forEach(

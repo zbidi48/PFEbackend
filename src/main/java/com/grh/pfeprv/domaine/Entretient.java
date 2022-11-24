@@ -1,5 +1,6 @@
 package com.grh.pfeprv.domaine;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.grh.pfeprv.enums.EStatusEntretient;
 import lombok.AllArgsConstructor;
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Time;
 import java.util.Date;
 
 @Entity
@@ -20,8 +22,10 @@ public class Entretient implements Serializable {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Long id;
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     private Date date;
-    private String heure;
+    @JsonFormat(pattern="HH:mm:ss")
+    private Time heure;
     @Enumerated(EnumType.STRING)
     private EStatusEntretient status;
     @JsonIgnore

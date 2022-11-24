@@ -14,16 +14,11 @@ import com.grh.pfeprv.repository.EmployeeRepository;
 import com.grh.pfeprv.repository.FichedepaieRepository;
 import com.grh.pfeprv.repository.UserRepository;
 import com.grh.pfeprv.service.IFichedepaieservice;
-
 import net.sf.jasperreports.engine.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
-
-
 import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.List;
@@ -111,7 +106,7 @@ public class FichedepaieServiceImpl implements IFichedepaieservice {
     @Override
     public List<FichedepaieResponse> Affichageuserid(Long id) {
         List<FichedepaieResponse> fichedepaieResponses = new ArrayList<>();
-        fichedepaieRepository.findByEmployee_Id(id).forEach(fichedepaie -> {
+        fichedepaieRepository.findByEmployee_IdAndSupprIsFalse(id).forEach(fichedepaie -> {
             fichedepaieResponses.add(new FichedepaieResponse(
                     fichedepaie.getId(),
                     fichedepaie.getDate(),
@@ -151,7 +146,6 @@ public class FichedepaieServiceImpl implements IFichedepaieservice {
 
             ));
         });
-
         return responses;
 
     }
@@ -180,9 +174,13 @@ public class FichedepaieServiceImpl implements IFichedepaieservice {
     @Override
     public ResponseEntity<MessageResponse> exportfichedepaie(Long id,Long emplid) throws FileNotFoundException , JRException {
 
-        String path = "C:\\Users\\ASUS\\Downloads";
+        String path = "C:\\Users\\ASUS\\IdeaProjects\\PFEbackend\\Fichedepaie\\";
         Optional<Fichedepaie> fichedepaie= fichedepaieRepository.findById(id);
         Optional<Employee> employee= employeeRepository.findById(emplid);
+        if(!employee.isPresent() && !fichedepaie.isPresent())
+        {
+            throw new NotFoundException("fichedepaie ID: " + id + " not found"+"ou employeeid"+emplid+"not found");
+        }
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("prenom", employee.get().getPrenom());
         parameters.put("nom", employee.get().getNom());
@@ -192,16 +190,13 @@ public class FichedepaieServiceImpl implements IFichedepaieservice {
         parameters.put("salairenet", fichedepaie.get().getSalairenet());
         parameters.put("salairebrut", fichedepaie.get().getSalairebrut());
         //load file and compile it
-        File file = ResourceUtils.getFile("classpath:fichedepaie.jrxml");
+        File file = ResourceUtils.getFile("classpath:Fichedepaie.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
         //JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(data);
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, new JREmptyDataSource());
-        JasperExportManager.exportReportToPdfFile(jasperPrint, path + "//fichedepaie.pdf");
-        return ResponseEntity.ok(new MessageResponse("report generated in path : " + path));
-
-
+        JasperExportManager.exportReportToPdfFile(jasperPrint, path + "//Fichedepaie.pdf");
+        return ResponseEntity.ok(new MessageResponse("report generated in path : " +
+                ":" +path +"fichdepaie"+ fichedepaie.get().getId()+".pdf"));
     }
-
-
 }
 

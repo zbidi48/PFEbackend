@@ -17,11 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.*;
 
 @Service
@@ -44,7 +42,6 @@ public class ContratServiceImpl  implements IContratService {
             response.add(new ContratResponse(
                     contrat.getId(),
                     contrat.getCode(),
-                    //contrat.getLibelle(),
                     contrat.getType(),
                     contrat.getDatedebut(),
                     contrat.getDatefin(),
@@ -53,9 +50,7 @@ public class ContratServiceImpl  implements IContratService {
                     contrat.getEmployee().getPost(),
                     contrat.getEmployee().getJobid(),
                     contrat.getUrl()
-                    //contrat.getUser().getNom()
-                    //,contrat.getUser().getPrenom(),
-                   // contrat.getUser().getPost()
+
                     ));
         });
 
@@ -126,8 +121,48 @@ public class ContratServiceImpl  implements IContratService {
     }
 
     @Override
-    public Contrat Cherchercontrat(String code) {
-        return contratRepository.findAllByCode(code);
+    public List<ContratResponse> Cherchercontrat(String code) {
+        List<ContratResponse> responses = new ArrayList<>();
+        contratRepository.findAllByCodeAndDeletedIsFalse(code).forEach(contrat ->
+        {
+            responses.add(new ContratResponse(
+                    contrat.getId(),
+                    contrat.getCode(),
+                    contrat.getType(),
+                    contrat.getDatedebut(),
+                    contrat.getDatefin(),
+                    contrat.getEmployee().getNom(),
+                    contrat.getEmployee().getPrenom(),
+                    contrat.getEmployee().getPost(),
+                    contrat.getEmployee().getJobid(),
+                    contrat.getUrl()
+            ));
+        });
+
+        return responses;
+
+    }
+
+    @Override
+    public ResponseEntity<List<ContratResponse>> Affichercontratparemplid(Long emplid) {
+        List<ContratResponse> responses = new ArrayList<>();
+        contratRepository.findAllByEmployee_IdAndDeletedIsFalse(emplid).forEach(contrat ->
+        {
+            responses.add(new ContratResponse(
+                    contrat.getId(),
+                    contrat.getCode(),
+                    contrat.getType(),
+                    contrat.getDatedebut(),
+                    contrat.getDatefin(),
+                    contrat.getEmployee().getNom(),
+                    contrat.getEmployee().getPrenom(),
+                    contrat.getEmployee().getPost(),
+                    contrat.getEmployee().getJobid(),
+                    contrat.getUrl()
+            ));
+        });
+
+        return ResponseEntity.ok(responses);
     }
 
     @Override
@@ -147,12 +182,12 @@ public class ContratServiceImpl  implements IContratService {
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("codecontrat",contrat.getCode() );
         parameters.put("typecontrat",contrat.getType() );
-       // parameters.put("datedeb", contrat.get().getDatedebut());
-       // parameters.put("datefin",contrat.get().getDatefin() );
+       parameters.put("datedeb", contrat.getDatedebut());
+        parameters.put("datefin",contrat.getDatefin() );
         parameters.put("nom", employee.getNom());
         parameters.put("prenom", employee.getPrenom());
-       /* parameters.put("post",employee.get().getPost());
-        parameters.put("jobid",employee.get().getJobid());*/
+        parameters.put("post",employee.getPost());
+        parameters.put("jobid",employee.getJobid());
         //load file and compile it
         File file = ResourceUtils.getFile("classpath:contrat.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
@@ -163,6 +198,7 @@ public class ContratServiceImpl  implements IContratService {
        contrat.setUrl( "C:\\Users\\ASUS\\IdeaProjects\\PFEbackend\\contrat\\" +"contrat_"+ employee.getId()+".pdf");
 
         contratRepository.save(contrat);
-        return ResponseEntity.ok(new MessageResponse("contrat génerer sous format pdf dans le path :" +path +"contrat_"+ employee.getId()+".pdf"));
+        return ResponseEntity.ok(new MessageResponse("contrat génerer sous format pdf dans le path " +
+                ":" +path +"contrat_"+ employee.getId()+".pdf"));
     }
 }

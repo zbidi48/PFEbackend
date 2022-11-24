@@ -85,8 +85,7 @@ public class EmployeeServiceImpl implements IEmployeService {
         employee.setPost(employeeRequest.getPost());
         employee.setDepartement(employeeRequest.getDepartement());
         employee.setSalary(employeeRequest.getSalary());
-        employee.setPassword(encoder.encode(employeeRequest.getPassword()));
-        employee.setCnss(employee.getCnss());
+        employee.setCnss(employeeRequest.getCnss());
         employee.setStatus(employeeRequest.getStatus());
         employee.setJobid(employeeRequest.getJobid());
         employeeRepository.save(employee);
@@ -116,8 +115,6 @@ public class EmployeeServiceImpl implements IEmployeService {
             throw new NotFoundException("Employee Id:"+id+"n existe pas");
 
         }
-        //Employee employee = emp.get();
-
         return emp.get();
     }
 

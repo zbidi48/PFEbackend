@@ -1,5 +1,6 @@
 package com.grh.pfeprv.domaine;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.grh.pfeprv.enums.EStatusOffreCondidat;
 import lombok.AllArgsConstructor;
@@ -27,7 +28,7 @@ public class OffreemploieCondidat {
     @JoinColumn(name = "offreemploie_id")
     @JsonIgnore
     private Offreemploie offreemploie;
-
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     private Date datecreation;
     @Enumerated(EnumType.STRING)
     private EStatusOffreCondidat status;

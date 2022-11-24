@@ -1,6 +1,7 @@
 package com.grh.pfeprv.domaine;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,9 +28,9 @@ public class Contrat implements Serializable {
     private  String code;
 
     private  String type;
-
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     private Date datedebut;
-
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     private  Date datefin;
 
     @OneToOne(cascade = CascadeType.ALL)
