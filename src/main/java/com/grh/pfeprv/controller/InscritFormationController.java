@@ -44,10 +44,10 @@ public class InscritFormationController {
         return ResponseEntity.ok(service.Chercherinscritformationparjobid(jobid));
     }
     @GetMapping("/afficherinscritparemplyeeid/{employeeid}")
-    public List<InscritFormationResponse> afficherinscritformationparemployeeid(@PathVariable(value="employeeid")
+    public ResponseEntity<List<InscritFormationResponse>> afficherinscritformationparemployeeid(@PathVariable(value="employeeid")
                                                                                     Long employeeid)
     {
-        return service.Afficherinscritformationparemployeeid(employeeid);
+        return ResponseEntity.ok(service.Afficherinscritformationparemployeeid(employeeid));
     }
     @PutMapping("/changerstatusinscritformation/{id}/{status}")
     public ResponseEntity<MessageResponse> changerstatus(@PathVariable(value="id") Long id,

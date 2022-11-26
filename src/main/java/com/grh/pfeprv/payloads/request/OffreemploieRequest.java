@@ -9,7 +9,7 @@ public class OffreemploieRequest {
 
 
     private  String titredoffre;
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
+
     private Date datelimite;
     private String description;
     private String langue;

@@ -1,7 +1,7 @@
 package com.grh.pfeprv.domaine;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import com.grh.pfeprv.enums.EStatusInscritFormation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -32,5 +32,6 @@ public class InscritFormation implements Serializable {
     @Enumerated(EnumType.STRING)
     private EStatusInscritFormation status;
     private Boolean suppr;
+
 
 }
