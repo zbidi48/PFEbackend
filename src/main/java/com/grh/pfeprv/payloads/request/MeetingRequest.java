@@ -7,11 +7,12 @@ import lombok.Data;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import java.sql.Date;
 import java.sql.Time;
-import java.util.Date;
+
 @Data
 public class MeetingRequest {
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
+    //@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     private Date date;
     @JsonFormat(pattern="HH:mm:ss")
     private Time heure;

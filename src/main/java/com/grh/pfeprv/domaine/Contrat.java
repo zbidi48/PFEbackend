@@ -28,9 +28,9 @@ public class Contrat implements Serializable {
     private  String code;
 
     private  String type;
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
+    //@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     private Date datedebut;
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
+    //@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     private  Date datefin;
 
     @OneToOne(cascade = CascadeType.ALL)

@@ -17,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Condidats extends User{
     private static final long serialVersionUID = 1L;
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
+    //@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     private Date dateOfBirth;
     private String phone;
     private String adresse ;

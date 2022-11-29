@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import java.util.Date;
 @Data
 public class InscritFormationRequest {
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
+    //@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     private Date dateinscrit;
 
     private Long employee_id;

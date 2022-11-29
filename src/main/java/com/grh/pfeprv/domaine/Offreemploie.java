@@ -21,13 +21,13 @@ public class Offreemploie implements Serializable {
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private  Long id;
     private  String titredoffre;
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
+    //@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     private Date datelimite;
     private String description;
     private String langue;
     private String experience;
     private String exigenceemploie;
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
+    //@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     private Date datecreation;
 
 

@@ -11,7 +11,7 @@ import java.util.Date;
 @Data
 
 public class VisaRequest {
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
+    //@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     private Date datedepot;
     private String status;
     @Enumerated(EnumType.STRING)

@@ -1,9 +1,9 @@
 package com.grh.pfeprv.service.impl;
 
-import com.grh.pfeprv.domaine.Employee;
+
 import com.grh.pfeprv.domaine.Meeting;
 import com.grh.pfeprv.enums.EStatusMetting;
-import com.grh.pfeprv.enums.EtypeMeeting;
+
 import com.grh.pfeprv.exception.NotFoundException;
 import com.grh.pfeprv.payloads.request.MeetingRequest;
 import com.grh.pfeprv.payloads.response.MessageResponse;
@@ -15,8 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.List;
 import java.util.Optional;
 

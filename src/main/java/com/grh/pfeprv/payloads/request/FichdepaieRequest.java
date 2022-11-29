@@ -8,7 +8,7 @@ import lombok.Data;
 import java.util.Date;
 @Data
 public class FichdepaieRequest {
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
+    //@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     private Date date;
     private String salairenet;
     private String salairebrut;

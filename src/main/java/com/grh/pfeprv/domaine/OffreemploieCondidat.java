@@ -28,7 +28,7 @@ public class OffreemploieCondidat {
     @JoinColumn(name = "offreemploie_id")
     @JsonIgnore
     private Offreemploie offreemploie;
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
+    //@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     private Date datecreation;
     @Enumerated(EnumType.STRING)
     private EStatusOffreCondidat status;

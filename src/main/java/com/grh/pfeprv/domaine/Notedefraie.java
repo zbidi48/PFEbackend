@@ -20,7 +20,7 @@ public class Notedefraie  implements Serializable {
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Long id;
     private  String description;
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
+    //@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     private Date datecreation;
 
     private String fraie;

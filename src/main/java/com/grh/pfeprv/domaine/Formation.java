@@ -22,7 +22,7 @@ public class Formation implements Serializable {
     private Long id;
     private  String nomdeforamtion;
     private  String typedeformation;
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
+    //@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     private Date datedebut;
     @JsonFormat(pattern="HH:mm:ss")
     private Time heure;

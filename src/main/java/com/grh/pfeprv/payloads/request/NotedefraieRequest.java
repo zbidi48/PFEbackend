@@ -6,7 +6,7 @@ import java.util.Date;
 @Data
 public class NotedefraieRequest {
     private  String description;
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
+    //JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     private Date datecreation;
 
     private String fraie;

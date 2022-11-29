@@ -11,9 +11,9 @@ import java.time.LocalDateTime;
 import java.util.Date;
 @Data
 public class CongeRequest {
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
+    //@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     private Date datedebut;
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
+    //@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     private Date datefin;
     /*
     @Enumerated(EnumType.STRING)
