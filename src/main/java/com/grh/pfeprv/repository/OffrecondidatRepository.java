@@ -11,6 +11,7 @@ public interface OffrecondidatRepository extends JpaRepository<OffreemploieCondi
     //List<OffreemploieCondidat> findByStatus(String status);
     List<OffreemploieCondidat> findAllByCondidats_Cin(String cin);
     List<OffreemploieCondidat> findBySupprIsFalse();
+    List<OffreemploieCondidat> findAllByCondidats_NomAndCondidats_PrenomAndSupprIsFalse(String nom,String prenom);
 
 
 }

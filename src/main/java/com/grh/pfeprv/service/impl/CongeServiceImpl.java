@@ -155,6 +155,25 @@ public class CongeServiceImpl implements ICongeService {
     }
 
     @Override
+    public List<CongeResponse> cherchercongeparnometprenom(String nom, String prenom) {
+        List<CongeResponse> responses=new ArrayList<>();
+        congeRepository.findAllByEmployee_NomAndEmployee_PrenomAndSupprIsFalse(nom,prenom).forEach(conge -> {
+            responses.add(new CongeResponse(
+                    conge.getId(),
+                    conge.getDatedebut(),
+                    conge.getDatefin(),
+                    conge.getStatusConge(),
+                    conge.getTypeConge(),
+                    conge.getEmployee().getNom(),
+                    conge.getEmployee().getPrenom(),
+                    conge.getEmployee().getPost(),
+                    conge.getEmployee().getJobid()));
+
+        });
+        return responses;
+    }
+
+    @Override
     public List<CongeResponse> affichercongeparmail(String mail) {
         List<CongeResponse> responses=new ArrayList<>();
         congeRepository.findByEmployee_Email(mail).forEach(conge -> {

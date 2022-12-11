@@ -157,4 +157,21 @@ public class VisaServiceImpl implements IVisaService {
         });
         return visaResponses;
     }
+
+    @Override
+    public List<VisaResponse> Cherchervisaparnometpremon(String nom, String prenom) {
+        List<VisaResponse> visaResponses = new ArrayList<>();
+        visaRepository.findAllByEmployee_NomAndEmployee_PrenomAndSupprIsFalse(nom,prenom).forEach(visa -> {
+            visaResponses.add(new VisaResponse(
+                    visa.getId(),
+                    visa.getDatedepot(),
+                    visa.getStatus().name(),
+                    visa.getTypevisa(),
+                    visa.getEmployee().getNom(),
+                    visa.getEmployee().getPrenom(),
+                    visa.getEmployee().getPost(),
+                    visa.getEmployee().getJobid()));
+        });
+        return visaResponses;
+    }
 }

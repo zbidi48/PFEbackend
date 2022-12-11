@@ -60,6 +60,12 @@ public class OffrecondidatController {
     {
         return service.Statuspostule(id,status);
     }
+    @PostMapping("/chercherparnometprenom/{nom}/{prenom}")
+    public ResponseEntity<List<OffrecondidatResponse>> Chercherparnometprenom(@PathVariable(value="nom") String nom,
+                                                                              @PathVariable(value="prenom") String prenom)
+    {
+        return ResponseEntity.ok(service.Chercherinscitoffreparnometprenom(nom,prenom));
+    }
 
 
 

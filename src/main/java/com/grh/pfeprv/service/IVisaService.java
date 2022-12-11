@@ -17,5 +17,6 @@ public interface IVisaService {
     public ResponseEntity<MessageResponse> Accordvisa(Long id,String status);
     public List<VisaResponse> affichervisaparmail(String email);
     public List<VisaResponse> Cherchervisa(String jobid);
+    public List<VisaResponse> Cherchervisaparnometpremon(String nom,String prenom);
 
 }

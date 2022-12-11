@@ -8,6 +8,6 @@ import java.util.List;
 public interface VisaRepository extends JpaRepository<Visa,Long> {
    List<Visa> findAllBySupprIsFalse();
    List<Visa> findByEmployee_Email(String email);
-   //List<Visa> findVisaByEmployee_NomAndEmployee_Prenom(String nom,String prenom);
+   List<Visa> findAllByEmployee_NomAndEmployee_PrenomAndSupprIsFalse(String nom,String prenom);
    List<Visa> findByEmployee_JobidAndAndSupprIsFalse(String jobid);
 }

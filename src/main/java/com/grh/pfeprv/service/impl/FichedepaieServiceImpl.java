@@ -133,7 +133,7 @@ public class FichedepaieServiceImpl implements IFichedepaieservice {
     @Override
     public List<FichedepaieResponse> chercherficheparjobid(String jobid) {
         List<FichedepaieResponse> responses = new ArrayList<>();
-        fichedepaieRepository.findByEmployee_JobidAndAndSupprIsFalse(jobid).forEach(fichedepaie -> {
+        fichedepaieRepository.findByEmployee_JobidAndSupprIsFalse(jobid).forEach(fichedepaie -> {
             responses.add(new FichedepaieResponse(
                     fichedepaie.getId(),
                     fichedepaie.getDate(),
@@ -150,27 +150,28 @@ public class FichedepaieServiceImpl implements IFichedepaieservice {
 
     }
 
-
-/*
-@Override
-    public List<FichedepaieResponse> chercherfiche(String nom, String prenom) {
+    @Override
+    public List<FichedepaieResponse> Chercherparnometprenom(String nom, String prenom) {
         List<FichedepaieResponse> responses = new ArrayList<>();
-        fichedepaieRepository.findByEmployee_NomAndAndEmployee_Prenom(nom, prenom).forEach(fichedepaie -> {
-            responses.add(
-                    new FichedepaieResponse(
-                            fichedepaie.getId(),
-                            fichedepaie.getDate(),
-                            fichedepaie.getSalairebrut(),
-                            fichedepaie.getSalairenet(),
-                            fichedepaie.getEmployee().getNom(),
-                            fichedepaie.getEmployee().getPrenom(),
-                            fichedepaie.getEmployee().getPost(),
-                            fichedepaie.getEmployee().getJobid()
-                           /*
-                            fichedepaie.getUser().getNom(),
-                            fichedepaie.getUser().getPrenom(),
-                            fichedepaie.getUser().getPost()
-                            */
+        fichedepaieRepository.findAllByEmployee_NomAndEmployee_PrenomAndSupprIsFalse(nom,prenom).
+                forEach(fichedepaie -> {
+            responses.add(new FichedepaieResponse(
+                    fichedepaie.getId(),
+                    fichedepaie.getDate(),
+                    fichedepaie.getSalairebrut(),
+                    fichedepaie.getSalairenet(),
+                    fichedepaie.getEmployee().getNom(),
+                    fichedepaie.getEmployee().getPrenom(),
+                    fichedepaie.getEmployee().getPost(),
+                    fichedepaie.getEmployee().getJobid()
+
+            ));
+        });
+        return responses;
+    }
+
+
+
     @Override
     public ResponseEntity<MessageResponse> exportfichedepaie(Long id,Long emplid) throws FileNotFoundException , JRException {
 

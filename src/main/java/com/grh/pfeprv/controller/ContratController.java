@@ -25,15 +25,18 @@ public class ContratController {
    IContratService iContratService;
 
     @GetMapping("/listcontrat")
-   public List<ContratResponse> AfficheContrat()
+   public ResponseEntity<List<ContratResponse>> AfficheContrat()
     {
-        return iContratService.affichercontart();
+
+        return ResponseEntity.ok(iContratService.affichercontart());
     }
+   /*
     @GetMapping("/affichercontrat")
     public  List<Contrat> Affcontrat()
     {
         return iContratService.Afiichagecontratsimple();
     }
+    */
     @PostMapping("/ajoutercontrat")
     public ResponseEntity<MessageResponse> AjouterContrat(@RequestBody ContratRequest contratRequest)
     {
@@ -57,9 +60,15 @@ public class ContratController {
         return ResponseEntity.ok(iContratService.Cherchercontrat(code));
     }
     @GetMapping("/cherchercontratparjobid/{jobid}")
-    public ResponseEntity<List<Contrat>> cherchercontratparjobid(@PathVariable(value ="jobid") String jobid)
+    public ResponseEntity<List<ContratResponse>> cherchercontratparjobid(@PathVariable(value ="jobid") String jobid)
     {
         return ResponseEntity.ok(iContratService.recherchecontratparjobid(jobid));
+    }
+    @PostMapping("/chercherparnometprenom/{nom}/{prenom}")
+    public ResponseEntity<List<ContratResponse>> recherchecontratparnometprenom(@PathVariable(value ="nom") String nom,
+                                                                         @PathVariable(value ="prenom") String prenom)
+    {
+        return ResponseEntity.ok(iContratService.rechercheparnometprenom(nom,prenom));
     }
     @GetMapping ("/detaillcontrat/{id}")
     public  ResponseEntity<Contrat> DetaitContrat(@PathVariable(value="id") Long id)
@@ -67,6 +76,9 @@ public class ContratController {
 
         return ResponseEntity.ok(iContratService.Affcontratid(id));
     }
+
+
+
     @PostMapping ("/exportcontratpdf/{id}/{emplid}")
     public ResponseEntity<MessageResponse> exportcontratpdf(@PathVariable(value="id") Long id,
                                                             @PathVariable(value="emplid") Long emplid)

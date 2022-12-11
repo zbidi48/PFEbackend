@@ -211,4 +211,29 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
         offrecondidatRepository.save(offreemploieCondidat1);
         return ResponseEntity.ok(new MessageResponse("etat postuleoffre changé "));
     }
+
+    @Override
+    public List<OffrecondidatResponse> Chercherinscitoffreparnometprenom(String nom, String prenom) {
+        List<OffrecondidatResponse> response=new ArrayList<>();
+        offrecondidatRepository.findAllByCondidats_NomAndCondidats_PrenomAndSupprIsFalse(nom,prenom).
+                forEach(offreemploieCondidat -> {
+            response.add(new OffrecondidatResponse(
+                    offreemploieCondidat.getId(),
+                    offreemploieCondidat.getOffreemploie().getDatecreation(),
+                    offreemploieCondidat.getCondidats().getNom(),
+                    offreemploieCondidat.getCondidats().getPrenom(),
+                    offreemploieCondidat.getCondidats().getCin(),
+                    offreemploieCondidat.getCondidats().getPost(),
+                    offreemploieCondidat.getOffreemploie().getTitredoffre(),
+                    offreemploieCondidat.getOffreemploie().getDescription(),
+                    offreemploieCondidat.getOffreemploie().getDatelimite(),
+                    offreemploieCondidat.getOffreemploie().getLangue(),
+                    offreemploieCondidat.getOffreemploie().getExperience(),
+                    offreemploieCondidat.getOffreemploie().getExigenceemploie(),
+                    offreemploieCondidat.getStatus().name()
+
+            ));
+        });
+        return response;
+    }
 }

@@ -18,4 +18,5 @@ public interface IOffeCondidatService {
     public List<OffrecondidatResponse> Afficherinscriptionoffreparmail(String mail);
     //public  List<OffrecondidatResponse> Affichercondidatentretient(String status);
     public ResponseEntity<MessageResponse> Statuspostule(Long id, String status);
+    public List<OffrecondidatResponse> Chercherinscitoffreparnometprenom(String nom,String prenom);
 }

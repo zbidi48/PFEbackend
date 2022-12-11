@@ -57,5 +57,11 @@ public class NotedefraieController  {
     {
         return ResponseEntity.ok(iNotedefraieService.Affichernotedefraieparid(id));
     }
+    @PostMapping("/chercherparnometprenom/{nom}/{prenom}")
+    public ResponseEntity< List<NotedefraieResponse>> chercherparnometprenom(@PathVariable(value="nom") String nom,
+                                                                             @PathVariable(value="prenom") String prenom)
+    {
+        return ResponseEntity.ok(iNotedefraieService.Cherchernotedefraieparnometprenom(nom,prenom));
+    }
 
 }

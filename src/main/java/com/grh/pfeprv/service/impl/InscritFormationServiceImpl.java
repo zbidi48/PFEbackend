@@ -129,11 +129,11 @@ public class InscritFormationServiceImpl implements InscritFormationService {
         return responses;
     }
 
-    /*
+
     @Override
     public List<InscritFormationResponse> Chercherinscritformationparnometprenom(String nom, String prenom) {
         List<InscritFormationResponse> responses = new ArrayList<>();
-        inscritFormationRepository.findByEmployee_NomAndAndEmployee_PrenomAndAndSupprIsFalse(nom,prenom)
+        inscritFormationRepository.findAllByEmployee_NomAndAndEmployee_PrenomAndAndSupprIsFalse(nom,prenom)
                 .forEach(inscritFormation ->
         {
             responses.add(new InscritFormationResponse(
@@ -142,13 +142,16 @@ public class InscritFormationServiceImpl implements InscritFormationService {
                     inscritFormation.getEmployee().getNom(),
                     inscritFormation.getEmployee().getPrenom(),
                     inscritFormation.getEmployee().getJobid(),
+                    inscritFormation.getDateinscrit(),
                     inscritFormation.getFormation().getNomdeforamtion(),
-                    inscritFormation.getFormation().getTypedeformation()
+                    inscritFormation.getFormation().getTypedeformation(),
+                    inscritFormation.getFormation().getDatedebut(),
+                    inscritFormation.getFormation().getHeure()
             ));
         });
         return responses;
     }
-     */
+
 
     @Override
     public ResponseEntity<MessageResponse> changersatus(Long id, String status) {

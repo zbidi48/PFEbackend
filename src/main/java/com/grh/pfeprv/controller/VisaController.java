@@ -64,4 +64,10 @@ public ResponseEntity<List<VisaResponse>> cherchervisa(@PathVariable(value="jobi
 {
     return ResponseEntity.ok(iVisaService.Cherchervisa(jobid));
 }
+@PostMapping("/cherchervisaparnometprenom/{nom}/{prenom}")
+public ResponseEntity<List<VisaResponse>> cherchervisaparnometprenom(@PathVariable(value="nom") String nom
+,@PathVariable(value="prenom") String prenom)
+{
+    return ResponseEntity.ok(iVisaService.Cherchervisaparnometpremon(nom,prenom));
+}
 }

@@ -91,7 +91,25 @@ public class NotedefraieServiceImpl implements INotedefraieService {
     @Override
     public List<NotedefraieResponse> Cherchernotedefraie(String jobid) {
         List<NotedefraieResponse> responses= new ArrayList<>();
-        notedefraieRepository.findByEmployee_JobidAndAndSupprimerIsFalse(jobid).forEach(notedefraie ->
+        notedefraieRepository.findByEmployee_JobidAndSupprimerIsFalse(jobid).forEach(notedefraie ->
+        {
+            responses.add(new NotedefraieResponse(
+                    notedefraie.getId(),
+                    notedefraie.getDescription(),
+                    notedefraie.getDatecreation(),
+                    notedefraie.getFraie(),
+                    notedefraie.getEmployee().getNom(),
+                    notedefraie.getEmployee().getPrenom(),
+                    notedefraie.getEmployee().getJobid()));
+        });
+        return responses;
+    }
+
+    @Override
+    public List<NotedefraieResponse> Cherchernotedefraieparnometprenom(String nom, String prenom) {
+        List<NotedefraieResponse> responses= new ArrayList<>();
+        notedefraieRepository.
+                findAllByEmployee_NomAndAndEmployee_PrenomAndSupprimerIsFalse(nom,prenom).forEach(notedefraie ->
         {
             responses.add(new NotedefraieResponse(
                     notedefraie.getId(),

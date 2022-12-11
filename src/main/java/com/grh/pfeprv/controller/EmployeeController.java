@@ -6,7 +6,6 @@ import com.grh.pfeprv.payloads.response.EmployeeResponse;
 import com.grh.pfeprv.payloads.response.MessageResponse;
 
 import com.grh.pfeprv.service.IEmployeService;
-import com.grh.pfeprv.service.IFichedepaieservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -52,5 +51,11 @@ public class EmployeeController {
      {
 
          return  ResponseEntity.ok(iEmployeService.DetailEmployee(id));
+     }
+     @PostMapping("/chercherparnometprenom/{nom}/{prenom}")
+     public ResponseEntity<List<Employee>> Chercherparnometprenom(@PathVariable(value = "nom") String nom,
+                                                                                  @PathVariable(value = "prenom") String prenom)
+     {
+         return ResponseEntity.ok(iEmployeService.chercheremployeeparnometprenom(nom,prenom));
      }
 }

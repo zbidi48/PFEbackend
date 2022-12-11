@@ -115,9 +115,7 @@ public class ContratServiceImpl  implements IContratService {
         if (!cont.isPresent()) {
             throw new NotFoundException("contrat ID: " + id + " not found");
         }
-     Contrat con = cont.get();
-
-        return con;
+        return cont.get();
     }
 
     @Override
@@ -144,6 +142,29 @@ public class ContratServiceImpl  implements IContratService {
     }
 
     @Override
+    public List<ContratResponse> rechercheparnometprenom(String nom, String prenom) {
+        List<ContratResponse> responses = new ArrayList<>();
+        contratRepository.findAllByEmployee_NomAndEmployee_PrenomAndAndDeletedIsFalse(nom,prenom).
+                forEach(contrat ->
+        {
+            responses.add(new ContratResponse(
+                    contrat.getId(),
+                    contrat.getCode(),
+                    contrat.getType(),
+                    contrat.getDatedebut(),
+                    contrat.getDatefin(),
+                    contrat.getEmployee().getNom(),
+                    contrat.getEmployee().getPrenom(),
+                    contrat.getEmployee().getPost(),
+                    contrat.getEmployee().getJobid(),
+                    contrat.getUrl()
+            ));
+        });
+
+        return responses;
+    }
+
+    @Override
     public ResponseEntity<List<ContratResponse>> Affichercontratparemplid(Long emplid) {
         List<ContratResponse> responses = new ArrayList<>();
         contratRepository.findAllByEmployee_IdAndDeletedIsFalse(emplid).forEach(contrat ->
@@ -166,8 +187,24 @@ public class ContratServiceImpl  implements IContratService {
     }
 
     @Override
-    public List<Contrat> recherchecontratparjobid(String jobid) {
-        return contratRepository.findByEmployee_JobidAndDeletedIsFalse(jobid);
+    public List<ContratResponse> recherchecontratparjobid(String jobid) {
+        List<ContratResponse> responses = new ArrayList<>();
+        contratRepository.findAllByEmployee_JobidAndDeletedIsFalse(jobid).forEach(contrat ->
+        {
+            responses.add(new ContratResponse(
+                    contrat.getId(),
+                    contrat.getCode(),
+                    contrat.getType(),
+                    contrat.getDatedebut(),
+                    contrat.getDatefin(),
+                    contrat.getEmployee().getNom(),
+                    contrat.getEmployee().getPrenom(),
+                    contrat.getEmployee().getPost(),
+                    contrat.getEmployee().getJobid(),
+                    contrat.getUrl()
+            ));
+        });
+        return  responses;
     }
 
     @Override

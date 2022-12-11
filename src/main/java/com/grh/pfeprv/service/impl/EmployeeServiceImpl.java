@@ -123,4 +123,9 @@ public class EmployeeServiceImpl implements IEmployeService {
 
         return ResponseEntity.ok(employeeRepository.findByJobidAndAndSupprIsFalse(jobid));
     }
+
+    @Override
+    public List<Employee> chercheremployeeparnometprenom(String nom, String prenom) {
+        return employeeRepository.findAllByNomAndPrenom(nom,prenom);
+    }
 }

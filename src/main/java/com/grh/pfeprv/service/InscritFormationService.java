@@ -14,7 +14,7 @@ public interface InscritFormationService {
      ResponseEntity<MessageResponse> Supprimerinscrit(Long id);
      ResponseEntity<InscritFormationResponse> Detailleinscritformation(Long id);
      List<InscritFormationResponse> Chercherinscritformationparjobid(String jobid);
-     //List<InscritFormationResponse> Chercherinscritformationparnometprenom(String nom, String prenom);
+     List<InscritFormationResponse> Chercherinscritformationparnometprenom(String nom, String prenom);
      ResponseEntity<MessageResponse> changersatus(Long id,String status);
      List<InscritFormationResponse> Afficherinscritformationparemployeeid(Long employeeid);
 

@@ -63,14 +63,14 @@ public class FichedepaieController {
     {
         return  iFichedepaieservice.Effacerfiche(id);
     }
-    /*
-    @GetMapping("/chercherfiche/{nom}/{prenom}")
-    public  List<FichedepaieResponse> Chercherfiche(@PathVariable(value="nom") String nom,
+
+    @PostMapping ("/chercherfiche/{nom}/{prenom}")
+    public  ResponseEntity<List<FichedepaieResponse>> Chercherfichedepaie(@PathVariable(value="nom") String nom,
                                                     @PathVariable(value="prenom")String prenom)
     {
-        return  iFichedepaieservice.chercherfiche(nom,prenom);
+        return  ResponseEntity.ok(iFichedepaieservice.Chercherparnometprenom(nom,prenom));
     }
-     */
+
 
     @PostMapping("/exporterpdf/{id}/{emplid}")
     public  ResponseEntity<MessageResponse> exporterpdf(@PathVariable(value="id") Long id,
