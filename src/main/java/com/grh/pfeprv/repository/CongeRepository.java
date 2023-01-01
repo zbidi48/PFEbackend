@@ -10,4 +10,5 @@ public interface CongeRepository extends JpaRepository<Conge,Long> {
    List<Conge> findByEmployee_Email(String mail);
    List<Conge> findByEmployee_JobidAndAndSupprIsFalse(String jobid);
    List<Conge> findBySupprIsFalse();
+   List<Conge> findAllByEmployee_NomOrEmployee_PrenomOrEmployee_JobidAndSupprIsFalse(String nom,String prenom,String jobid);
 }

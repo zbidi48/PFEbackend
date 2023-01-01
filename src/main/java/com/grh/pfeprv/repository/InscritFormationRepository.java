@@ -11,5 +11,6 @@ public interface InscritFormationRepository extends JpaRepository<InscritFormati
     List<InscritFormation> findAllByEmployee_NomAndAndEmployee_PrenomAndAndSupprIsFalse(String nom,String prenom);
     List<InscritFormation> findByEmployee_Email(String mail);
     List<InscritFormation> findByEmployee_IdAndSupprIsFalse(Long id);
+    List<InscritFormation> findAllByEmployee_NomOrEmployee_PrenomOrEmployee_JobidAndSupprIsFalse(String nom,String prenom,String jobid);
 
 }

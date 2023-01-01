@@ -14,7 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 @Service
@@ -42,6 +42,7 @@ public class NotedefraieServiceImpl implements INotedefraieService {
 
     @Override
     public ResponseEntity<MessageResponse> Ajoutnotedefraie(NotedefraieRequest notedefraieRequest) {
+        long miliseconds = System.currentTimeMillis();
         Notedefraie notedefraie = new Notedefraie();
         Optional<Employee> employee = employeeRepository.findById(notedefraieRequest.getEmployee_id());
         if(!employee.isPresent())
@@ -49,7 +50,7 @@ public class NotedefraieServiceImpl implements INotedefraieService {
             throw new NotFoundException("Ajout impossible");
         }
         Employee employee1 = employee.get();
-        notedefraie.setDatecreation(new Date());
+        notedefraie.setDatecreation(new Date(miliseconds));
         notedefraie.setDescription(notedefraieRequest.getDescription());
 
         notedefraie.setSupprimer(false);
@@ -88,40 +89,9 @@ public class NotedefraieServiceImpl implements INotedefraieService {
 
         return ResponseEntity.ok(new MessageResponse("suppression  avec succeé"));
     }
-    @Override
-    public List<NotedefraieResponse> Cherchernotedefraie(String jobid) {
-        List<NotedefraieResponse> responses= new ArrayList<>();
-        notedefraieRepository.findByEmployee_JobidAndSupprimerIsFalse(jobid).forEach(notedefraie ->
-        {
-            responses.add(new NotedefraieResponse(
-                    notedefraie.getId(),
-                    notedefraie.getDescription(),
-                    notedefraie.getDatecreation(),
-                    notedefraie.getFraie(),
-                    notedefraie.getEmployee().getNom(),
-                    notedefraie.getEmployee().getPrenom(),
-                    notedefraie.getEmployee().getJobid()));
-        });
-        return responses;
-    }
 
-    @Override
-    public List<NotedefraieResponse> Cherchernotedefraieparnometprenom(String nom, String prenom) {
-        List<NotedefraieResponse> responses= new ArrayList<>();
-        notedefraieRepository.
-                findAllByEmployee_NomAndAndEmployee_PrenomAndSupprimerIsFalse(nom,prenom).forEach(notedefraie ->
-        {
-            responses.add(new NotedefraieResponse(
-                    notedefraie.getId(),
-                    notedefraie.getDescription(),
-                    notedefraie.getDatecreation(),
-                    notedefraie.getFraie(),
-                    notedefraie.getEmployee().getNom(),
-                    notedefraie.getEmployee().getPrenom(),
-                    notedefraie.getEmployee().getJobid()));
-        });
-        return responses;
-    }
+
+
 
     @Override
     public Notedefraie Affichernotedefraieparid(Long id) {
@@ -150,6 +120,24 @@ public class NotedefraieServiceImpl implements INotedefraieService {
                 });
 
         return response;
+    }
+
+    @Override
+    public List<NotedefraieResponse> cherchernotedefraie(String query) {
+        List<NotedefraieResponse> responses= new ArrayList<>();
+        notedefraieRepository.
+                findAllByEmployee_NomAndSupprimerIsFalseOrEmployee_PrenomAndSupprimerIsFalseOrEmployee_JobidAndSupprimerIsFalse(query,query,query).forEach(notedefraie ->
+                {
+                    responses.add(new NotedefraieResponse(
+                            notedefraie.getId(),
+                            notedefraie.getDescription(),
+                            notedefraie.getDatecreation(),
+                            notedefraie.getFraie(),
+                            notedefraie.getEmployee().getNom(),
+                            notedefraie.getEmployee().getPrenom(),
+                            notedefraie.getEmployee().getJobid()));
+                });
+        return responses;
     }
 
 

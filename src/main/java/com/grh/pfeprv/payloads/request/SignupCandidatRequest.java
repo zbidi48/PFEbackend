@@ -22,5 +22,6 @@ public class SignupCandidatRequest {
     private String university;
     private String niveauExp;
     private String experience;
+    private String cin;
     private Boolean suppr;
 }

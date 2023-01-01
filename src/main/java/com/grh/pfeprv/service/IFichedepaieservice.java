@@ -24,6 +24,7 @@ public interface IFichedepaieservice {
     //public ByteArrayInputStream exportfichep(FichdepaieRequest fichdepaieRequest);
     public  List<FichedepaieResponse> chercherficheparjobid(String jobid);
     public  List<FichedepaieResponse> Chercherparnometprenom(String nom,String prenom);
+    public  List<FichedepaieResponse> chercherfichedepaie(String query);
 
 
 

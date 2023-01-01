@@ -12,9 +12,9 @@ public interface INotedefraieService {
     public ResponseEntity<MessageResponse> Ajoutnotedefraie(NotedefraieRequest notedefraieRequest);
     public ResponseEntity<MessageResponse> Miseajournotedefraie(Long id,NotedefraieRequest notedefraieRequest);
     public ResponseEntity<MessageResponse> Supprimernotedefraie(Long id);
-    public List<NotedefraieResponse> Cherchernotedefraie(String jobid);
-    public List<NotedefraieResponse> Cherchernotedefraieparnometprenom(String nom,String prenom);
+
     public Notedefraie Affichernotedefraieparid(Long id);
     public List<NotedefraieResponse> Affichernotedefraieparmail(String mail);
     //public ResponseEntity<MessageResponse> Statusnotedefraie(Long id,NotedefraieRequest notedefraieRequest);
+    public List<NotedefraieResponse> cherchernotedefraie(String query);
 }

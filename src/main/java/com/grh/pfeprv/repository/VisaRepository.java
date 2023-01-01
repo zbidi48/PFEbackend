@@ -10,4 +10,5 @@ public interface VisaRepository extends JpaRepository<Visa,Long> {
    List<Visa> findByEmployee_Email(String email);
    List<Visa> findAllByEmployee_NomAndEmployee_PrenomAndSupprIsFalse(String nom,String prenom);
    List<Visa> findByEmployee_JobidAndAndSupprIsFalse(String jobid);
+   List<Visa> findAllByEmployee_NomAndSupprIsFalseOrEmployee_PrenomAndSupprIsFalseOrEmployee_JobidAndSupprIsFalse(String nom,String prenom,String jobid);
 }

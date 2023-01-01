@@ -141,27 +141,13 @@ public class VisaServiceImpl implements IVisaService {
         return visaResponses;
     }
 
-    @Override
-    public List<VisaResponse> Cherchervisa(String jobid) {
-        List<VisaResponse> visaResponses = new ArrayList<>();
-        visaRepository.findByEmployee_JobidAndAndSupprIsFalse(jobid).forEach(visa -> {
-            visaResponses.add(new VisaResponse(
-                    visa.getId(),
-                    visa.getDatedepot(),
-                    visa.getStatus().name(),
-                    visa.getTypevisa(),
-                    visa.getEmployee().getNom(),
-                    visa.getEmployee().getPrenom(),
-                    visa.getEmployee().getPost(),
-                    visa.getEmployee().getJobid()));
-        });
-        return visaResponses;
-    }
 
     @Override
-    public List<VisaResponse> Cherchervisaparnometpremon(String nom, String prenom) {
+    public List<VisaResponse> Recherchevisa(String query) {
         List<VisaResponse> visaResponses = new ArrayList<>();
-        visaRepository.findAllByEmployee_NomAndEmployee_PrenomAndSupprIsFalse(nom,prenom).forEach(visa -> {
+        visaRepository.
+                findAllByEmployee_NomAndSupprIsFalseOrEmployee_PrenomAndSupprIsFalseOrEmployee_JobidAndSupprIsFalse(query
+                        ,query,query).forEach(visa -> {
             visaResponses.add(new VisaResponse(
                     visa.getId(),
                     visa.getDatedepot(),

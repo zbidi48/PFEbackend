@@ -1,7 +1,7 @@
 package com.grh.pfeprv.domaine;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import com.grh.pfeprv.enums.EStatusMetting;
 import com.grh.pfeprv.enums.EtypeMeeting;
 import lombok.AllArgsConstructor;

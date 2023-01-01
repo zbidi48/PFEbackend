@@ -236,4 +236,29 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
         });
         return response;
     }
+
+    @Override
+    public List<OffrecondidatResponse> chercher(String query) {
+        List<OffrecondidatResponse> response=new ArrayList<>();
+        offrecondidatRepository.findAllByCondidats_NomOrCondidats_PrenomOrCondidats_CinAndSupprIsFalse(query,query,query).
+                forEach(offreemploieCondidat -> {
+                    response.add(new OffrecondidatResponse(
+                            offreemploieCondidat.getId(),
+                            offreemploieCondidat.getOffreemploie().getDatecreation(),
+                            offreemploieCondidat.getCondidats().getNom(),
+                            offreemploieCondidat.getCondidats().getPrenom(),
+                            offreemploieCondidat.getCondidats().getCin(),
+                            offreemploieCondidat.getCondidats().getPost(),
+                            offreemploieCondidat.getOffreemploie().getTitredoffre(),
+                            offreemploieCondidat.getOffreemploie().getDescription(),
+                            offreemploieCondidat.getOffreemploie().getDatelimite(),
+                            offreemploieCondidat.getOffreemploie().getLangue(),
+                            offreemploieCondidat.getOffreemploie().getExperience(),
+                            offreemploieCondidat.getOffreemploie().getExigenceemploie(),
+                            offreemploieCondidat.getStatus().name()
+
+                    ));
+                });
+        return response;
+    }
 }

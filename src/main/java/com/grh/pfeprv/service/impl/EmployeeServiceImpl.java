@@ -128,4 +128,9 @@ public class EmployeeServiceImpl implements IEmployeService {
     public List<Employee> chercheremployeeparnometprenom(String nom, String prenom) {
         return employeeRepository.findAllByNomAndPrenom(nom,prenom);
     }
+
+    @Override
+    public List<Employee> recherche(String query) {
+        return employeeRepository.findAllByNomOrPrenomAndSupprIsFalse(query,query);
+    }
 }

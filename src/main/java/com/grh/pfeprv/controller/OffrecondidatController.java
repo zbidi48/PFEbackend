@@ -66,6 +66,11 @@ public class OffrecondidatController {
     {
         return ResponseEntity.ok(service.Chercherinscitoffreparnometprenom(nom,prenom));
     }
+    @GetMapping("/chercheroffrecondidat/{query}")
+    public ResponseEntity<List<OffrecondidatResponse>> RechercheOffrecondidat(@PathVariable(value="query") String query)
+    {
+        return ResponseEntity.ok(service.chercher(query));
+    }
 
 
 

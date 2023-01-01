@@ -3,7 +3,7 @@ package com.grh.pfeprv.payloads.response;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
-import java.util.Date;
+import java.sql.Date;
 @Data
 public class NotedefraieResponse {
     private Long id;
@@ -21,7 +21,7 @@ public class NotedefraieResponse {
     {
         this.id = id;
         this.description = description;
-        this.datecreation = datecreation;
+        this.datecreation =  datecreation;
 
         this.fraie = fraie;
         this.nom = nom;

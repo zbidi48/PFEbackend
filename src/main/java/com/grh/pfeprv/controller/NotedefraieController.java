@@ -42,11 +42,7 @@ public class NotedefraieController  {
     {
         return iNotedefraieService.Supprimernotedefraie(id);
     }
-    @GetMapping("/cherchernotedefraie/{jobid}")
-    public ResponseEntity< List<NotedefraieResponse> > cherchernotedefraie(@PathVariable(value="jobid") String jobid)
-    {
-        return ResponseEntity.ok(iNotedefraieService.Cherchernotedefraie(jobid));
-    }
+
     @RequestMapping("/affichernotedefraieparmail/{email}")
     public ResponseEntity<List<NotedefraieResponse>> Affichernotedefraieparmail(@PathVariable(value="email") String email)
     {
@@ -57,11 +53,11 @@ public class NotedefraieController  {
     {
         return ResponseEntity.ok(iNotedefraieService.Affichernotedefraieparid(id));
     }
-    @PostMapping("/chercherparnometprenom/{nom}/{prenom}")
-    public ResponseEntity< List<NotedefraieResponse>> chercherparnometprenom(@PathVariable(value="nom") String nom,
-                                                                             @PathVariable(value="prenom") String prenom)
+
+    @GetMapping("/recherchernotedefraie/{query}")
+    public ResponseEntity<List<NotedefraieResponse>> rechernotedefraie(@PathVariable(value="query") String query)
     {
-        return ResponseEntity.ok(iNotedefraieService.Cherchernotedefraieparnometprenom(nom,prenom));
+        return ResponseEntity.ok(iNotedefraieService.cherchernotedefraie(query));
     }
 
 }

@@ -3,7 +3,7 @@ package com.grh.pfeprv.payloads.response;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
-import java.util.Date;
+import java.sql.Date;
 @Data
 public class FichedepaieResponse {
     private  long id;

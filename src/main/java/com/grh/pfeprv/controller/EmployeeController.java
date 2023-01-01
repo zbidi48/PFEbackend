@@ -58,4 +58,9 @@ public class EmployeeController {
      {
          return ResponseEntity.ok(iEmployeService.chercheremployeeparnometprenom(nom,prenom));
      }
+     @GetMapping("/rechercheemployee/{query}")
+    public ResponseEntity<List<Employee>> Rechercheemploy(@PathVariable(value = "query") String query)
+     {
+         return ResponseEntity.ok(iEmployeService.recherche(query));
+     }
 }

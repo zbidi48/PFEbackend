@@ -2,7 +2,7 @@ package com.grh.pfeprv.payloads.request;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
-import java.util.Date;
+import java.sql.Date;
 @Data
 public class NotedefraieRequest {
     private  String description;

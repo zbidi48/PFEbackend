@@ -7,6 +7,7 @@ import com.grh.pfeprv.payloads.response.MessageResponse;
 import com.grh.pfeprv.service.IFichedepaieservice;
 import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -77,7 +78,9 @@ public class FichedepaieController {
                                                         @PathVariable(value="emplid") Long emplid) throws JRException, FileNotFoundException {
         return iFichedepaieservice.exportfichedepaie(id,emplid);
     }
-
-
-
+    @GetMapping("/cherchefiche/{query}")
+    public ResponseEntity<List<FichedepaieResponse>> Chercherfiche( @PathVariable(value="query") String query)
+    {
+        return ResponseEntity.ok(iFichedepaieservice.chercherfichedepaie(query));
+    }
 }

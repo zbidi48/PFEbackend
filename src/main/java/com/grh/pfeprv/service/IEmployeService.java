@@ -17,5 +17,6 @@ public interface IEmployeService {
     public  Employee DetailEmployee(Long id);
     public  ResponseEntity<List<Employee>> chercheremployee(String jobid);
     public List<Employee> chercheremployeeparnometprenom(String nom,String prenom);
+    public List<Employee> recherche(String query);
 
 }

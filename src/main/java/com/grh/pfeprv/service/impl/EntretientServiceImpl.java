@@ -178,4 +178,25 @@ public class EntretientServiceImpl implements IEntretientService {
 
         return ResponseEntity.ok(new MessageResponse("accord entretient fait avec succé"));
     }
+
+    @Override
+    public List<EntretientResponse> chercher(String key) {
+        List<EntretientResponse> responses = new ArrayList<>();
+        entretientRepository.findAllByCondidat_NomOrCondidat_PrenomOrCondidat_CinAndSupprIsFalse(key,key,key).
+                forEach(
+                entretient -> {
+                    responses.add(new EntretientResponse(
+                            entretient.getId(),
+                            entretient.getDate(),
+                            entretient.getHeure(),
+                            entretient.getStatus().name(),
+                            entretient.getCondidat().getNom(),
+                            entretient.getCondidat().getPrenom(),
+                            entretient.getCondidat().getCin()
+                    ));
+                }
+        );
+
+        return responses;
+    }
 }

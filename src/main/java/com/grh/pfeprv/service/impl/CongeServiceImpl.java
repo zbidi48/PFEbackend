@@ -214,4 +214,25 @@ public class CongeServiceImpl implements ICongeService {
         congeRepository.save(conge1);
         return ResponseEntity.ok(new MessageResponse("etat congé valide"));
     }
+
+    @Override
+    public List<CongeResponse> rechercheconge(String query) {
+        List<CongeResponse> responses=new ArrayList<>();
+        congeRepository.
+                findAllByEmployee_NomOrEmployee_PrenomOrEmployee_JobidAndSupprIsFalse(query,query,query).
+                forEach(conge -> {
+            responses.add(new CongeResponse(
+                    conge.getId(),
+                    conge.getDatedebut(),
+                    conge.getDatefin(),
+                    conge.getStatusConge(),
+                    conge.getTypeConge(),
+                    conge.getEmployee().getNom(),
+                    conge.getEmployee().getPrenom(),
+                    conge.getEmployee().getPost(),
+                    conge.getEmployee().getJobid()));
+        });
+
+        return responses;
+    }
 }

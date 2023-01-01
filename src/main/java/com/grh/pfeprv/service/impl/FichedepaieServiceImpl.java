@@ -2,7 +2,7 @@ package com.grh.pfeprv.service.impl;
 
 import com.grh.pfeprv.domaine.Employee;
 import com.grh.pfeprv.domaine.Fichedepaie;
-import com.grh.pfeprv.domaine.User;
+
 
 import java.io.*;
 
@@ -12,7 +12,7 @@ import com.grh.pfeprv.payloads.response.FichedepaieResponse;
 import com.grh.pfeprv.payloads.response.MessageResponse;
 import com.grh.pfeprv.repository.EmployeeRepository;
 import com.grh.pfeprv.repository.FichedepaieRepository;
-import com.grh.pfeprv.repository.UserRepository;
+
 import com.grh.pfeprv.service.IFichedepaieservice;
 import net.sf.jasperreports.engine.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -170,6 +170,25 @@ public class FichedepaieServiceImpl implements IFichedepaieservice {
         return responses;
     }
 
+    @Override
+    public List<FichedepaieResponse> chercherfichedepaie(String query) {
+        List<FichedepaieResponse> responses = new ArrayList<>();
+        fichedepaieRepository.findAllByEmployee_NomOrEmployee_PrenomOrEmployee_JobidAndSupprIsFalse(query,query,query).
+                forEach(fichedepaie -> {
+                    responses.add(new FichedepaieResponse(
+                            fichedepaie.getId(),
+                            fichedepaie.getDate(),
+                            fichedepaie.getSalairebrut(),
+                            fichedepaie.getSalairenet(),
+                            fichedepaie.getEmployee().getNom(),
+                            fichedepaie.getEmployee().getPrenom(),
+                            fichedepaie.getEmployee().getPost(),
+                            fichedepaie.getEmployee().getJobid()
+
+                    ));
+                });
+        return responses;
+    }
 
 
     @Override

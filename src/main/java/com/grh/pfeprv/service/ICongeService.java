@@ -18,4 +18,5 @@ public interface ICongeService {
     public List<CongeResponse> cherchercongeparnometprenom(String nom,String prenom);
     public List<CongeResponse> affichercongeparmail(String mail);
     public ResponseEntity<MessageResponse> accordconge(Long id,CongeRequest congeRequest);
+    public  List<CongeResponse> rechercheconge(String query);
 }

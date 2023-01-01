@@ -7,6 +7,7 @@ import com.grh.pfeprv.payloads.response.VisaResponse;
 
 import com.grh.pfeprv.service.IVisaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -59,15 +60,10 @@ public ResponseEntity<MessageResponse> Accordvisa(@PathVariable(value="id") Long
 {
     return iVisaService.Accordvisa(id,status);
 }
-@GetMapping("/cherchervisa/{jobid}")
-public ResponseEntity<List<VisaResponse>> cherchervisa(@PathVariable(value="jobid") String jobid)
+
+@GetMapping("/recherchevisa/{query}")
+    public ResponseEntity<List<VisaResponse>> Recherchevisa(@PathVariable(value="query") String query)
 {
-    return ResponseEntity.ok(iVisaService.Cherchervisa(jobid));
-}
-@PostMapping("/cherchervisaparnometprenom/{nom}/{prenom}")
-public ResponseEntity<List<VisaResponse>> cherchervisaparnometprenom(@PathVariable(value="nom") String nom
-,@PathVariable(value="prenom") String prenom)
-{
-    return ResponseEntity.ok(iVisaService.Cherchervisaparnometpremon(nom,prenom));
+    return ResponseEntity.ok(iVisaService.Recherchevisa(query));
 }
 }

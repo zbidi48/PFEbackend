@@ -43,7 +43,7 @@ public class FormationController {
     {
         return ResponseEntity.ok(iFormationService.RechercheFormation(typeformation));
     }
-    @GetMapping("affformid/{id}")
+    @GetMapping("/affformid/{id}")
     public ResponseEntity<Formation> AfficherFormationid(@PathVariable(value="id") Long id)
     {
 

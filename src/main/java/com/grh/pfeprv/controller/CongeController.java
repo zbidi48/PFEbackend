@@ -5,6 +5,7 @@ import com.grh.pfeprv.payloads.response.CongeResponse;
 import com.grh.pfeprv.payloads.response.MessageResponse;
 import com.grh.pfeprv.service.ICongeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -64,5 +65,10 @@ public class CongeController {
                                                        @RequestBody CongeRequest congeRequest)
     {
         return  icongeService.accordconge(id,congeRequest);
+    }
+    @GetMapping("/chercherconge/{query}")
+    public ResponseEntity<List<CongeResponse>> Rechercherconge(@PathVariable(value="query") String query)
+    {
+       return new ResponseEntity<>(icongeService.rechercheconge(query), HttpStatus.ACCEPTED);
     }
 }

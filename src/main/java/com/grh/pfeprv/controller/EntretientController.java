@@ -67,5 +67,10 @@ public class EntretientController {
     {
         return new ResponseEntity(iEntretientService.chercherentretientparCIN(cin), HttpStatus.ACCEPTED);
     }
+    @GetMapping("/chercherentretient/{key}")
+    public ResponseEntity<List<EntretientResponse>> Rechercherentretient(@PathVariable(value="key") String key)
+    {
+        return new ResponseEntity(iEntretientService.chercher(key),HttpStatus.ACCEPTED);
+    }
 
 }
