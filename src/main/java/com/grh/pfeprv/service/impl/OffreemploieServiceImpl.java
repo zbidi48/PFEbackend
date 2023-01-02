@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 @Service
@@ -25,13 +25,14 @@ public class OffreemploieServiceImpl implements IOffreemploieService {
     @Override
     public ResponseEntity<MessageResponse> Ajouteroffre(OffreemploieRequest offreemploieRequest) {
         Offreemploie offreemploie = new Offreemploie();
+        long miliseconds = System.currentTimeMillis();
         offreemploie.setDatelimite(offreemploieRequest.getDatelimite());
         offreemploie.setDescription(offreemploieRequest.getDescription());
         offreemploie.setExigenceemploie(offreemploieRequest.getExigenceemploie());
         offreemploie.setLangue(offreemploieRequest.getLangue());
         offreemploie.setTitredoffre(offreemploieRequest.getTitredoffre());
         offreemploie.setExperience(offreemploieRequest.getExperience());
-        offreemploie.setDatecreation(new Date());
+        offreemploie.setDatecreation(new Date(miliseconds));
         offeemploieRepository.save(offreemploie);
         return ResponseEntity.ok(new MessageResponse("ajout d offre emploie avec success !"));
     }

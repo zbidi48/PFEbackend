@@ -6,8 +6,9 @@ import lombok.Data;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import java.sql.Date;
 import java.sql.Time;
-import java.util.Date;
+
 @Data
 public class EntretientRequest {
     //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")

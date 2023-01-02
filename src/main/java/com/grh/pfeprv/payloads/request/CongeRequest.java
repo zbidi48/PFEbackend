@@ -8,7 +8,7 @@ import lombok.Data;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.sql.Date;
 @Data
 public class CongeRequest {
     //@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")

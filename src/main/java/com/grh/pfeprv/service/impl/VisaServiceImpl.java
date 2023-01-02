@@ -15,8 +15,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 
+import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.List;
 import java.util.Optional;
 @Service
@@ -45,13 +46,14 @@ public class VisaServiceImpl implements IVisaService {
     @Override
     public ResponseEntity<MessageResponse> Ajoutervisa(VisaRequest visaRequest) {
         Visa visa = new Visa();
+        long miliseconds = System.currentTimeMillis();
        Optional<Employee> employee=employeeRepository.findById(visaRequest.getEmployee_id());
        if(!employee.isPresent())
        {
            throw new NotFoundException("Ajout impossible");
        }
        Employee employee1 = employee.get();
-       visa.setDatedepot(new Date());
+       visa.setDatedepot(new Date(miliseconds));
        visa.setStatus(EStatusVisa.ENCOUR);
        visa.setTypevisa(visaRequest.getTypevisa());
        visa.setSuppr(false);

@@ -135,43 +135,6 @@ public class CongeServiceImpl implements ICongeService {
         return conge.get();
     }
 
-    @Override
-    public List<CongeResponse> chercherconge(String jobid) {
-        List<CongeResponse> responses=new ArrayList<>();
-        congeRepository.findByEmployee_JobidAndAndSupprIsFalse(jobid).forEach(conge -> {
-            responses.add(new CongeResponse(
-                    conge.getId(),
-                    conge.getDatedebut(),
-                    conge.getDatefin(),
-                    conge.getStatusConge(),
-                    conge.getTypeConge(),
-                    conge.getEmployee().getNom(),
-                    conge.getEmployee().getPrenom(),
-                    conge.getEmployee().getPost(),
-                    conge.getEmployee().getJobid()));
-
-        });
-        return responses;
-    }
-
-    @Override
-    public List<CongeResponse> cherchercongeparnometprenom(String nom, String prenom) {
-        List<CongeResponse> responses=new ArrayList<>();
-        congeRepository.findAllByEmployee_NomAndEmployee_PrenomAndSupprIsFalse(nom,prenom).forEach(conge -> {
-            responses.add(new CongeResponse(
-                    conge.getId(),
-                    conge.getDatedebut(),
-                    conge.getDatefin(),
-                    conge.getStatusConge(),
-                    conge.getTypeConge(),
-                    conge.getEmployee().getNom(),
-                    conge.getEmployee().getPrenom(),
-                    conge.getEmployee().getPost(),
-                    conge.getEmployee().getJobid()));
-
-        });
-        return responses;
-    }
 
     @Override
     public List<CongeResponse> affichercongeparmail(String mail) {
@@ -219,7 +182,7 @@ public class CongeServiceImpl implements ICongeService {
     public List<CongeResponse> rechercheconge(String query) {
         List<CongeResponse> responses=new ArrayList<>();
         congeRepository.
-                findAllByEmployee_NomOrEmployee_PrenomOrEmployee_JobidAndSupprIsFalse(query,query,query).
+              findAllByEmployee_NomAndSupprIsFalseOrEmployee_PrenomAndSupprIsFalseOrEmployee_JobidAndSupprIsFalse(query,query,query).
                 forEach(conge -> {
             responses.add(new CongeResponse(
                     conge.getId(),

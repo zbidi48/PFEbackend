@@ -39,17 +39,7 @@ public class CongeController {
    {
        return icongeService.supprimerconge(id);
    }
-   @RequestMapping("/chercherdemandeconge/{jobid}")
-    public  ResponseEntity<List<CongeResponse>> Chercherconge(@PathVariable(value="jobid") String jobid)
-   {
-       return ResponseEntity.ok(icongeService.chercherconge(jobid));
-   }
-    @PostMapping("/chercherparnometprenom/{nom}/{prenom}")
-    public  ResponseEntity<List<CongeResponse>> cherchercongeparnometprenon(@PathVariable(value="nom") String nom,
-                                                                            @PathVariable(value="prenom") String prenom)
-    {
-        return ResponseEntity.ok(icongeService.cherchercongeparnometprenom(nom,prenom));
-    }
+
    @GetMapping("/detailconge/{id}")
     public ResponseEntity<Conge>  Detailconge(@PathVariable(value="id") long id){
 

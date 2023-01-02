@@ -12,7 +12,7 @@ public interface OffrecondidatRepository extends JpaRepository<OffreemploieCondi
     List<OffreemploieCondidat> findAllByCondidats_Cin(String cin);
     List<OffreemploieCondidat> findBySupprIsFalse();
     List<OffreemploieCondidat> findAllByCondidats_NomAndCondidats_PrenomAndSupprIsFalse(String nom,String prenom);
-    List<OffreemploieCondidat> findAllByCondidats_NomOrCondidats_PrenomOrCondidats_CinAndSupprIsFalse(String nom,String prenom,String jobid);
+    List<OffreemploieCondidat> findAllByCondidats_NomAndSupprIsFalseOrCondidats_PrenomAndSupprIsFalseOrCondidats_CinAndSupprIsFalse(String nom,String prenom,String jobid);
 
 
 }

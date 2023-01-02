@@ -18,8 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -63,6 +63,7 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
     @Override
     public ResponseEntity<MessageResponse> postuleroffre(Long idoffre,Long idcondidat) {
         OffreemploieCondidat offreemploieCondidat = new OffreemploieCondidat();
+        long miliseconds = System.currentTimeMillis();
         //System.out.println("idcondidat"+offrecondidatRequest.getCondidats_id());
         Optional<Condidats> condidats = condidatRepository.findById(idcondidat);
         //System.out.println("idoffre"+offrecondidatRequest.getOffreemploie_id());
@@ -74,7 +75,7 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
         Condidats condidats1 = condidats.get();
         Offreemploie offreemploie1 =offreemploie.get();
         offreemploieCondidat.setStatus(EStatusOffreCondidat.ENCOUR);
-        offreemploieCondidat.setDatecreation(new Date());
+        offreemploieCondidat.setDatecreation(new Date(miliseconds));
         offreemploieCondidat.setSuppr(false);
         offreemploieCondidat.setCondidats(condidats1);
         offreemploieCondidat.setOffreemploie(offreemploie1);
@@ -175,23 +176,7 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
     }
 
 
-    /*
-    @Override
-    public List<OffrecondidatResponse> Affichercondidatentretient(String status) {
-        List<OffrecondidatResponse> responses= new ArrayList<>();
-        offrecondidatRepository.findByStatus(status).forEach(offreemploieCondidat -> {
-            responses.add(new OffrecondidatResponse(
-                    offreemploieCondidat.getId(),
-                    offreemploieCondidat.getOffreemploie().getDatecreation(),
-                    offreemploieCondidat.getCondidats().getNom(),
-                    offreemploieCondidat.getCondidats().getPrenom(),
-                    offreemploieCondidat.getCondidats().getPost(),
-                    offreemploieCondidat.getOffreemploie().getTitredoffre(),
-                    offreemploieCondidat.getOffreemploie().getDescription()));
-        });
-        return responses;
-    }
-     */
+
 
 
     @Override
@@ -212,35 +197,13 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
         return ResponseEntity.ok(new MessageResponse("etat postuleoffre changé "));
     }
 
-    @Override
-    public List<OffrecondidatResponse> Chercherinscitoffreparnometprenom(String nom, String prenom) {
-        List<OffrecondidatResponse> response=new ArrayList<>();
-        offrecondidatRepository.findAllByCondidats_NomAndCondidats_PrenomAndSupprIsFalse(nom,prenom).
-                forEach(offreemploieCondidat -> {
-            response.add(new OffrecondidatResponse(
-                    offreemploieCondidat.getId(),
-                    offreemploieCondidat.getOffreemploie().getDatecreation(),
-                    offreemploieCondidat.getCondidats().getNom(),
-                    offreemploieCondidat.getCondidats().getPrenom(),
-                    offreemploieCondidat.getCondidats().getCin(),
-                    offreemploieCondidat.getCondidats().getPost(),
-                    offreemploieCondidat.getOffreemploie().getTitredoffre(),
-                    offreemploieCondidat.getOffreemploie().getDescription(),
-                    offreemploieCondidat.getOffreemploie().getDatelimite(),
-                    offreemploieCondidat.getOffreemploie().getLangue(),
-                    offreemploieCondidat.getOffreemploie().getExperience(),
-                    offreemploieCondidat.getOffreemploie().getExigenceemploie(),
-                    offreemploieCondidat.getStatus().name()
 
-            ));
-        });
-        return response;
-    }
 
     @Override
     public List<OffrecondidatResponse> chercher(String query) {
         List<OffrecondidatResponse> response=new ArrayList<>();
-        offrecondidatRepository.findAllByCondidats_NomOrCondidats_PrenomOrCondidats_CinAndSupprIsFalse(query,query,query).
+        offrecondidatRepository.
+   findAllByCondidats_NomAndSupprIsFalseOrCondidats_PrenomAndSupprIsFalseOrCondidats_CinAndSupprIsFalse(query,query,query).
                 forEach(offreemploieCondidat -> {
                     response.add(new OffrecondidatResponse(
                             offreemploieCondidat.getId(),

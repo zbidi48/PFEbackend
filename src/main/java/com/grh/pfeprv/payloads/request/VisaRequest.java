@@ -1,12 +1,13 @@
 package com.grh.pfeprv.payloads.request;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+
 import com.grh.pfeprv.enums.ETypeVisa;
 import lombok.Data;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import java.util.Date;
+import java.sql.Date;
+
 
 @Data
 

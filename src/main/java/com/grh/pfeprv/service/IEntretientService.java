@@ -14,8 +14,7 @@ public interface IEntretientService {
     public ResponseEntity<MessageResponse> Miseajourentretient(Long id,EntretientRequest entretientRequest);
     public ResponseEntity<MessageResponse> Supprimerentretient(Long id);
     public Entretient Detailentretient(Long id);
-    public  List<EntretientResponse> Chercherentretient(String nom,String prenom);
-    public List<EntretientResponse> chercherentretientparCIN(String cin);
+
     public List<EntretientResponse> afficherentretientparmail(String email);
     public ResponseEntity<MessageResponse> accordentretient(Long id,String status);
     public List<EntretientResponse> chercher(String key);

@@ -44,12 +44,7 @@ public class EntretientController {
     {
         return iEntretientService.afficherentretientparmail(email);
     }
-    @PostMapping ("/chercherentretient/{nom}/{prenom}")
-    public ResponseEntity<List<EntretientResponse>> Chercherentret(@PathVariable(value="nom") String nom,
-                                                   @PathVariable(value="prenom") String prenom)
-    {
-        return ResponseEntity.ok( iEntretientService.Chercherentretient(nom, prenom));
-    }
+
     @GetMapping("/detailentretient/{id}")
     public ResponseEntity<Entretient> Detailentret(@PathVariable(value="id") Long id)
     {
@@ -62,11 +57,7 @@ public class EntretientController {
     {
         return iEntretientService.accordentretient(id,status);
     }
-    @GetMapping("/chercherentretientparcin/{cin}")
-    public ResponseEntity<List<EntretientResponse>> chercherparcin(@PathVariable(value="cin") String cin)
-    {
-        return new ResponseEntity(iEntretientService.chercherentretientparCIN(cin), HttpStatus.ACCEPTED);
-    }
+
     @GetMapping("/chercherentretient/{key}")
     public ResponseEntity<List<EntretientResponse>> Rechercherentretient(@PathVariable(value="key") String key)
     {

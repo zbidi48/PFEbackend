@@ -7,7 +7,7 @@ import lombok.Data;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import java.util.Date;
+import java.sql.Date;
 @Data
 public class CongeResponse {
     private  long id;

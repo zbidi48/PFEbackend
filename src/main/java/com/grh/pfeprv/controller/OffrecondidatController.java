@@ -60,12 +60,7 @@ public class OffrecondidatController {
     {
         return service.Statuspostule(id,status);
     }
-    @PostMapping("/chercherparnometprenom/{nom}/{prenom}")
-    public ResponseEntity<List<OffrecondidatResponse>> Chercherparnometprenom(@PathVariable(value="nom") String nom,
-                                                                              @PathVariable(value="prenom") String prenom)
-    {
-        return ResponseEntity.ok(service.Chercherinscitoffreparnometprenom(nom,prenom));
-    }
+
     @GetMapping("/chercheroffrecondidat/{query}")
     public ResponseEntity<List<OffrecondidatResponse>> RechercheOffrecondidat(@PathVariable(value="query") String query)
     {
