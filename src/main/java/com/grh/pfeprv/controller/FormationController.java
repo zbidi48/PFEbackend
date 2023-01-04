@@ -38,10 +38,10 @@ public class FormationController {
     {
         return iFormationService.EffForma(id);
     }
-    @GetMapping("/listformation/{typeformation}")
-    public  ResponseEntity<List<Formation> > RechercheFormation(@PathVariable(value="typeformation") String typeformation )
+    @GetMapping("/listformation/{query}")
+    public  ResponseEntity<List<Formation> > RechercheFormation(@PathVariable(value="query") String query )
     {
-        return ResponseEntity.ok(iFormationService.RechercheFormation(typeformation));
+        return ResponseEntity.ok(iFormationService.RechercheFormation(query));
     }
     @GetMapping("/affformid/{id}")
     public ResponseEntity<Formation> AfficherFormationid(@PathVariable(value="id") Long id)

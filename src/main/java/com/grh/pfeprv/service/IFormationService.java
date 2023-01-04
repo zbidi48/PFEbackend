@@ -12,7 +12,7 @@ public interface IFormationService {
     public ResponseEntity<MessageResponse> AjouForm(FormationRequest fr);
     public ResponseEntity<MessageResponse> MAForm(Long id,FormationRequest fr);
     public ResponseEntity<MessageResponse> EffForma(Long id);
-    public  List<Formation> RechercheFormation(String nomformation);
+    public  List<Formation> RechercheFormation(String query);
     public Formation AffFormid(Long id);
 
 

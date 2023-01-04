@@ -118,51 +118,9 @@ public class ContratServiceImpl  implements IContratService {
         return cont.get();
     }
 
-    @Override
-    public List<ContratResponse> Cherchercontrat(String code) {
-        List<ContratResponse> responses = new ArrayList<>();
-        contratRepository.findAllByCodeAndDeletedIsFalse(code).forEach(contrat ->
-        {
-            responses.add(new ContratResponse(
-                    contrat.getId(),
-                    contrat.getCode(),
-                    contrat.getType(),
-                    contrat.getDatedebut(),
-                    contrat.getDatefin(),
-                    contrat.getEmployee().getNom(),
-                    contrat.getEmployee().getPrenom(),
-                    contrat.getEmployee().getPost(),
-                    contrat.getEmployee().getJobid(),
-                    contrat.getUrl()
-            ));
-        });
 
-        return responses;
 
-    }
 
-    @Override
-    public List<ContratResponse> rechercheparnometprenom(String nom, String prenom) {
-        List<ContratResponse> responses = new ArrayList<>();
-        contratRepository.findAllByEmployee_NomAndEmployee_PrenomAndAndDeletedIsFalse(nom,prenom).
-                forEach(contrat ->
-        {
-            responses.add(new ContratResponse(
-                    contrat.getId(),
-                    contrat.getCode(),
-                    contrat.getType(),
-                    contrat.getDatedebut(),
-                    contrat.getDatefin(),
-                    contrat.getEmployee().getNom(),
-                    contrat.getEmployee().getPrenom(),
-                    contrat.getEmployee().getPost(),
-                    contrat.getEmployee().getJobid(),
-                    contrat.getUrl()
-            ));
-        });
-
-        return responses;
-    }
 
     @Override
     public ResponseEntity<List<ContratResponse>> Affichercontratparemplid(Long emplid) {
@@ -187,9 +145,10 @@ public class ContratServiceImpl  implements IContratService {
     }
 
     @Override
-    public List<ContratResponse> recherchecontratparjobid(String jobid) {
+    public List<ContratResponse> recherchercontrat(String query) {
         List<ContratResponse> responses = new ArrayList<>();
-        contratRepository.findAllByEmployee_JobidAndDeletedIsFalse(jobid).forEach(contrat ->
+        contratRepository.
+    findAllByEmployee_NomAndDeletedIsFalseOrEmployee_PrenomAndDeletedIsFalseOrEmployee_JobidAndDeletedIsFalseOrCodeAndDeletedIsFalse(query,query,query,query).forEach(contrat ->
         {
             responses.add(new ContratResponse(
                     contrat.getId(),
@@ -204,8 +163,10 @@ public class ContratServiceImpl  implements IContratService {
                     contrat.getUrl()
             ));
         });
-        return  responses;
+
+        return responses;
     }
+
 
     @Override
     public ResponseEntity<MessageResponse> exportcontratpdf(Long id, Long emplid) throws

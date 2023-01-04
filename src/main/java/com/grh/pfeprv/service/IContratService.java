@@ -20,10 +20,11 @@ public interface IContratService {
     public ResponseEntity<MessageResponse> Effcontrat(Long id);
 
     public Contrat Affcontratid(Long id);
-    public  List<ContratResponse> Cherchercontrat(String code);
-    public  List<ContratResponse> rechercheparnometprenom(String nom,String prenom);
+
+
     public ResponseEntity<List<ContratResponse>> Affichercontratparemplid(Long emplid);
-    public List<ContratResponse> recherchecontratparjobid(String jobid);
+    public List<ContratResponse> recherchercontrat(String query);
+
     public ResponseEntity<MessageResponse> exportcontratpdf(Long id,Long emplid) throws FileNotFoundException,
             JRException, MalformedURLException;
 }

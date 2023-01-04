@@ -9,6 +9,6 @@ import java.util.List;
 
 
 public interface FormationRepository extends JpaRepository<Formation,Long> {
-    List<Formation> findByTypedeformation(String typeFor);
+    List<Formation> findByTypedeformationOrNomdeforamtion(String nomform,String typeFor);
 
 }

@@ -54,22 +54,9 @@ public class ContratController {
     {
        return iContratService.Effcontrat(id);
     }
-    @GetMapping("/cherchercontrat/{code}")
-    public ResponseEntity<List<ContratResponse>> cherchercontratparcode(@PathVariable(value ="code") String code)
-    {
-        return ResponseEntity.ok(iContratService.Cherchercontrat(code));
-    }
-    @GetMapping("/cherchercontratparjobid/{jobid}")
-    public ResponseEntity<List<ContratResponse>> cherchercontratparjobid(@PathVariable(value ="jobid") String jobid)
-    {
-        return ResponseEntity.ok(iContratService.recherchecontratparjobid(jobid));
-    }
-    @PostMapping("/chercherparnometprenom/{nom}/{prenom}")
-    public ResponseEntity<List<ContratResponse>> recherchecontratparnometprenom(@PathVariable(value ="nom") String nom,
-                                                                         @PathVariable(value ="prenom") String prenom)
-    {
-        return ResponseEntity.ok(iContratService.rechercheparnometprenom(nom,prenom));
-    }
+
+
+
     @GetMapping ("/detaillcontrat/{id}")
     public  ResponseEntity<Contrat> DetaitContrat(@PathVariable(value="id") Long id)
     {
@@ -89,5 +76,10 @@ public class ContratController {
     public ResponseEntity<List<ContratResponse>> afficherparemployeeid(  @PathVariable(value="emplid") Long emplid)
     {
         return iContratService.Affichercontratparemplid(emplid);
+    }
+    @GetMapping("/cherchercontrat/{query}")
+    public  ResponseEntity<List<ContratResponse>> recherchecontrats( @PathVariable(value="query") String query)
+    {
+        return ResponseEntity.ok(iContratService.recherchercontrat(query));
     }
 }

@@ -74,9 +74,9 @@ public class FormationServiceImpl implements IFormationService {
     }
 
     @Override
-    public List<Formation> RechercheFormation(String typeformation) {
+    public List<Formation> RechercheFormation(String query) {
 
-        return formationRepository.findByTypedeformation(typeformation);
+        return formationRepository.findByTypedeformationOrNomdeforamtion(query,query);
     }
 
     @Override

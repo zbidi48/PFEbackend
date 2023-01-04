@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.sql.Time;
-import java.util.Date;
+import java.sql.Date;
 
 @Data
 public class FormationRequest {
