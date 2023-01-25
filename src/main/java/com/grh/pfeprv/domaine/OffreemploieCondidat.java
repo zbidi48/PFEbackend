@@ -33,6 +33,7 @@ public class OffreemploieCondidat {
     @Enumerated(EnumType.STRING)
     private EStatusOffreCondidat status;
     private Boolean suppr;
+    private Boolean hasinterview;
 
 
 }

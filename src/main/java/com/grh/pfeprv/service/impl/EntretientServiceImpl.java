@@ -2,6 +2,7 @@ package com.grh.pfeprv.service.impl;
 
 import com.grh.pfeprv.domaine.Condidats;
 import com.grh.pfeprv.domaine.Entretient;
+import com.grh.pfeprv.domaine.OffreemploieCondidat;
 import com.grh.pfeprv.enums.EStatusEntretient;
 import com.grh.pfeprv.exception.NotFoundException;
 import com.grh.pfeprv.payloads.request.EntretientRequest;
@@ -9,11 +10,13 @@ import com.grh.pfeprv.payloads.response.EntretientResponse;
 import com.grh.pfeprv.payloads.response.MessageResponse;
 import com.grh.pfeprv.repository.CondidatRepository;
 import com.grh.pfeprv.repository.EntretientRepository;
+import com.grh.pfeprv.repository.OffrecondidatRepository;
 import com.grh.pfeprv.service.IEntretientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -23,10 +26,12 @@ public class EntretientServiceImpl implements IEntretientService {
     CondidatRepository condidatRepository;
     @Autowired
     EntretientRepository entretientRepository;
+    @Autowired
+    OffrecondidatRepository offrecondidatRepository;
     @Override
     public List<EntretientResponse> Afficherentretient() {
         List<EntretientResponse> responses = new ArrayList<>();
-        entretientRepository.findAllBySupprIsFalse().forEach(entretient ->
+        entretientRepository.findAll().forEach(entretient ->
         {
             responses.add(new EntretientResponse(
                     entretient.getId(),
@@ -35,7 +40,7 @@ public class EntretientServiceImpl implements IEntretientService {
                     entretient.getStatus().name(),
                     entretient.getCondidat().getNom(),
                     entretient.getCondidat().getPrenom(),
-                    entretient.getCondidat().getCin()
+                    entretient.getTitreOffre()
             ));
         });
 
@@ -44,8 +49,17 @@ public class EntretientServiceImpl implements IEntretientService {
 
     @Override
     public ResponseEntity<MessageResponse> Ajouterentretient(EntretientRequest entretientRequest) {
+        OffreemploieCondidat offreemploieCondidat = offrecondidatRepository.findById(entretientRequest.getInscritoffre_id()).get();
         Entretient entretient = new Entretient();
-        Optional<Condidats> condidats = condidatRepository.findById(entretientRequest.getCondidats_id());
+        entretient.setStatus(EStatusEntretient.ENCOUR);
+        entretient.setDate(entretientRequest.getDate());
+        entretient.setHeure(entretientRequest.getHeure());
+        entretient.setTitreOffre(offreemploieCondidat.getOffreemploie().getTitredoffre());
+        entretient.setCondidat(offreemploieCondidat.getCondidats());
+        entretientRepository.save(entretient);
+        offreemploieCondidat.setHasinterview(true);
+        offrecondidatRepository.save(offreemploieCondidat);
+       /* Optional<Condidats> condidats = condidatRepository.findById(entretientRequest.getCondidats_id());
         if(!condidats.isPresent())
         {
             throw new NotFoundException("Ajout impossible");
@@ -57,11 +71,11 @@ public class EntretientServiceImpl implements IEntretientService {
 
         entretient.setSuppr(false);
         entretient.setCondidat(condidat);
-        entretientRepository.save(entretient);
+        entretientRepository.save(entretient);*/
         return ResponseEntity.ok(new MessageResponse("entretient ajouter avec succeé"));
     }
 
-    @Override
+  /*  @Override
     public ResponseEntity<MessageResponse> Miseajourentretient(Long id,
                                                                EntretientRequest entretientRequest) {
         Optional<Entretient> entretient = entretientRepository.findById(id);
@@ -97,11 +111,11 @@ public class EntretientServiceImpl implements IEntretientService {
             throw new NotFoundException("entretient ID: " + id + " not found");
         }
         return entretient.get();
-    }
+    }*/
 
 
 
-    @Override
+  /*  @Override
     public List<EntretientResponse> afficherentretientparmail(String email) {
         List<EntretientResponse> responses = new ArrayList<>();
         entretientRepository.findAllByCondidat_Email(email).forEach(
@@ -161,5 +175,5 @@ public class EntretientServiceImpl implements IEntretientService {
         );
 
         return responses;
-    }
+    }*/
 }

@@ -28,6 +28,12 @@ public class EntretientController {
     {
         return iEntretientService.Ajouterentretient(request);
     }
+   /* @GetMapping("/afficherentretient")
+    public ResponseEntity<List<EntretientResponse> > Affichertoutentret()
+    {
+        return ResponseEntity.ok(iEntretientService.Afficherentretient());
+    }
+
     @PutMapping("/miseajourentrtient/{id}")
     public ResponseEntity<MessageResponse> Miseajouentret(@PathVariable(value="id") Long id,
                                                               @RequestBody EntretientRequest request)
@@ -63,5 +69,5 @@ public class EntretientController {
     {
         return new ResponseEntity(iEntretientService.chercher(key),HttpStatus.ACCEPTED);
     }
-
+*/
 }

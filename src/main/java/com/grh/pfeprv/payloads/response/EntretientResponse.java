@@ -14,15 +14,15 @@ public class EntretientResponse {
     private String status;
     private String nom;
     private String prenom;
-    private String cin;
+    private String titreOffre;
 
-    public EntretientResponse(Long id, Date date, Time heure, String status,String nom, String prenom,String cin) {
+    public EntretientResponse(Long id, Date date, Time heure, String status,String nom, String prenom,String titreOffre) {
         this.id = id;
         this.date = date;
         this.heure = heure;
         this.status=status;
         this.nom = nom;
         this.prenom = prenom;
-        this.cin=cin;
+        this.titreOffre=titreOffre;
     }
 }

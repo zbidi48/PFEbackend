@@ -26,13 +26,14 @@ public class OffrecondidatResponse {
     private String exigenceemploie;
 
     private String status;
+    private Boolean hasinterview;
 
 
 
     public OffrecondidatResponse(Long id, Date datecreation, String nom,
                                  String prenom, String cin,String poste,String titredoffre,
                                  String description,Date datelimite,String langue,String experience,
-                                 String exigenceemploie,String status) {
+                                 String exigenceemploie,String status, Boolean hasinterview) {
         this.id = id;
         this.datecreation = datecreation;
         this.nom = nom;
@@ -46,6 +47,7 @@ public class OffrecondidatResponse {
         this.experience=experience;
         this.exigenceemploie=exigenceemploie;
         this.status=status;
+        this.hasinterview = hasinterview;
 
     }
 }

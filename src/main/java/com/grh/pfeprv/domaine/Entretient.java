@@ -12,6 +12,7 @@ import java.io.Serializable;
 import java.sql.Time;
 import java.sql.Date;
 
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -24,12 +25,11 @@ public class Entretient implements Serializable {
     private Long id;
     //@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     private Date date;
-    @JsonFormat(pattern="HH:mm:ss")
+    /*@JsonFormat(pattern="HH:mm:ss")*/
     private Time heure;
     @Enumerated(EnumType.STRING)
     private EStatusEntretient status;
-    @JsonIgnore
-    private boolean suppr;
+    private String titreOffre;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "condidats_id", referencedColumnName = "id")
     @JsonIgnore

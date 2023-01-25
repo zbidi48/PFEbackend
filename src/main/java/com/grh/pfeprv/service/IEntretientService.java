@@ -9,15 +9,17 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 public interface IEntretientService {
-    public List<EntretientResponse> Afficherentretient();
-    public ResponseEntity<MessageResponse> Ajouterentretient(EntretientRequest entretientRequest);
+    ResponseEntity<MessageResponse> Ajouterentretient(EntretientRequest entretientRequest);
+     List<EntretientResponse> Afficherentretient();
+  /*  public List<EntretientResponse> Afficherentretient();
+
     public ResponseEntity<MessageResponse> Miseajourentretient(Long id,EntretientRequest entretientRequest);
     public ResponseEntity<MessageResponse> Supprimerentretient(Long id);
     public Entretient Detailentretient(Long id);
 
     public List<EntretientResponse> afficherentretientparmail(String email);
     public ResponseEntity<MessageResponse> accordentretient(Long id,String status);
-    public List<EntretientResponse> chercher(String key);
+    public List<EntretientResponse> chercher(String key);*/
 
 
 }
