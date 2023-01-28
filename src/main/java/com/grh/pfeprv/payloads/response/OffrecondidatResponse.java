@@ -15,14 +15,24 @@ public class OffrecondidatResponse {
     private String prenom;
     private  String cin;
     private  String poste;
+    private Date dateOfBirth;
+    private String phone;
+    private String adresse ;
+    private String ville;
+    private String nationality;
+    private String niveauEtud;
+    private String titreDiplome;
+    private String university;
+    private String niveauExp;
+    private String experience;
 
     private String titredoffre;
     private String description;
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
+    //@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
 
     private Date datelimite;
     private String langue;
-    private String experience;
+
     private String exigenceemploie;
 
     private String status;
@@ -31,7 +41,16 @@ public class OffrecondidatResponse {
 
 
     public OffrecondidatResponse(Long id, Date datecreation, String nom,
-                                 String prenom, String cin,String poste,String titredoffre,
+                                 String prenom, String cin,String poste,Date dateOfBirth,
+                                 String phone,
+                                 String adresse,
+                                 String ville,
+                                 String nationality,
+                                 String niveauEtud,
+                                 String titreDiplome,
+                                 String university,
+                                 String niveauExp,
+                                 String titredoffre,
                                  String description,Date datelimite,String langue,String experience,
                                  String exigenceemploie,String status, Boolean hasinterview) {
         this.id = id;
@@ -40,6 +59,15 @@ public class OffrecondidatResponse {
         this.prenom = prenom;
         this.cin=cin;
         this.poste = poste;
+        this.dateOfBirth=dateOfBirth;
+        this.phone=phone;
+        this.adresse=adresse;
+        this.ville=ville;
+        this.nationality=nationality;
+        this.niveauEtud=niveauEtud;
+        this.titreDiplome=titreDiplome;
+        this.university=university;
+        this.niveauExp=niveauExp;
         this.titredoffre=titredoffre;
         this.description=description;
         this.datelimite=datelimite;

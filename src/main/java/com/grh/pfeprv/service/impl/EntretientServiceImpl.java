@@ -49,7 +49,8 @@ public class EntretientServiceImpl implements IEntretientService {
 
     @Override
     public ResponseEntity<MessageResponse> Ajouterentretient(EntretientRequest entretientRequest) {
-        OffreemploieCondidat offreemploieCondidat = offrecondidatRepository.findById(entretientRequest.getInscritoffre_id()).get();
+        OffreemploieCondidat offreemploieCondidat = offrecondidatRepository.findById(entretientRequest
+                .getInscritoffre_id()).get();
         Entretient entretient = new Entretient();
         entretient.setStatus(EStatusEntretient.ENCOUR);
         entretient.setDate(entretientRequest.getDate());

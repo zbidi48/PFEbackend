@@ -9,10 +9,9 @@ public interface EmployeeRepository extends JpaRepository<Employee,Long> {
 
 
 
-    List<Employee> findAllByNomAndPrenom(String nom,String prenom);
-   List<Employee> findByJobidAndAndSupprIsFalse(String jobid);
+
    List<Employee> findBySupprIsFalse();
-   List<Employee> findAllByNomOrPrenomAndSupprIsFalse(String nom,String prenom);
+   List<Employee> findAllByNomAndSupprIsFalseOrPrenomAndSupprIsFalseOrJobidAndSupprIsFalse(String nom,String prenom,String jobid );
 
 
 

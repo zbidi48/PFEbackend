@@ -41,23 +41,14 @@ public class EmployeeController {
      {
          return iEmployeService.Effaceremplyee(id);
      }
-     @GetMapping("/chercheremployee/{jobid}")
-     public  ResponseEntity<List<Employee>> ChercherEmpl(@PathVariable(value = "jobid") String jobid)
-     {
-         return iEmployeService.chercheremployee(jobid);
-     }
+
      @GetMapping("/detailempl/{id}")
     public ResponseEntity<Employee> DetailEmpl(@PathVariable(value = "id") Long id)
      {
 
          return  ResponseEntity.ok(iEmployeService.DetailEmployee(id));
      }
-     @PostMapping("/chercherparnometprenom/{nom}/{prenom}")
-     public ResponseEntity<List<Employee>> Chercherparnometprenom(@PathVariable(value = "nom") String nom,
-                                                                                  @PathVariable(value = "prenom") String prenom)
-     {
-         return ResponseEntity.ok(iEmployeService.chercheremployeeparnometprenom(nom,prenom));
-     }
+
      @GetMapping("/rechercheemployee/{query}")
     public ResponseEntity<List<Employee>> Rechercheemploy(@PathVariable(value = "query") String query)
      {

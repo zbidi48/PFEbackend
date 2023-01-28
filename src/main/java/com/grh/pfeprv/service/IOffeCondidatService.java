@@ -20,4 +20,5 @@ public interface IOffeCondidatService {
     public ResponseEntity<MessageResponse> Statuspostule(Long id, String status);
 
     public List<OffrecondidatResponse> chercher(String query);
+
 }

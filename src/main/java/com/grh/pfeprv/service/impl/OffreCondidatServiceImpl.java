@@ -4,9 +4,9 @@ import com.grh.pfeprv.domaine.Condidats;
 import com.grh.pfeprv.domaine.Offreemploie;
 import com.grh.pfeprv.domaine.OffreemploieCondidat;
 import com.grh.pfeprv.enums.EStatusOffreCondidat;
-import com.grh.pfeprv.enums.EStatusVisa;
+
 import com.grh.pfeprv.exception.NotFoundException;
-import com.grh.pfeprv.payloads.request.OffrecondidatRequest;
+
 import com.grh.pfeprv.payloads.response.MessageResponse;
 import com.grh.pfeprv.payloads.response.OffrecondidatResponse;
 import com.grh.pfeprv.repository.CondidatRepository;
@@ -45,6 +45,15 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
                     offreemploieCondidat.getCondidats().getPrenom(),
                     offreemploieCondidat.getCondidats().getCin(),
                     offreemploieCondidat.getCondidats().getPost(),
+                    offreemploieCondidat.getCondidats().getDateOfBirth(),
+                    offreemploieCondidat.getCondidats().getPhone(),
+                    offreemploieCondidat.getCondidats().getAdresse(),
+                    offreemploieCondidat.getCondidats().getVille(),
+                    offreemploieCondidat.getCondidats().getNationality(),
+                    offreemploieCondidat.getCondidats().getNiveauEtud(),
+                    offreemploieCondidat.getCondidats().getTitreDiplome(),
+                    offreemploieCondidat.getCondidats().getUniversity(),
+                    offreemploieCondidat.getCondidats().getNiveauEtud(),
                     offreemploieCondidat.getOffreemploie().getTitredoffre(),
                     offreemploieCondidat.getOffreemploie().getDescription(),
                     offreemploieCondidat.getOffreemploie().getDatelimite(),
@@ -115,6 +124,16 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
         response.setPrenom(offreemploieCondidat.get().getCondidats().getPrenom());
         response.setCin(offreemploieCondidat.get().getCondidats().getCin());
         response.setPoste(offreemploieCondidat.get().getCondidats().getPost());
+        response.setDateOfBirth(offreemploieCondidat.get().getCondidats().getDateOfBirth());
+        response.setPhone(offreemploieCondidat.get().getCondidats().getPhone());
+        response.setAdresse(offreemploieCondidat.get().getCondidats().getAdresse());
+        response.setVille(offreemploieCondidat.get().getCondidats().getVille());
+        response.setNationality(offreemploieCondidat.get().getCondidats().getNationality());
+        response.setNiveauEtud(offreemploieCondidat.get().getCondidats().getNiveauEtud());
+        response.setTitreDiplome(offreemploieCondidat.get().getCondidats().getTitreDiplome());
+        response.setUniversity(offreemploieCondidat.get().getCondidats().getUniversity());
+        response.setNiveauExp(offreemploieCondidat.get().getCondidats().getNiveauExp());
+        response.setExperience(offreemploieCondidat.get().getCondidats().getExperience());
         response.setTitredoffre(offreemploieCondidat.get().getOffreemploie().getTitredoffre());
         response.setDescription(offreemploieCondidat.get().getOffreemploie().getDescription());
         response.setDatelimite(offreemploieCondidat.get().getOffreemploie().getDatelimite());
@@ -140,6 +159,15 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
                                     offreemploieCondidat.getCondidats().getPrenom(),
                                     offreemploieCondidat.getCondidats().getCin(),
                                     offreemploieCondidat.getCondidats().getPost(),
+                                    offreemploieCondidat.getCondidats().getDateOfBirth(),
+                                    offreemploieCondidat.getCondidats().getPhone(),
+                                    offreemploieCondidat.getCondidats().getAdresse(),
+                                    offreemploieCondidat.getCondidats().getVille(),
+                                    offreemploieCondidat.getCondidats().getNationality(),
+                                    offreemploieCondidat.getCondidats().getNiveauEtud(),
+                                    offreemploieCondidat.getCondidats().getTitreDiplome(),
+                                    offreemploieCondidat.getCondidats().getUniversity(),
+                                    offreemploieCondidat.getCondidats().getNiveauEtud(),
                                     offreemploieCondidat.getOffreemploie().getTitredoffre(),
                                     offreemploieCondidat.getOffreemploie().getDescription(),
                                     offreemploieCondidat.getOffreemploie().getDatelimite(),
@@ -165,6 +193,15 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
                     offreemploieCondidat.getCondidats().getPrenom(),
                     offreemploieCondidat.getCondidats().getCin(),
                     offreemploieCondidat.getCondidats().getPost(),
+                    offreemploieCondidat.getCondidats().getDateOfBirth(),
+                    offreemploieCondidat.getCondidats().getPhone(),
+                    offreemploieCondidat.getCondidats().getAdresse(),
+                    offreemploieCondidat.getCondidats().getVille(),
+                    offreemploieCondidat.getCondidats().getNationality(),
+                    offreemploieCondidat.getCondidats().getNiveauEtud(),
+                    offreemploieCondidat.getCondidats().getTitreDiplome(),
+                    offreemploieCondidat.getCondidats().getUniversity(),
+                    offreemploieCondidat.getCondidats().getNiveauEtud(),
                     offreemploieCondidat.getOffreemploie().getTitredoffre(),
                     offreemploieCondidat.getOffreemploie().getDescription(),
                     offreemploieCondidat.getOffreemploie().getDatelimite(),
@@ -216,6 +253,15 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
                             offreemploieCondidat.getCondidats().getPrenom(),
                             offreemploieCondidat.getCondidats().getCin(),
                             offreemploieCondidat.getCondidats().getPost(),
+                            offreemploieCondidat.getCondidats().getDateOfBirth(),
+                            offreemploieCondidat.getCondidats().getPhone(),
+                            offreemploieCondidat.getCondidats().getAdresse(),
+                            offreemploieCondidat.getCondidats().getVille(),
+                            offreemploieCondidat.getCondidats().getNationality(),
+                            offreemploieCondidat.getCondidats().getNiveauEtud(),
+                            offreemploieCondidat.getCondidats().getTitreDiplome(),
+                            offreemploieCondidat.getCondidats().getUniversity(),
+                            offreemploieCondidat.getCondidats().getNiveauEtud(),
                             offreemploieCondidat.getOffreemploie().getTitredoffre(),
                             offreemploieCondidat.getOffreemploie().getDescription(),
                             offreemploieCondidat.getOffreemploie().getDatelimite(),

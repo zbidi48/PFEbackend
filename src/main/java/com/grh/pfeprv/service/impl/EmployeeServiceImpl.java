@@ -118,19 +118,9 @@ public class EmployeeServiceImpl implements IEmployeService {
         return emp.get();
     }
 
-    @Override
-    public ResponseEntity<List<Employee> > chercheremployee(String jobid) {
-
-        return ResponseEntity.ok(employeeRepository.findByJobidAndAndSupprIsFalse(jobid));
-    }
-
-    @Override
-    public List<Employee> chercheremployeeparnometprenom(String nom, String prenom) {
-        return employeeRepository.findAllByNomAndPrenom(nom,prenom);
-    }
 
     @Override
     public List<Employee> recherche(String query) {
-        return employeeRepository.findAllByNomOrPrenomAndSupprIsFalse(query,query);
+        return employeeRepository.findAllByNomAndSupprIsFalseOrPrenomAndSupprIsFalseOrJobidAndSupprIsFalse(query,query,query);
     }
 }
