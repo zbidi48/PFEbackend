@@ -1,6 +1,7 @@
 package com.grh.pfeprv.service.impl;
 
 import com.grh.pfeprv.domaine.Condidats;
+import com.grh.pfeprv.domaine.Mail;
 import com.grh.pfeprv.domaine.Offreemploie;
 import com.grh.pfeprv.domaine.OffreemploieCondidat;
 import com.grh.pfeprv.enums.EStatusOffreCondidat;
@@ -31,6 +32,9 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
     CondidatRepository condidatRepository;
     @Autowired
     OffeemploieRepository offeemploieRepository;
+
+    @Autowired
+    EmailService emailService;
 
 
 
@@ -228,13 +232,21 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
              throw new NotFoundException("postuleoffre ID: "+id+" not found");
          }
          OffreemploieCondidat offreemploieCondidat1 =offreemploieCondidat.get();
+      Mail mail = new Mail();
+        mail.setFrom("jamilahalouas1955@gmail.com");
+        //mail.setTo(offreemploieCondidat1.getCondidats().getEmail());
+        mail.setTo("ahmed.zbidi1@esprit.tn");
+        mail.setSubject("Status inscription offre");
         if(status.equals("accepte")){
             offreemploieCondidat1.setStatus(EStatusOffreCondidat.ACCEPTE);
+           mail.setContent("ACCEPTER");
         } else {
             offreemploieCondidat1.setStatus(EStatusOffreCondidat.REFUSE);
+            mail.setContent("REFUSER");
         }
 
         offrecondidatRepository.save(offreemploieCondidat1);
+        emailService.sendSimpleMessage(mail);
         return ResponseEntity.ok(new MessageResponse("etat postuleoffre changé "));
     }
 

@@ -28,6 +28,17 @@ public class EntretientController {
     {
         return iEntretientService.Ajouterentretient(request);
     }
+    @PutMapping ("/statusentretient/{id}/{status}")
+    public  ResponseEntity<MessageResponse> Accordentret(@PathVariable(value="id") Long id,
+                                                         @PathVariable(value="status") String status)
+    {
+        return iEntretientService.accordentretient(id,status);
+    }
+    @GetMapping("/afficherentreteintparmail/{email}")
+    public List<EntretientResponse> Afficherentretparmail(@PathVariable(value="email") String email)
+    {
+        return iEntretientService.afficherentretientparmail(email);
+    }
    /* @GetMapping("/afficherentretient")
     public ResponseEntity<List<EntretientResponse> > Affichertoutentret()
     {
@@ -45,11 +56,7 @@ public class EntretientController {
     {
         return iEntretientService.Supprimerentretient(id);
     }
-    @GetMapping("/afficherentreteintparmail/{email}")
-    public List<EntretientResponse> Afficherentretparmail(@PathVariable(value="email") String email)
-    {
-        return iEntretientService.afficherentretientparmail(email);
-    }
+
 
     @GetMapping("/detailentretient/{id}")
     public ResponseEntity<Entretient> Detailentret(@PathVariable(value="id") Long id)
@@ -57,12 +64,7 @@ public class EntretientController {
 
       return  ResponseEntity.ok( iEntretientService.Detailentretient(id));
     }
-    @PutMapping ("/statusentretient/{id}/{status}")
-    public  ResponseEntity<MessageResponse> Accordentret(@PathVariable(value="id") Long id,
-                                                         @PathVariable(value="status") String status)
-    {
-        return iEntretientService.accordentretient(id,status);
-    }
+
 
     @GetMapping("/chercherentretient/{key}")
     public ResponseEntity<List<EntretientResponse>> Rechercherentretient(@PathVariable(value="key") String key)
