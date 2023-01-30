@@ -50,11 +50,11 @@ public class CongeController {
    {
        return ResponseEntity.ok(icongeService.affichercongeparmail(mail));
    }
-    @PutMapping("/statusconge/{id}")
+    @PutMapping("/statusconge/{id}/{status}")
     public ResponseEntity<MessageResponse> AccordConge(@PathVariable(value="id") Long id,
-                                                       @RequestBody CongeRequest congeRequest)
+                                                       @PathVariable(value="status") String status)
     {
-        return  icongeService.accordconge(id,congeRequest);
+        return  icongeService.accordconge(id,status);
     }
     @GetMapping("/chercherconge/{query}")
     public ResponseEntity<List<CongeResponse>> Rechercherconge(@PathVariable(value="query") String query)

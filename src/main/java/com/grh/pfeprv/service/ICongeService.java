@@ -16,6 +16,6 @@ public interface ICongeService {
     public Conge detailconge(Long id);
 
     public List<CongeResponse> affichercongeparmail(String mail);
-    public ResponseEntity<MessageResponse> accordconge(Long id,CongeRequest congeRequest);
+    public ResponseEntity<MessageResponse> accordconge(Long id,String status);
     public  List<CongeResponse> rechercheconge(String query);
 }

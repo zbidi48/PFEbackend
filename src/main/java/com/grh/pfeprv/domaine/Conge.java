@@ -3,6 +3,7 @@ package com.grh.pfeprv.domaine;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import com.grh.pfeprv.enums.EStatusConge;
 import com.grh.pfeprv.enums.ETypeConge;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,8 +37,8 @@ public class Conge  implements Serializable {
 
     @Enumerated(EnumType.STRING)
     private ETypeConge typeConge;
-
-    private String statusConge;
+    @Enumerated(EnumType.STRING)
+    private EStatusConge statusConge;
     @ManyToOne
     @JoinColumn( name="employee_id" )
     @JsonIgnore

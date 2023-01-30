@@ -3,6 +3,8 @@ package com.grh.pfeprv.service.impl;
 import com.grh.pfeprv.domaine.Conge;
 import com.grh.pfeprv.domaine.Employee;
 
+import com.grh.pfeprv.enums.EStatusConge;
+import com.grh.pfeprv.enums.EStatusVisa;
 import com.grh.pfeprv.exception.NotFoundException;
 import com.grh.pfeprv.payloads.request.CongeRequest;
 import com.grh.pfeprv.payloads.response.CongeResponse;
@@ -57,7 +59,7 @@ public class CongeServiceImpl implements ICongeService {
         Employee employee1 =employee.get();
         conge.setDatedebut(congeRequest.getDatedebut());
         conge.setDatefin(congeRequest.getDatefin());
-        conge.setStatusConge("DEMANDEENCOUR");
+        conge.setStatusConge(EStatusConge.DEMANDEENCOUR);
         conge.setSuppr(false);
        /*
         if(congeRequest.getTypeConge().equals("anuelle"))
@@ -89,7 +91,7 @@ public class CongeServiceImpl implements ICongeService {
         Conge conge1= conge.get();
         conge1.setDatedebut(congeRequest.getDatedebut());
         conge1.setDatefin(congeRequest.getDatefin());
-        conge1.setStatusConge("DEMANDEENCOUR");
+        conge1.setStatusConge(EStatusConge.DEMANDEENCOUR);
        /*
         if(congeRequest.getTypeConge().equals("anuelle"))
         {
@@ -155,7 +157,7 @@ public class CongeServiceImpl implements ICongeService {
     }
 
     @Override
-    public ResponseEntity<MessageResponse> accordconge(Long id, CongeRequest congeRequest) {
+    public ResponseEntity<MessageResponse> accordconge(Long id, String status) {
         Optional<Conge> conge=congeRepository.findById(id);
         if(!conge.isPresent())
         {
@@ -172,7 +174,11 @@ public class CongeServiceImpl implements ICongeService {
             conge1.setStatusConge(EStatusConge.REFUSEDEMANDECONGE);
         }
          */
-        conge1.setStatusConge(congeRequest.getStatusConge());
+        if(status.equals("accepte")){
+            conge1.setStatusConge(EStatusConge.ACCEPTEDEMANDE);
+        } else {
+            conge1.setStatusConge(EStatusConge.REFUSEDEMANDE);
+        }
         congeRepository.save(conge1);
         return ResponseEntity.ok(new MessageResponse("etat congé valide"));
     }

@@ -19,8 +19,8 @@ public class CongeResponse {
     @Enumerated(EnumType.STRING)
     private EStatusConge statusConge;
 
-    */
-    private String statusConge;
+    */  @Enumerated(EnumType.STRING)
+    private EStatusConge statusConge;
     @Enumerated(EnumType.STRING)
     private ETypeConge typeConge;
 
@@ -30,7 +30,7 @@ public class CongeResponse {
     private String jobid;
 
     public CongeResponse(Long id, Date datedebut, Date datefin,
-                        String statusConge, ETypeConge typeConge,
+                        EStatusConge statusConge, ETypeConge typeConge,
                          String nom, String prenom, String post, String jobid) {
         this.id = id;
         this.datedebut = datedebut;
