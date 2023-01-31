@@ -41,7 +41,7 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
     @Override
     public List<OffrecondidatResponse> Afficherinscriptionoffre() {
         List<OffrecondidatResponse> responses= new ArrayList<>();
-        offrecondidatRepository.findBySupprIsFalse().forEach(offreemploieCondidat -> {
+        offrecondidatRepository.findAll().forEach(offreemploieCondidat -> {
             responses.add(new OffrecondidatResponse(
                     offreemploieCondidat.getId(),
                     offreemploieCondidat.getOffreemploie().getDatecreation(),
@@ -91,7 +91,6 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
         offreemploieCondidat.setStatus(EStatusOffreCondidat.ENCOUR);
         offreemploieCondidat.setHasinterview(false);
         offreemploieCondidat.setDatecreation(new Date(miliseconds));
-        offreemploieCondidat.setSuppr(false);
         offreemploieCondidat.setCondidats(condidats1);
         offreemploieCondidat.setOffreemploie(offreemploie1);
         offrecondidatRepository.save(offreemploieCondidat);
@@ -101,18 +100,7 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
 
 
 
-    @Override
-    public ResponseEntity<MessageResponse> supprimerinscroffre(Long id) {
-        Optional<OffreemploieCondidat> offreemploieCondidat=offrecondidatRepository.findById(id);
-        if(!offreemploieCondidat.isPresent())
-        {
-            throw new NotFoundException("inscrition offre ID: " + id + " not found");
-        }
-        OffreemploieCondidat offreemploieCondidat1 =offreemploieCondidat.get();
-        offreemploieCondidat1.setSuppr(true);
-        offrecondidatRepository.save(offreemploieCondidat1);
-        return ResponseEntity.ok(new MessageResponse(" suppresion d inscription d offre avec succeé"));
-    }
+
 
     @Override
     public OffrecondidatResponse Afficherinscripparid(Long id) {
@@ -239,10 +227,18 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
         mail.setSubject("Status inscription offre");
         if(status.equals("accepte")){
             offreemploieCondidat1.setStatus(EStatusOffreCondidat.ACCEPTE);
-           mail.setContent("ACCEPTER");
+           mail.setContent("Félecitation Monsieur/Madame"+" "+offreemploieCondidat1.getCondidats().getPrenom()+" "
+                   +offreemploieCondidat1.getCondidats().getNom()+" "+"votre postulation offre d emploie"
+                   +offreemploieCondidat1.getOffreemploie().getTitredoffre()+"a eté faite avec succée " +
+                   "une mail qui contient l heure et la date d entretient sera envoyé plus tot." +
+                   "Cordiallment" );
         } else {
             offreemploieCondidat1.setStatus(EStatusOffreCondidat.REFUSE);
-            mail.setContent("REFUSER");
+            mail.setContent("Nous sommes navré de vous informer Monsieur/Madame"+offreemploieCondidat1.getCondidats().getPrenom()
+            +" "+offreemploieCondidat1.getCondidats().getNom()+""+" que votre postulation dans l offre "+""+offreemploieCondidat1.getOffreemploie()+""+
+                    "n est pas faite avec succé"+"\r\n."+
+                    "Merci pour votre compréhension " +"\r\n"+
+                    "Cordiallment");
         }
 
         offrecondidatRepository.save(offreemploieCondidat1);
@@ -256,7 +252,7 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
     public List<OffrecondidatResponse> chercher(String query) {
         List<OffrecondidatResponse> response=new ArrayList<>();
         offrecondidatRepository.
-   findAllByCondidats_NomAndSupprIsFalseOrCondidats_PrenomAndSupprIsFalseOrCondidats_CinAndSupprIsFalse(query,query,query).
+  findAllByCondidats_NomOrCondidats_PrenomOrCondidats_Cin(query,query,query).
                 forEach(offreemploieCondidat -> {
                     response.add(new OffrecondidatResponse(
                             offreemploieCondidat.getId(),

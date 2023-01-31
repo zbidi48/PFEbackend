@@ -37,11 +37,7 @@ public class OffrecondidatController {
     {
         return service.postuleroffre(idoffre,idcondidat);
     }
-    @DeleteMapping("/supprimernscritoffre/{id}")
-    public  ResponseEntity<MessageResponse> Supprimerinscritoffre(@PathVariable(value="id") Long id )
-    {
-        return service.supprimerinscroffre(id);
-    }
+
     @RequestMapping("/chercherinscritoffre/{cin}")
     public  ResponseEntity<List<OffrecondidatResponse>> Chercherinscritoffre(@PathVariable(value="cin") String cin)
     {

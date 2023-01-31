@@ -30,4 +30,15 @@ public class DashboardController {
     public ResponseEntity<Long> getNbrCondidat(){
         return  ResponseEntity.ok().body(dashboardService.nbCondidat());
     }
+    @GetMapping("/nbrformation")
+    public  ResponseEntity<Long> getNbrFormation()
+    {
+        return ResponseEntity.ok().body(dashboardService.nbformation());
+    }
+        @GetMapping("/nbrvisa")
+    public ResponseEntity<Long> getNbrVisa()
+        {
+            return ResponseEntity.ok().body(dashboardService.nbvisa());
+        }
 }
+

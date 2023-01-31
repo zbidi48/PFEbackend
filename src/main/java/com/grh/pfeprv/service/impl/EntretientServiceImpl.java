@@ -68,7 +68,11 @@ public class EntretientServiceImpl implements IEntretientService {
         //mail.setTo(offreemploieCondidat.getCondidats().getEmail());
         mail.setTo("ahmed.zbidi1@esprit.tn");
         mail.setSubject("RDV ENTRETIENT");
-        mail.setContent("Votre RDV entrentient le :"+entretientRequest.getDate().toString()+ " à "+entretientRequest.getHeure());
+        mail.setContent(" Monsieur/Madame"+" "+offreemploieCondidat.getCondidats().getPrenom()+" "+offreemploieCondidat.getCondidats().getNom()+" "+
+                "Votre RDV entrentient le :"+entretientRequest.getDate().toString()+ " à "+entretientRequest.getHeure()
+        +"pour l offre"+" "+offreemploieCondidat.getOffreemploie().getTitredoffre()+"\r\n "+"Priére d etre 30min avant l horaire de rdv  \r\n"+" "
+        +"Merci \r\n"
+        +"Cordiallment");
         emailService.sendSimpleMessage(mail);
        /* Optional<Condidats> condidats = condidatRepository.findById(entretientRequest.getCondidats_id());
         if(!condidats.isPresent())
@@ -98,24 +102,33 @@ public class EntretientServiceImpl implements IEntretientService {
         mail.setFrom("jamilahalouas1955@gmail.com");
        // mail.setTo(entretient1.getCondidat().getEmail());
         mail.setTo("ahmed.zbidi1@esprit.tn");
-        mail.setSubject("STATUS ENTRETIENT");
+        mail.setSubject("RESULTAT ENTRETIENT");
 
         if(status.equals("accepte"))
         {
             entretient1.setStatus(EStatusEntretient.ACCEPTE);
-            mail.setContent("Accepter"+entretient1.getTitreOffre());
+            mail.setContent("Félecitation Monsieur/Madame"+" "+entretient1.getCondidat().getPrenom()+" "+entretient1.getCondidat().getNom()+" "+
+                   " "+"titulaire sous carte identité nationale "+" "+entretient1.getCondidat().getCin() +" "+"pour la succé dans l entretient dans l offre"+ " " +entretient1.getTitreOffre()
+            +" "+"passé le " + " "+entretient1.getDate().toString()+" \r\n ."
+                    +" priére de venir au sociéte pour plus de négociation"+" \r\n."
+                    +"Merci"+"\r\n."
+                    +"Cordiallment"
+            );
         }
         else
         {
             entretient1.setStatus(EStatusEntretient.REFUSE);
-            mail.setContent("Refuser");
+            mail.setContent("Nous sommes navré de vous informer"+" " +entretient1.getCondidat().getPrenom()+" "+entretient1.getCondidat().getNom()
+            +" "+" que vous n éte pas accépte dans l entretient pour l offre "+" "+entretient1.getTitreOffre()+" "+ " passé le "+ entretient1.getDate().toString()+"\r\n."
+            + "Merci pour votre compréhension " +"\r\n"+
+            "Cordiallement");
         }
         entretientRepository.save(entretient1);
         emailService.sendSimpleMessage(mail);
 
         return ResponseEntity.ok(new MessageResponse("accord entretient fait avec succé"));
     }
-  /*  @Override
+   @Override
     public ResponseEntity<MessageResponse> Miseajourentretient(Long id,
                                                                EntretientRequest entretientRequest) {
         Optional<Entretient> entretient = entretientRepository.findById(id);
@@ -131,12 +144,16 @@ public class EntretientServiceImpl implements IEntretientService {
         mail.setFrom("jamilahalouas1955@gmail.com");
         //mail.setTo(oentretient1.getCondidats().getEmail());
         mail.setTo("ahmed.zbidi1@esprit.tn");
-        mail.setSubject("RDV ENTRETIENT");
-        mail.setContent("Votre RDV entrentient le :"+entretientRequest.getDate().toString()+ " à "+entretientRequest.getHeure());
+        mail.setSubject("CHANGEMENT ENTRETIENT");
+        mail.setContent("Monsieur/Madame"+" "+entretient1.getCondidat().getNom()+" "+entretient1.getCondidat().getPrenom()+" "+" nous informons qu il y a un changement d horaire de entretient "
+        +" "+entretient1.getHeure()+" "+" pour la date"+entretient1.getDate().toString()+" \r\n."
+        +"Merci\r\n"
+        +"Cordiallement.");
         emailService.sendSimpleMessage(mail);
         return ResponseEntity.ok(new MessageResponse("entretient modifier avec succeé"));
     }
 
+    /*
     @Override
     public ResponseEntity<MessageResponse> Supprimerentretient(Long id) {
         Optional<Entretient> entretient = entretientRepository.findById(id);
@@ -150,6 +167,7 @@ public class EntretientServiceImpl implements IEntretientService {
         return ResponseEntity.ok(new MessageResponse("entretient supprimer avec success !"));
     }
 
+     */
     @Override
     public Entretient Detailentretient(Long id) {
         Optional<Entretient> entretient = entretientRepository.findById(id);
@@ -158,7 +176,7 @@ public class EntretientServiceImpl implements IEntretientService {
             throw new NotFoundException("entretient ID: " + id + " not found");
         }
         return entretient.get();
-    }*/
+    }
 
     @Override
     public List<EntretientResponse> afficherentretientparmail(String email) {
@@ -180,14 +198,14 @@ public class EntretientServiceImpl implements IEntretientService {
     }
 
 
-  /*
+
 
 
     @Override
     public List<EntretientResponse> chercher(String key) {
         List<EntretientResponse> responses = new ArrayList<>();
         entretientRepository.
-                findAllByCondidat_NomAndSupprIsFalseOrCondidat_PrenomAndSupprIsFalseOrCondidat_CinAndSupprIsFalse(key,key,key).
+                findAllByCondidat_NomOrCondidat_PrenomOrCondidat_Cin(key,key,key).
                 forEach(
                 entretient -> {
                     responses.add(new EntretientResponse(
@@ -203,5 +221,5 @@ public class EntretientServiceImpl implements IEntretientService {
         );
 
         return responses;
-    }*/
+    }
 }

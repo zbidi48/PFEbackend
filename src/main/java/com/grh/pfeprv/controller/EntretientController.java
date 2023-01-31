@@ -39,18 +39,30 @@ public class EntretientController {
     {
         return iEntretientService.afficherentretientparmail(email);
     }
+    @GetMapping("/chercherentretient/{key}")
+    public ResponseEntity<List<EntretientResponse>> Rechercherentretient(@PathVariable(value="key") String key)
+    {
+        return new ResponseEntity(iEntretientService.chercher(key),HttpStatus.ACCEPTED);
+    }
+    @PutMapping("/miseajourentrtient/{id}")
+    public ResponseEntity<MessageResponse> Miseajouentret(@PathVariable(value="id") Long id,
+                                                          @RequestBody EntretientRequest request)
+    {
+        return  iEntretientService.Miseajourentretient(id, request);
+    }
+    @GetMapping("/detailentretient/{id}")
+    public ResponseEntity<Entretient> Detailentret(@PathVariable(value="id") Long id)
+    {
+
+        return  ResponseEntity.ok( iEntretientService.Detailentretient(id));
+    }
    /* @GetMapping("/afficherentretient")
     public ResponseEntity<List<EntretientResponse> > Affichertoutentret()
     {
         return ResponseEntity.ok(iEntretientService.Afficherentretient());
     }
 
-    @PutMapping("/miseajourentrtient/{id}")
-    public ResponseEntity<MessageResponse> Miseajouentret(@PathVariable(value="id") Long id,
-                                                              @RequestBody EntretientRequest request)
-    {
-        return  iEntretientService.Miseajourentretient(id, request);
-    }
+
     @DeleteMapping("/supprimerentretient/{id}")
     public  ResponseEntity<MessageResponse> Supprimerentret(@PathVariable(value="id") Long id)
     {
@@ -58,18 +70,9 @@ public class EntretientController {
     }
 
 
-    @GetMapping("/detailentretient/{id}")
-    public ResponseEntity<Entretient> Detailentret(@PathVariable(value="id") Long id)
-    {
-
-      return  ResponseEntity.ok( iEntretientService.Detailentretient(id));
-    }
 
 
-    @GetMapping("/chercherentretient/{key}")
-    public ResponseEntity<List<EntretientResponse>> Rechercherentretient(@PathVariable(value="key") String key)
-    {
-        return new ResponseEntity(iEntretientService.chercher(key),HttpStatus.ACCEPTED);
-    }
+
+
 */
 }

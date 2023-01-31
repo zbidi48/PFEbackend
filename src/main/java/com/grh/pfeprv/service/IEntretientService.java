@@ -13,11 +13,14 @@ public interface IEntretientService {
      List<EntretientResponse> Afficherentretient();
      ResponseEntity<MessageResponse> accordentretient(Long id,String status);
      List<EntretientResponse> afficherentretientparmail(String email);
+     Entretient Detailentretient(Long id);
+    ResponseEntity<MessageResponse> Miseajourentretient(Long id,EntretientRequest entretientRequest);
+   List<EntretientResponse> chercher(String key);
   /*  public List<EntretientResponse> Afficherentretient();
 
-    public ResponseEntity<MessageResponse> Miseajourentretient(Long id,EntretientRequest entretientRequest);
+
     public ResponseEntity<MessageResponse> Supprimerentretient(Long id);
-    public Entretient Detailentretient(Long id);
+
 
 
     public ResponseEntity<MessageResponse> accordentretient(Long id,String status);

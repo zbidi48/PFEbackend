@@ -12,7 +12,6 @@ public interface EntretientRepository extends JpaRepository<Entretient,Long> {
 
 */
 
-/*
-   List<Entretient> findAllByCondidat_NomAndSupprIsFalseOrCondidat_PrenomAndSupprIsFalseOrCondidat_CinAndSupprIsFalse(String nom,String prenom,String cin);
-*/
+
+   List<Entretient> findAllByCondidat_NomOrCondidat_PrenomOrCondidat_Cin(String nom,String prenom,String jobid);
 }
