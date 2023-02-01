@@ -13,10 +13,10 @@ public interface InscritFormationService {
      ResponseEntity<MessageResponse> Inscritformation(Long idemployee,Long idformation);
      ResponseEntity<MessageResponse> Supprimerinscrit(Long id);
      ResponseEntity<InscritFormationResponse> Detailleinscritformation(Long id);
-     List<InscritFormationResponse> Chercherinscritformationparjobid(String jobid);
-     List<InscritFormationResponse> Chercherinscritformationparnometprenom(String nom, String prenom);
+
      ResponseEntity<MessageResponse> changersatus(Long id,String status);
      List<InscritFormationResponse> Afficherinscritformationparemployeeid(Long employeeid);
+     List<InscritFormationResponse> Chercher(String key);
 
 
 

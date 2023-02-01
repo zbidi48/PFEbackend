@@ -2,7 +2,7 @@
 <!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="test" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" >
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
-	<parameter name="codecontrat" class="java.lang.String"/>
+
 	<parameter name="typecontrat" class="java.lang.String"/>
 	<parameter name="datedeb" class="java.util.Date"/>
 	<parameter name="datefin" class="java.util.Date"/>
@@ -47,15 +47,7 @@
 					<reportElement x="0" y="0" width="555" height="25" >
 						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 					</reportElement>
-					<staticText>
-						<reportElement mode="Opaque" x="0" y="0" width="100" height="29" forecolor="#FFFFFF" backcolor="#737373" />
-						<textElement textAlignment="Center"/>
-						<text><![CDATA[  Code contrat :]]></text>
-					</staticText>
-					<textField>
-						<reportElement x="100" y="0" width="455" height="29" />
-						<textFieldExpression><![CDATA[$P{codecontrat}]]></textFieldExpression>
-					</textField>
+
 				</frame>
 				<frame>
 					<reportElement x="0" y="25" width="555" height="25" >
@@ -106,7 +98,7 @@
 					<staticText>
 						<reportElement mode="Opaque" x="0" y="0" width="100" height="29" forecolor="#FFFFFF" backcolor="#737373" />
 						<textElement textAlignment="Center"/>
-						<text><![CDATA[  nom :]]></text>
+						<text><![CDATA[  Nom :]]></text>
 					</staticText>
 					<textField>
 						<reportElement x="100" y="0" width="455" height="29" />
@@ -120,7 +112,7 @@
 					<staticText>
 						<reportElement mode="Opaque" x="0" y="0" width="100" height="29" forecolor="#FFFFFF" backcolor="#737373" />
 						<textElement textAlignment="Center"/>
-						<text><![CDATA[  prenom:]]></text>
+						<text><![CDATA[  Prenom:]]></text>
 					</staticText>
 					<textField>
 						<reportElement x="100" y="0" width="455" height="29" />
@@ -135,7 +127,7 @@
 					</textField>
 					<staticText>
 						<reportElement mode="Opaque" x="0" y="-1" width="100" height="24" forecolor="#FFFFFF" backcolor="#737373" />
-						<text><![CDATA[            post:]]></text>
+						<text><![CDATA[            Post:]]></text>
 					</staticText>
 				</frame>
 				<frame>
@@ -144,7 +136,7 @@
 					</reportElement>
 					<staticText>
 						<reportElement mode="Opaque" x="0" y="-3" width="100" height="30" forecolor="#FFFFFF" backcolor="#737373" />
-						<text><![CDATA[            jobid]]></text>
+						<text><![CDATA[            Matricule]]></text>
 					</staticText>
 					<textField>
 						<reportElement x="100" y="0" width="100" height="25" />

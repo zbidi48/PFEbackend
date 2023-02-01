@@ -38,20 +38,8 @@ public class InscritFormationController {
     {
         return service.Supprimerinscrit(id);
     }
-    @GetMapping("/chercherinscritformation/{jobid}")
-    public ResponseEntity<List<InscritFormationResponse> > chercherinscritformation(
-            @PathVariable(value="jobid") String jobid)
-    {
-        return ResponseEntity.ok(service.Chercherinscritformationparjobid(jobid));
-    }
-    @PostMapping("/chercherparnometprenom/{nom}/{prenom}")
-    public ResponseEntity<List<InscritFormationResponse> > chercherparnometprenom(@PathVariable(value="nom")
-                                                                                      String nom,
-                                                                                  @PathVariable(value="prenom")
-                                                                                  String prenom)
-    {
-        return ResponseEntity.ok(service.Chercherinscritformationparnometprenom(nom,prenom));
-    }
+
+
     @GetMapping("/afficherinscritparemplyeeid/{employeeid}")
     public ResponseEntity<List<InscritFormationResponse>> afficherinscritformationparemployeeid(@PathVariable(value="employeeid")
                                                                                     Long employeeid)
@@ -64,5 +52,9 @@ public class InscritFormationController {
     {
         return service.changersatus(id,status);
     }
-
+    @GetMapping("/chercherinscrit/{key}")
+  public ResponseEntity<List<InscritFormationResponse>> Recherche(@PathVariable(value ="key") String key)
+    {
+        return ResponseEntity.ok(service.Chercher(key));
+    }
 }

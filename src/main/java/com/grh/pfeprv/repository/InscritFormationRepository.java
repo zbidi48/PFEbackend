@@ -7,10 +7,10 @@ import java.util.List;
 
 public interface InscritFormationRepository extends JpaRepository<InscritFormation,Long> {
     List<InscritFormation> findAllBySupprIsFalse();
-    List<InscritFormation> findByEmployee_JobidAndSupprIsFalse(String jobid );
-    List<InscritFormation> findAllByEmployee_NomAndAndEmployee_PrenomAndAndSupprIsFalse(String nom,String prenom);
+
+
     List<InscritFormation> findByEmployee_Email(String mail);
     List<InscritFormation> findByEmployee_IdAndSupprIsFalse(Long id);
-    List<InscritFormation> findAllByEmployee_NomOrEmployee_PrenomOrEmployee_JobidAndSupprIsFalse(String nom,String prenom,String jobid);
+    List<InscritFormation> findAllByEmployee_NomAndSupprIsFalseOrEmployee_PrenomAndSupprIsFalseOrEmployee_JobidAndSupprIsFalseOrFormation_NomdeforamtionOrFormation_Typedeformation(String nom,String prenom,String jobid,String nomformation,String typeformation);
 
 }

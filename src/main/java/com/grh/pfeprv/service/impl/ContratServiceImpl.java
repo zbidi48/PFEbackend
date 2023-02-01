@@ -41,7 +41,6 @@ public class ContratServiceImpl  implements IContratService {
         contratRepository.findAllByDeletedIsFalse().forEach(contrat -> {
             response.add(new ContratResponse(
                     contrat.getId(),
-                    contrat.getCode(),
                     contrat.getType(),
                     contrat.getDatedebut(),
                     contrat.getDatefin(),
@@ -67,7 +66,7 @@ public class ContratServiceImpl  implements IContratService {
         }
         //User us = user.get();
         Employee emp= employee.get();
-        contrat.setCode(c.getCode());
+
         //contrat.setLibelle(c.getLibelle());
         contrat.setType(c.getType());
         contrat.setDatedebut(c.getDatedebut());
@@ -87,7 +86,7 @@ public class ContratServiceImpl  implements IContratService {
             throw new NotFoundException("contrat ID: " + id + " not found");
         }
         Contrat con = contrat.get();
-        con.setCode(c.getCode());
+
         con.setType(c.getType());
         con.setDatefin(c.getDatefin());
         con.setDatedebut(c.getDatedebut());
@@ -129,7 +128,7 @@ public class ContratServiceImpl  implements IContratService {
         {
             responses.add(new ContratResponse(
                     contrat.getId(),
-                    contrat.getCode(),
+
                     contrat.getType(),
                     contrat.getDatedebut(),
                     contrat.getDatefin(),
@@ -148,11 +147,11 @@ public class ContratServiceImpl  implements IContratService {
     public List<ContratResponse> recherchercontrat(String query) {
         List<ContratResponse> responses = new ArrayList<>();
         contratRepository.
-    findAllByEmployee_NomAndDeletedIsFalseOrEmployee_PrenomAndDeletedIsFalseOrEmployee_JobidAndDeletedIsFalseOrCodeAndDeletedIsFalse(query,query,query,query).forEach(contrat ->
+    findAllByEmployee_NomAndDeletedIsFalseOrEmployee_PrenomAndDeletedIsFalseOrEmployee_JobidAndDeletedIsFalse(query,query,query).forEach(contrat ->
         {
             responses.add(new ContratResponse(
                     contrat.getId(),
-                    contrat.getCode(),
+
                     contrat.getType(),
                     contrat.getDatedebut(),
                     contrat.getDatefin(),
@@ -178,7 +177,7 @@ public class ContratServiceImpl  implements IContratService {
         Employee employee = employeeRepository.findById(emplid).get();
 
         Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("codecontrat",contrat.getCode() );
+
         parameters.put("typecontrat",contrat.getType() );
        parameters.put("datedeb", contrat.getDatedebut());
         parameters.put("datefin",contrat.getDatefin() );

@@ -11,6 +11,7 @@ public class SignupCandidatRequest {
     private  String nom;
     private  String prenom;
     private  String post;
+    private String competences;
     //@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     private Date dateOfBirth;
     private String phone;

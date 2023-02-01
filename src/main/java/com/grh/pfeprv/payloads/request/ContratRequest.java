@@ -10,7 +10,7 @@ import java.sql.Date;
 
 public class ContratRequest {
 
-    private  String code;
+
 
     private  String type;
     //@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")

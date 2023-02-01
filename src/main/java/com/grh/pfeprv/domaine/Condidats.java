@@ -29,6 +29,7 @@ public class Condidats extends User{
     private String niveauExp;
     private String experience;
     private String cin;
+    private String competences;
     private Boolean suppr;
     /*
     @OneToOne(cascade = CascadeType.ALL)

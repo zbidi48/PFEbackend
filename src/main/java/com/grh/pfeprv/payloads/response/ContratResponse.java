@@ -14,7 +14,7 @@ import java.sql.Date;
 
 public class ContratResponse {
     private  Long id;
-    private  String code;
+
     private  String type;
     //@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     private Date datedebut;
@@ -30,11 +30,11 @@ public class ContratResponse {
 
     }
 
-   public  ContratResponse(Long id,String code,String type,Date datedebut,Date datefin,
+   public  ContratResponse(Long id,String type,Date datedebut,Date datefin,
                            String nom,String prenom,String post,String jobid, String url)
    {
        this.id=id;
-       this.code=code;
+
        this.type=type;
        this.datedebut=datedebut;
        this.datefin=datefin;

@@ -35,7 +35,7 @@ public class DashboardController {
     {
         return ResponseEntity.ok().body(dashboardService.nbformation());
     }
-        @GetMapping("/nbrvisa")
+    @GetMapping("/nbrvisa")
     public ResponseEntity<Long> getNbrVisa()
         {
             return ResponseEntity.ok().body(dashboardService.nbvisa());

@@ -108,49 +108,6 @@ public class InscritFormationServiceImpl implements InscritFormationService {
         response.setDateinscrit(inscritFormation.get().getDateinscrit());
         return  ResponseEntity.ok(response);
     }
-    @Override
-    public List<InscritFormationResponse> Chercherinscritformationparjobid(String jobid) {
-        List<InscritFormationResponse> responses = new ArrayList<>();
-        inscritFormationRepository.findByEmployee_JobidAndSupprIsFalse(jobid).forEach(inscritFormation ->
-        {
-            responses.add(new InscritFormationResponse(
-                    inscritFormation.getId(),
-                    inscritFormation.getStatus(),
-                    inscritFormation.getEmployee().getNom(),
-                    inscritFormation.getEmployee().getPrenom(),
-                    inscritFormation.getEmployee().getJobid(),
-                    inscritFormation.getDateinscrit(),
-                    inscritFormation.getFormation().getNomdeforamtion(),
-                    inscritFormation.getFormation().getTypedeformation(),
-                    inscritFormation.getFormation().getDatedebut(),
-                    inscritFormation.getFormation().getHeure()
-            ));
-        });
-        return responses;
-    }
-
-
-    @Override
-    public List<InscritFormationResponse> Chercherinscritformationparnometprenom(String nom, String prenom) {
-        List<InscritFormationResponse> responses = new ArrayList<>();
-        inscritFormationRepository.findAllByEmployee_NomAndAndEmployee_PrenomAndAndSupprIsFalse(nom,prenom)
-                .forEach(inscritFormation ->
-        {
-            responses.add(new InscritFormationResponse(
-                    inscritFormation.getId(),
-                    inscritFormation.getStatus(),
-                    inscritFormation.getEmployee().getNom(),
-                    inscritFormation.getEmployee().getPrenom(),
-                    inscritFormation.getEmployee().getJobid(),
-                    inscritFormation.getDateinscrit(),
-                    inscritFormation.getFormation().getNomdeforamtion(),
-                    inscritFormation.getFormation().getTypedeformation(),
-                    inscritFormation.getFormation().getDatedebut(),
-                    inscritFormation.getFormation().getHeure()
-            ));
-        });
-        return responses;
-    }
 
 
     @Override
@@ -178,6 +135,29 @@ public class InscritFormationServiceImpl implements InscritFormationService {
         List<InscritFormationResponse> responses = new ArrayList<>();
         //System.out.println("employee id " +""+employeeid);
         inscritFormationRepository.findByEmployee_IdAndSupprIsFalse(employeeid).forEach(inscritFormation ->
+        {
+            responses.add(new InscritFormationResponse(
+                    inscritFormation.getId(),
+                    inscritFormation.getStatus(),
+                    inscritFormation.getEmployee().getNom(),
+                    inscritFormation.getEmployee().getPrenom(),
+                    inscritFormation.getEmployee().getJobid(),
+                    inscritFormation.getDateinscrit(),
+                    inscritFormation.getFormation().getNomdeforamtion(),
+                    inscritFormation.getFormation().getTypedeformation(),
+                    inscritFormation.getFormation().getDatedebut(),
+                    inscritFormation.getFormation().getHeure()
+            ));
+        });
+
+        return responses;
+    }
+
+    @Override
+    public List<InscritFormationResponse> Chercher(String key) {
+        List<InscritFormationResponse> responses = new ArrayList<>();
+        //System.out.println("employee id " +""+employeeid);
+        inscritFormationRepository.findAllByEmployee_NomAndSupprIsFalseOrEmployee_PrenomAndSupprIsFalseOrEmployee_JobidAndSupprIsFalseOrFormation_NomdeforamtionOrFormation_Typedeformation(key,key,key,key,key).forEach(inscritFormation ->
         {
             responses.add(new InscritFormationResponse(
                     inscritFormation.getId(),

@@ -65,7 +65,8 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
                     offreemploieCondidat.getOffreemploie().getExperience(),
                     offreemploieCondidat.getOffreemploie().getExigenceemploie(),
                     offreemploieCondidat.getStatus().name(),
-                    offreemploieCondidat.getHasinterview()
+                    offreemploieCondidat.getHasinterview(),
+                    offreemploieCondidat.getCondidats().getCompetences()
             ));
 
 
@@ -132,6 +133,7 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
         response.setLangue(offreemploieCondidat.get().getOffreemploie().getLangue());
         response.setExperience(offreemploieCondidat.get().getOffreemploie().getExperience());
         response.setExigenceemploie(offreemploieCondidat.get().getOffreemploie().getExigenceemploie());
+        response.setCompetences(offreemploieCondidat.get().getCondidats().getCompetences());
         response.setStatus(offreemploieCondidat.get().getStatus().name());
 
         return response;
@@ -167,7 +169,8 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
                                     offreemploieCondidat.getOffreemploie().getExperience(),
                                     offreemploieCondidat.getOffreemploie().getExigenceemploie(),
                                     offreemploieCondidat.getStatus().name(),
-                                    offreemploieCondidat.getHasinterview()
+                                    offreemploieCondidat.getHasinterview(),
+                                    offreemploieCondidat.getCondidats().getCompetences()
                                     ));
                 });
 
@@ -201,7 +204,8 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
                     offreemploieCondidat.getOffreemploie().getExperience(),
                     offreemploieCondidat.getOffreemploie().getExigenceemploie(),
                     offreemploieCondidat.getStatus().name(),
-                    offreemploieCondidat.getHasinterview()
+                    offreemploieCondidat.getHasinterview(),
+                    offreemploieCondidat.getCondidats().getCompetences()
 
                   ));
         });
@@ -277,7 +281,8 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
                             offreemploieCondidat.getOffreemploie().getExperience(),
                             offreemploieCondidat.getOffreemploie().getExigenceemploie(),
                             offreemploieCondidat.getStatus().name(),
-                            offreemploieCondidat.getHasinterview()
+                            offreemploieCondidat.getHasinterview(),
+                            offreemploieCondidat.getCondidats().getCompetences()
 
                     ));
                 });

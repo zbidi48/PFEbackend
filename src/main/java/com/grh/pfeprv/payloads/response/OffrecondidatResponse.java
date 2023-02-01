@@ -36,6 +36,7 @@ public class OffrecondidatResponse {
     private String exigenceemploie;
 
     private String status;
+    private String competences;
     private Boolean hasinterview;
 
 
@@ -52,7 +53,8 @@ public class OffrecondidatResponse {
                                  String niveauExp,
                                  String titredoffre,
                                  String description,Date datelimite,String langue,String experience,
-                                 String exigenceemploie,String status, Boolean hasinterview) {
+                                 String exigenceemploie,String status, Boolean hasinterview,
+                                 String competences) {
         this.id = id;
         this.datecreation = datecreation;
         this.nom = nom;
@@ -76,6 +78,7 @@ public class OffrecondidatResponse {
         this.exigenceemploie=exigenceemploie;
         this.status=status;
         this.hasinterview = hasinterview;
+        this.competences=competences;
 
     }
 }

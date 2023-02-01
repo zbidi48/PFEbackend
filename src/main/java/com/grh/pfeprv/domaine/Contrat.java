@@ -17,14 +17,14 @@ import java.sql.Date;
 @AllArgsConstructor
 
 @NoArgsConstructor
-@Table(name = "contrat", uniqueConstraints = {@UniqueConstraint(columnNames = "code")})
+
 public class Contrat implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private  Long id;
 
-    private  String code;
+
 
     private  String type;
     //@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
