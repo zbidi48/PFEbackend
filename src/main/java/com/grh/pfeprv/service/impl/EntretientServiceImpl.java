@@ -1,6 +1,6 @@
 package com.grh.pfeprv.service.impl;
 
-import com.grh.pfeprv.domaine.Condidats;
+
 import com.grh.pfeprv.domaine.Entretient;
 import com.grh.pfeprv.domaine.Mail;
 import com.grh.pfeprv.domaine.OffreemploieCondidat;
@@ -65,8 +65,8 @@ public class EntretientServiceImpl implements IEntretientService {
         offrecondidatRepository.save(offreemploieCondidat);
         Mail mail = new Mail();
         mail.setFrom("jamilahalouas1955@gmail.com");
-        //mail.setTo(offreemploieCondidat.getCondidats().getEmail());
-        mail.setTo("ahmed.zbidi1@esprit.tn");
+        mail.setTo(offreemploieCondidat.getCondidats().getEmail());
+        //mail.setTo("ahmed.zbidi1@esprit.tn");
         mail.setSubject("RDV ENTRETIENT");
         mail.setContent(" Monsieur/Madame"+" "+offreemploieCondidat.getCondidats().getPrenom()+" "+offreemploieCondidat.getCondidats().getNom()+" "+
                 "Votre RDV entrentient le :"+entretientRequest.getDate().toString()+ " à "+entretientRequest.getHeure()
@@ -100,8 +100,8 @@ public class EntretientServiceImpl implements IEntretientService {
         Entretient entretient1 = entretient.get();
         Mail mail = new Mail();
         mail.setFrom("jamilahalouas1955@gmail.com");
-       // mail.setTo(entretient1.getCondidat().getEmail());
-        mail.setTo("ahmed.zbidi1@esprit.tn");
+        mail.setTo(entretient1.getCondidat().getEmail());
+        //mail.setTo("ahmed.zbidi1@esprit.tn");
         mail.setSubject("RESULTAT ENTRETIENT");
 
         if(status.equals("accepte"))
@@ -142,8 +142,8 @@ public class EntretientServiceImpl implements IEntretientService {
         entretientRepository.save(entretient1);
         Mail mail = new Mail();
         mail.setFrom("jamilahalouas1955@gmail.com");
-        //mail.setTo(oentretient1.getCondidats().getEmail());
-        mail.setTo("ahmed.zbidi1@esprit.tn");
+        mail.setTo(entretient1.getCondidat().getEmail());
+        //mail.setTo("ahmed.zbidi1@esprit.tn");
         mail.setSubject("CHANGEMENT ENTRETIENT");
         mail.setContent("Monsieur/Madame"+" "+entretient1.getCondidat().getNom()+" "+entretient1.getCondidat().getPrenom()+" "+" nous informons qu il y a un changement d horaire de entretient "
         +" "+entretient1.getHeure()+" "+" pour la date"+entretient1.getDate().toString()+" \r\n."

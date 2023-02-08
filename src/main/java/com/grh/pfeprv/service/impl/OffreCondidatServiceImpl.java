@@ -126,7 +126,6 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
         response.setTitreDiplome(offreemploieCondidat.get().getCondidats().getTitreDiplome());
         response.setUniversity(offreemploieCondidat.get().getCondidats().getUniversity());
         response.setNiveauExp(offreemploieCondidat.get().getCondidats().getNiveauExp());
-        response.setExperience(offreemploieCondidat.get().getCondidats().getExperience());
         response.setTitredoffre(offreemploieCondidat.get().getOffreemploie().getTitredoffre());
         response.setDescription(offreemploieCondidat.get().getOffreemploie().getDescription());
         response.setDatelimite(offreemploieCondidat.get().getOffreemploie().getDatelimite());
@@ -226,8 +225,8 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
          OffreemploieCondidat offreemploieCondidat1 =offreemploieCondidat.get();
       Mail mail = new Mail();
         mail.setFrom("jamilahalouas1955@gmail.com");
-        //mail.setTo(offreemploieCondidat1.getCondidats().getEmail());
-        mail.setTo("ahmed.zbidi1@esprit.tn");
+        mail.setTo(offreemploieCondidat1.getCondidats().getEmail());
+        //mail.setTo("ahmed.zbidi1@esprit.tn");
         mail.setSubject("Status inscription offre");
         if(status.equals("accepte")){
             offreemploieCondidat1.setStatus(EStatusOffreCondidat.ACCEPTE);
@@ -239,7 +238,7 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
         } else {
             offreemploieCondidat1.setStatus(EStatusOffreCondidat.REFUSE);
             mail.setContent("Nous sommes navré de vous informer Monsieur/Madame"+offreemploieCondidat1.getCondidats().getPrenom()
-            +" "+offreemploieCondidat1.getCondidats().getNom()+""+" que votre postulation dans l offre "+""+offreemploieCondidat1.getOffreemploie()+""+
+            +" "+offreemploieCondidat1.getCondidats().getNom()+""+" que votre postulation dans l offre "+""+offreemploieCondidat1.getOffreemploie().getTitredoffre()+""+
                     "n est pas faite avec succé"+"\r\n."+
                     "Merci pour votre compréhension " +"\r\n"+
                     "Cordiallment");

@@ -2,10 +2,9 @@
 <!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="test" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" >
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
-
+	<parameter name="codecontrat" class="java.lang.String"/>
 	<parameter name="typecontrat" class="java.lang.String"/>
 	<parameter name="datedeb" class="java.util.Date"/>
-	<parameter name="datefin" class="java.util.Date"/>
 	<parameter name="nom" class="java.lang.String"/>
 	<parameter name="prenom" class="java.lang.String"/>
 	<parameter name="post" class="java.lang.String"/>
@@ -27,123 +26,107 @@
 					</textElement>
 					<text><![CDATA[Contrat]]></text>
 				</staticText>
-				<staticText>
-					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" />
-					<textElement textAlignment="Right">
-						<font size="14" isBold="false"/>
-					</textElement>
-					<text><![CDATA[contrat document]]></text>
-				</staticText>
 			</frame>
 		</band>
 	</title>
 	<detail>
-		<band height="200" splitType="Stretch">
+		<band height="483" splitType="Stretch">
 			<frame>
 				<reportElement x="0" y="0" width="555" height="200" >
 					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
 				</reportElement>
 				<frame>
-					<reportElement x="0" y="0" width="555" height="25" >
-						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
-					</reportElement>
-
-				</frame>
-				<frame>
-					<reportElement x="0" y="25" width="555" height="25" >
+					<reportElement x="0" y="0" width="555" height="40" >
 						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 					</reportElement>
 					<staticText>
-						<reportElement mode="Opaque" x="0" y="0" width="100" height="29" forecolor="#FFFFFF" backcolor="#737373" />
-						<textElement textAlignment="Center"/>
-						<text><![CDATA[  Type de contrat :]]></text>
+						<reportElement x="0" y="1" width="90" height="30" />
+						<text><![CDATA[Type Contrat]]></text>
 					</staticText>
 					<textField>
-						<reportElement x="100" y="0" width="455" height="29" />
+						<reportElement x="100" y="1" width="455" height="34" />
 						<textFieldExpression><![CDATA[$P{typecontrat}]]></textFieldExpression>
 					</textField>
 				</frame>
 				<frame>
-					<reportElement x="0" y="50" width="555" height="25" >
+					<reportElement x="0" y="40" width="555" height="40" >
 						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 					</reportElement>
 					<staticText>
-						<reportElement mode="Opaque" x="0" y="0" width="100" height="29" forecolor="#FFFFFF" backcolor="#737373" />
-						<textElement textAlignment="Center"/>
-						<text><![CDATA[  Date debut:]]></text>
+						<reportElement x="0" y="0" width="90" height="30" />
+						<text><![CDATA[Date debut]]></text>
 					</staticText>
 					<textField>
-						<reportElement x="100" y="0" width="455" height="29" />
+						<reportElement x="100" y="1" width="455" height="30" />
 						<textFieldExpression><![CDATA[$P{datedeb}]]></textFieldExpression>
 					</textField>
 				</frame>
 				<frame>
-					<reportElement x="0" y="75" width="555" height="25" >
+					<reportElement x="0" y="80" width="555" height="40" >
 						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 					</reportElement>
 					<staticText>
-						<reportElement mode="Opaque" x="0" y="0" width="100" height="29" forecolor="#FFFFFF" backcolor="#737373"/>
-						<textElement textAlignment="Center"/>
-						<text><![CDATA[  Date fin :]]></text>
+						<reportElement x="0" y="0" width="90" height="28" />
+						<text><![CDATA[Nom]]></text>
 					</staticText>
 					<textField>
-						<reportElement x="100" y="0" width="455" height="29" />
-						<textFieldExpression><![CDATA[$P{datefin}]]></textFieldExpression>
-					</textField>
-				</frame>
-				<frame>
-					<reportElement x="0" y="100" width="555" height="25" >
-						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
-					</reportElement>
-					<staticText>
-						<reportElement mode="Opaque" x="0" y="0" width="100" height="29" forecolor="#FFFFFF" backcolor="#737373" />
-						<textElement textAlignment="Center"/>
-						<text><![CDATA[  Nom :]]></text>
-					</staticText>
-					<textField>
-						<reportElement x="100" y="0" width="455" height="29" />
+						<reportElement x="100" y="3" width="455" height="30" />
 						<textFieldExpression><![CDATA[$P{nom}]]></textFieldExpression>
 					</textField>
 				</frame>
 				<frame>
-					<reportElement x="0" y="125" width="555" height="25" >
+					<reportElement x="0" y="120" width="555" height="40" >
 						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 					</reportElement>
 					<staticText>
-						<reportElement mode="Opaque" x="0" y="0" width="100" height="29" forecolor="#FFFFFF" backcolor="#737373" />
-						<textElement textAlignment="Center"/>
-						<text><![CDATA[  Prenom:]]></text>
+						<reportElement x="0" y="-1" width="90" height="30" />
+						<text><![CDATA[Prénom]]></text>
+					</staticText>
+				</frame>
+				<frame>
+					<reportElement x="0" y="160" width="555" height="40" >
+						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+					</reportElement>
+					<staticText>
+						<reportElement x="0" y="1" width="90" height="27" />
+						<text><![CDATA[Post]]></text>
 					</staticText>
 					<textField>
-						<reportElement x="100" y="0" width="455" height="29" />
+						<reportElement x="100" y="-41" width="455" height="30" />
 						<textFieldExpression><![CDATA[$P{prenom}]]></textFieldExpression>
 					</textField>
-				</frame>
-				<frame>
-					<reportElement x="0" y="150" width="555" height="25" />
 					<textField>
-						<reportElement x="100" y="-4" width="455" height="29" />
+						<reportElement x="100" y="5" width="455" height="23" />
 						<textFieldExpression><![CDATA[$P{post}]]></textFieldExpression>
-					</textField>
-					<staticText>
-						<reportElement mode="Opaque" x="0" y="-1" width="100" height="24" forecolor="#FFFFFF" backcolor="#737373" />
-						<text><![CDATA[            Post:]]></text>
-					</staticText>
-				</frame>
-				<frame>
-					<reportElement x="0" y="175" width="555" height="25" >
-						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
-					</reportElement>
-					<staticText>
-						<reportElement mode="Opaque" x="0" y="-3" width="100" height="30" forecolor="#FFFFFF" backcolor="#737373" />
-						<text><![CDATA[            Matricule]]></text>
-					</staticText>
-					<textField>
-						<reportElement x="100" y="0" width="100" height="25" />
-						<textFieldExpression><![CDATA[$P{jobid}]]></textFieldExpression>
 					</textField>
 				</frame>
 			</frame>
+			<frame>
+				<reportElement x="0" y="190" width="555" height="30" />
+				<staticText>
+					<reportElement x="0" y="0" width="90" height="28" />
+					<text><![CDATA[Matricule]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="100" y="4" width="455" height="24" />
+					<textFieldExpression><![CDATA[$P{jobid}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement x="340" y="250" width="200" height="50" />
+				<staticText>
+					<reportElement x="0" y="0" width="100" height="30" />
+					<text><![CDATA[Signature Employee]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement x="10" y="250" width="200" height="50" />
+				<staticText>
+					<reportElement x="0" y="0" width="100" height="30" />
+					<text><![CDATA[Signature Responsable]]></text>
+				</staticText>
+			</frame>
 		</band>
+		<band height="50"/>
 	</detail>
 </jasperReport>

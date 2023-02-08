@@ -134,7 +134,7 @@ public class AuthServiceImpl  implements IAuthService {
         condidat.setPost(request.getPost());
         condidat.setDateOfBirth(request.getDateOfBirth());
         condidat.setAdresse(request.getAdresse());
-        condidat.setExperience(request.getExperience());
+
         condidat.setTitreDiplome(request.getTitreDiplome());
         condidat.setNationality(request.getNationality());
         condidat.setNiveauEtud(request.getNiveauEtud());

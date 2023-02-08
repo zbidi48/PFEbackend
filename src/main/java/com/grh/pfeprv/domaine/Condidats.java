@@ -27,7 +27,7 @@ public class Condidats extends User{
     private String titreDiplome;
     private String university;
     private String niveauExp;
-    private String experience;
+
     private String cin;
     private String competences;
     private Boolean suppr;

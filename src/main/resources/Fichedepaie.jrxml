@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="fiche" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ef76b914-6cea-462e-9944-d4601575968d">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="fiche" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" >
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<parameter name="nom" class="java.lang.String"/>
 	<parameter name="prenom" class="java.lang.String"/>
@@ -21,7 +21,7 @@
 					<textElement>
 						<font size="34" isBold="true"/>
 					</textElement>
-					<text><![CDATA[fiche de paie]]></text>
+					<text><![CDATA[Fiche de Paie ]]></text>
 				</staticText>
 			</frame>
 		</band>
@@ -32,10 +32,10 @@
 				<reportElement x="0" y="10" width="555" height="30" />
 				<staticText>
 					<reportElement mode="Opaque" x="0" y="0" width="100" height="30" forecolor="#FFFFFF" backcolor="#737373" />
-					<text><![CDATA[nom:]]></text>
+					<text><![CDATA[Nom]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="100" y="0" width="100" height="30" />
+					<reportElement x="110" y="0" width="90" height="30" />
 					<textFieldExpression><![CDATA[$P{nom}]]></textFieldExpression>
 				</textField>
 			</frame>
@@ -43,10 +43,10 @@
 				<reportElement x="0" y="40" width="555" height="30" />
 				<staticText>
 					<reportElement mode="Opaque" x="0" y="0" width="100" height="30" forecolor="#FFFFFF" backcolor="#737373" />
-					<text><![CDATA[prenom:]]></text>
+					<text><![CDATA[Prénom]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="100" y="0" width="100" height="30" />
+					<reportElement x="110" y="0" width="90" height="30" />
 					<textFieldExpression><![CDATA[$P{prenom}]]></textFieldExpression>
 				</textField>
 			</frame>
@@ -54,10 +54,10 @@
 				<reportElement x="0" y="70" width="555" height="30" />
 				<staticText>
 					<reportElement mode="Opaque" x="0" y="0" width="100" height="30" forecolor="#FFFFFF" backcolor="#737373" />
-					<text><![CDATA[post]]></text>
+					<text><![CDATA[Post]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="100" y="0" width="100" height="30" />
+					<reportElement x="110" y="0" width="90" height="30" />
 					<textFieldExpression><![CDATA[$P{post}]]></textFieldExpression>
 				</textField>
 			</frame>
@@ -65,10 +65,10 @@
 				<reportElement x="0" y="100" width="555" height="30" />
 				<staticText>
 					<reportElement mode="Opaque" x="0" y="0" width="100" height="30" forecolor="#FFFFFF" backcolor="#737373" />
-					<text><![CDATA[jobid]]></text>
+					<text><![CDATA[Matricule]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="100" y="0" width="100" height="30" />
+					<reportElement x="110" y="0" width="90" height="30" />
 					<textFieldExpression><![CDATA[$P{jobid}]]></textFieldExpression>
 				</textField>
 			</frame>
@@ -76,10 +76,10 @@
 				<reportElement x="0" y="130" width="555" height="30" />
 				<staticText>
 					<reportElement mode="Opaque" x="0" y="0" width="100" height="30" forecolor="#FFFFFF" backcolor="#737373" />
-					<text><![CDATA[salaire brute]]></text>
+					<text><![CDATA[Salaire Brut]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="100" y="0" width="100" height="30" />
+					<reportElement x="110" y="0" width="90" height="30" />
 					<textFieldExpression><![CDATA[$P{salairebrut}]]></textFieldExpression>
 				</textField>
 			</frame>
@@ -87,19 +87,19 @@
 				<reportElement x="0" y="160" width="555" height="30" />
 				<staticText>
 					<reportElement mode="Opaque" x="0" y="0" width="100" height="30" forecolor="#FFFFFF" backcolor="#737373" />
-					<text><![CDATA[salaire net]]></text>
+					<text><![CDATA[Salaire Net]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="100" y="0" width="100" height="30" />
+					<reportElement x="110" y="0" width="90" height="30" />
 					<textFieldExpression><![CDATA[$P{salairenet}]]></textFieldExpression>
 				</textField>
 			</frame>
 			<staticText>
 				<reportElement mode="Opaque" x="0" y="190" width="100" height="30" forecolor="#FFFFFF" backcolor="#737373" />
-				<text><![CDATA[date]]></text>
+				<text><![CDATA[Date]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="100" y="190" width="100" height="30" />
+				<reportElement x="110" y="190" width="90" height="30" />
 				<textFieldExpression><![CDATA[$P{date}]]></textFieldExpression>
 			</textField>
 		</band>

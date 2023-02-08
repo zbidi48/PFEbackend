@@ -43,7 +43,6 @@ public class ContratServiceImpl  implements IContratService {
                     contrat.getId(),
                     contrat.getType(),
                     contrat.getDatedebut(),
-                    contrat.getDatefin(),
                     contrat.getEmployee().getNom(),
                     contrat.getEmployee().getPrenom(),
                     contrat.getEmployee().getPost(),
@@ -70,7 +69,6 @@ public class ContratServiceImpl  implements IContratService {
         //contrat.setLibelle(c.getLibelle());
         contrat.setType(c.getType());
         contrat.setDatedebut(c.getDatedebut());
-        contrat.setDatefin(c.getDatefin());
         contrat.setEmployee(emp);
         contrat.setDeleted(false);
         contratRepository.save(contrat);
@@ -88,7 +86,7 @@ public class ContratServiceImpl  implements IContratService {
         Contrat con = contrat.get();
 
         con.setType(c.getType());
-        con.setDatefin(c.getDatefin());
+
         con.setDatedebut(c.getDatedebut());
        contratRepository.save(con);
         return ResponseEntity.ok(new MessageResponse(" modification avec succeé"));
@@ -128,10 +126,8 @@ public class ContratServiceImpl  implements IContratService {
         {
             responses.add(new ContratResponse(
                     contrat.getId(),
-
                     contrat.getType(),
                     contrat.getDatedebut(),
-                    contrat.getDatefin(),
                     contrat.getEmployee().getNom(),
                     contrat.getEmployee().getPrenom(),
                     contrat.getEmployee().getPost(),
@@ -151,10 +147,8 @@ public class ContratServiceImpl  implements IContratService {
         {
             responses.add(new ContratResponse(
                     contrat.getId(),
-
                     contrat.getType(),
                     contrat.getDatedebut(),
-                    contrat.getDatefin(),
                     contrat.getEmployee().getNom(),
                     contrat.getEmployee().getPrenom(),
                     contrat.getEmployee().getPost(),
@@ -180,7 +174,7 @@ public class ContratServiceImpl  implements IContratService {
 
         parameters.put("typecontrat",contrat.getType() );
        parameters.put("datedeb", contrat.getDatedebut());
-        parameters.put("datefin",contrat.getDatefin() );
+
         parameters.put("nom", employee.getNom());
         parameters.put("prenom", employee.getPrenom());
         parameters.put("post",employee.getPost());
