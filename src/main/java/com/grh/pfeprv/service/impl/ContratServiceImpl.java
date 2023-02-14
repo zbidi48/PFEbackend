@@ -63,10 +63,8 @@ public class ContratServiceImpl  implements IContratService {
         {
             throw new NotFoundException("Ajout impossible");
         }
-        //User us = user.get();
-        Employee emp= employee.get();
 
-        //contrat.setLibelle(c.getLibelle());
+        Employee emp= employee.get();
         contrat.setType(c.getType());
         contrat.setDatedebut(c.getDatedebut());
         contrat.setEmployee(emp);
@@ -174,15 +172,12 @@ public class ContratServiceImpl  implements IContratService {
 
         parameters.put("typecontrat",contrat.getType() );
        parameters.put("datedeb", contrat.getDatedebut());
-
-        parameters.put("nom", employee.getNom());
+       parameters.put("nom", employee.getNom());
         parameters.put("prenom", employee.getPrenom());
         parameters.put("post",employee.getPost());
         parameters.put("jobid",employee.getJobid());
-        //load file and compile it
         File file = ResourceUtils.getFile("classpath:contrat.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
-        //JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(data);
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, new JREmptyDataSource());
         JasperExportManager.exportReportToPdfFile(jasperPrint, path +"contrat_"+ employee.getId()+".pdf");
 

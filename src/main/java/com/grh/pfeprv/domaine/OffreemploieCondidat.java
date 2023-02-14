@@ -36,4 +36,5 @@ public class OffreemploieCondidat {
     private Boolean hasinterview;
 
 
+
 }

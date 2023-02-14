@@ -65,6 +65,7 @@ public class InscritFormationServiceImpl implements InscritFormationService {
         inscritFormation.setDateinscrit(new Date());
         inscritFormation.setFormation(formation.get());
         inscritFormation.setEmployee(employee.get());
+
         inscritFormationRepository.save(inscritFormation);
 
         return ResponseEntity.ok(new MessageResponse("inscrit formation fait avec succé !"));

@@ -21,5 +21,6 @@ public class InscritFormationRequest {
     private Long formation_id;
     @Enumerated(EnumType.STRING)
     private EStatusInscritFormation status;
+
     private Boolean suppr;
 }

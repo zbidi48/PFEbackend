@@ -43,11 +43,7 @@ public class FichedepaieController {
 
         return ResponseEntity.ok(iFichedepaieservice.Affichageficheuser());
     }
-    @GetMapping("/chercherfichedepaie/{jobid}")
-    public  ResponseEntity<List<FichedepaieResponse>> chercherfichedepaie(@PathVariable(value="jobid") String jobid)
-    {
-        return ResponseEntity.ok(iFichedepaieservice.chercherficheparjobid(jobid));
-    }
+
     @PostMapping("/ajouterfiche")
     public ResponseEntity<MessageResponse> Ajouterfiche(@RequestBody FichdepaieRequest fichdepaieRequest)
     {
@@ -65,12 +61,7 @@ public class FichedepaieController {
         return  iFichedepaieservice.Effacerfiche(id);
     }
 
-    @PostMapping ("/chercherfiche/{nom}/{prenom}")
-    public  ResponseEntity<List<FichedepaieResponse>> Chercherfichedepaie(@PathVariable(value="nom") String nom,
-                                                    @PathVariable(value="prenom")String prenom)
-    {
-        return  ResponseEntity.ok(iFichedepaieservice.Chercherparnometprenom(nom,prenom));
-    }
+
 
 
     @PostMapping("/exporterpdf/{id}/{emplid}")

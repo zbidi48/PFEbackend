@@ -39,7 +39,5 @@ public class Employee extends  User{
     @OneToMany(targetEntity =Visa.class,mappedBy ="employee")
     private List<Visa> visas = new ArrayList<>();
 
-    @OneToMany
-    @JsonIgnore
-    private  List<Meeting> meetings = new ArrayList<>();
+
 }

@@ -56,23 +56,5 @@ public class EntretientController {
 
         return  ResponseEntity.ok( iEntretientService.Detailentretient(id));
     }
-   /* @GetMapping("/afficherentretient")
-    public ResponseEntity<List<EntretientResponse> > Affichertoutentret()
-    {
-        return ResponseEntity.ok(iEntretientService.Afficherentretient());
-    }
 
-
-    @DeleteMapping("/supprimerentretient/{id}")
-    public  ResponseEntity<MessageResponse> Supprimerentret(@PathVariable(value="id") Long id)
-    {
-        return iEntretientService.Supprimerentretient(id);
-    }
-
-
-
-
-
-
-*/
 }

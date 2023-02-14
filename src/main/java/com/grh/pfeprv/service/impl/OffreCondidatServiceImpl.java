@@ -227,21 +227,23 @@ public class OffreCondidatServiceImpl implements IOffeCondidatService {
         mail.setFrom("jamilahalouas1955@gmail.com");
         mail.setTo(offreemploieCondidat1.getCondidats().getEmail());
         //mail.setTo("ahmed.zbidi1@esprit.tn");
-        mail.setSubject("Status inscription offre");
+        mail.setSubject("Postulation Offre D'emploie");
         if(status.equals("accepte")){
             offreemploieCondidat1.setStatus(EStatusOffreCondidat.ACCEPTE);
-           mail.setContent("Félecitation Monsieur/Madame"+" "+offreemploieCondidat1.getCondidats().getPrenom()+" "
-                   +offreemploieCondidat1.getCondidats().getNom()+" "+"votre postulation offre d emploie"
-                   +offreemploieCondidat1.getOffreemploie().getTitredoffre()+"a eté faite avec succée " +
-                   "une mail qui contient l heure et la date d entretient sera envoyé plus tot." +
-                   "Cordiallment" );
+           mail.setContent("bonjour Monsieur/Madame"+" "+offreemploieCondidat1.getCondidats().getPrenom()+" "
+                   +offreemploieCondidat1.getCondidats().getNom()+" "+"votre demande de condidature pour l'offre d 'emploie"+"  "
+                   +offreemploieCondidat1.getOffreemploie().getTitredoffre()+" "+"a été faite avec sucé " +
+                   "un courriel contenant l'heure et la date de l'entretien sera envoyé plus tot.\r\n" +
+                   " "+"Merci \r\n"+" "+"Cordiallment\r\n"+
+                   "BCIT" );
         } else {
             offreemploieCondidat1.setStatus(EStatusOffreCondidat.REFUSE);
-            mail.setContent("Nous sommes navré de vous informer Monsieur/Madame"+offreemploieCondidat1.getCondidats().getPrenom()
-            +" "+offreemploieCondidat1.getCondidats().getNom()+""+" que votre postulation dans l offre "+""+offreemploieCondidat1.getOffreemploie().getTitredoffre()+""+
-                    "n est pas faite avec succé"+"\r\n."+
+            mail.setContent("Nous sommes navré de vous informer Monsieur/Madame"+" "+offreemploieCondidat1.getCondidats().getPrenom()
+            +" "+offreemploieCondidat1.getCondidats().getNom()+" "+" votre demande de condidature pour l'offre d 'emploie"+" "+offreemploieCondidat1.getOffreemploie().getTitredoffre()+" "+
+                    "n'est pas faite avec sucé"+"\r\n."+
                     "Merci pour votre compréhension " +"\r\n"+
-                    "Cordiallment");
+                    "Cordiallment \r\n"+"" +
+                    " BCIT");
         }
 
         offrecondidatRepository.save(offreemploieCondidat1);

@@ -67,26 +67,14 @@ public class EntretientServiceImpl implements IEntretientService {
         mail.setFrom("jamilahalouas1955@gmail.com");
         mail.setTo(offreemploieCondidat.getCondidats().getEmail());
         //mail.setTo("ahmed.zbidi1@esprit.tn");
-        mail.setSubject("RDV ENTRETIENT");
-        mail.setContent(" Monsieur/Madame"+" "+offreemploieCondidat.getCondidats().getPrenom()+" "+offreemploieCondidat.getCondidats().getNom()+" "+
-                "Votre RDV entrentient le :"+entretientRequest.getDate().toString()+ " à "+entretientRequest.getHeure()
-        +"pour l offre"+" "+offreemploieCondidat.getOffreemploie().getTitredoffre()+"\r\n "+"Priére d etre 30min avant l horaire de rdv  \r\n"+" "
+        mail.setSubject("RENDEZ VOUS ENTRETIENT");
+        mail.setContent("Bonjour Monsieur/Madame"+" "+offreemploieCondidat.getCondidats().getPrenom()+" "+offreemploieCondidat.getCondidats().getNom()+" "+
+                "nous avons le plaisir de vous inviter pour une rencontre à notre entreprise pour la date :"+" "+entretientRequest.getDate().toString()+ " à "+entretientRequest.getHeure()
+        +"pour la demande de condidature "+" "+offreemploieCondidat.getOffreemploie().getTitredoffre()+"\r\n "+"Vous rencontrerez  au cours d’un entretien d’une demi-heure environ, pour discuter du poste à pourvoir et de votre parcours professionnel. L’interview sera suivie d’un test.\r\n"+" "
         +"Merci \r\n"
         +"Cordiallment");
         emailService.sendSimpleMessage(mail);
-       /* Optional<Condidats> condidats = condidatRepository.findById(entretientRequest.getCondidats_id());
-        if(!condidats.isPresent())
-        {
-            throw new NotFoundException("Ajout impossible");
-        }
-        Condidats condidat = condidats.get();
-        entretient.setDate(entretientRequest.getDate());
-        entretient.setHeure(entretientRequest.getHeure());
-        entretient.setStatus(EStatusEntretient.ENCOUR);
 
-        entretient.setSuppr(false);
-        entretient.setCondidat(condidat);
-        entretientRepository.save(entretient);*/
         return ResponseEntity.ok(new MessageResponse("entretient ajouter avec succeé"));
     }
 
@@ -108,20 +96,20 @@ public class EntretientServiceImpl implements IEntretientService {
         {
             entretient1.setStatus(EStatusEntretient.ACCEPTE);
             mail.setContent("Félecitation Monsieur/Madame"+" "+entretient1.getCondidat().getPrenom()+" "+entretient1.getCondidat().getNom()+" "+
-                   " "+"titulaire sous carte identité nationale "+" "+entretient1.getCondidat().getCin() +" "+"pour la succé dans l entretient dans l offre"+ " " +entretient1.getTitreOffre()
+                   " "+"titulaire sous CIN: "+" "+entretient1.getCondidat().getCin() +" "+"pour la sucé dans l entretient pour la demande de condidature"+ " " +entretient1.getTitreOffre()
             +" "+"passé le " + " "+entretient1.getDate().toString()+" \r\n ."
                     +" priére de venir au sociéte pour plus de négociation"+" \r\n."
                     +"Merci"+"\r\n."
-                    +"Cordiallment"
+                    +"Cordiallment \r\n"+"BCIT"
             );
         }
         else
         {
             entretient1.setStatus(EStatusEntretient.REFUSE);
-            mail.setContent("Nous sommes navré de vous informer"+" " +entretient1.getCondidat().getPrenom()+" "+entretient1.getCondidat().getNom()
-            +" "+" que vous n éte pas accépte dans l entretient pour l offre "+" "+entretient1.getTitreOffre()+" "+ " passé le "+ entretient1.getDate().toString()+"\r\n."
+            mail.setContent("Nous sommes navré de vous informer Monsieur/Madame"+" " +entretient1.getCondidat().getPrenom()+" "+entretient1.getCondidat().getNom()
+            +" "+" que vous n été pas accépte dans l entretient pour la demande de condidature de l'offre d'emploie "+" "+entretient1.getTitreOffre()+" "+ " passé le "+ entretient1.getDate().toString()+"\r\n."
             + "Merci pour votre compréhension " +"\r\n"+
-            "Cordiallement");
+            "Cordiallement\r\n"+"BCIT");
         }
         entretientRepository.save(entretient1);
         emailService.sendSimpleMessage(mail);
@@ -145,29 +133,16 @@ public class EntretientServiceImpl implements IEntretientService {
         mail.setTo(entretient1.getCondidat().getEmail());
         //mail.setTo("ahmed.zbidi1@esprit.tn");
         mail.setSubject("CHANGEMENT ENTRETIENT");
-        mail.setContent("Monsieur/Madame"+" "+entretient1.getCondidat().getNom()+" "+entretient1.getCondidat().getPrenom()+" "+" nous informons qu il y a un changement d horaire de entretient "
-        +" "+entretient1.getHeure()+" "+" pour la date"+entretient1.getDate().toString()+" \r\n."
+        mail.setContent("Monsieur/Madame"+" "+entretient1.getCondidat().getNom()+" "+entretient1.getCondidat().getPrenom()+" "+" nous informons qu il y a un changement dans l'horaire de l 'entretient pour la demande de condidature"+" "+entretient1.getTitreOffre()+" "+"qui sera passé le : "
+        +" "+entretient1.getHeure()+" "+" pour la date"+" "+entretient1.getDate().toString()+" . \r\n"
         +"Merci\r\n"
-        +"Cordiallement.");
+        +"Cordiallement\r\n"+
+                "BCIT");
         emailService.sendSimpleMessage(mail);
         return ResponseEntity.ok(new MessageResponse("entretient modifier avec succeé"));
     }
 
-    /*
-    @Override
-    public ResponseEntity<MessageResponse> Supprimerentretient(Long id) {
-        Optional<Entretient> entretient = entretientRepository.findById(id);
-        if(!entretient.isPresent())
-        {
-            throw new NotFoundException("entretient ID: " + id + " not found");
-        }
-        Entretient entretient1 = entretient.get();
-        entretient1.setSuppr(true);
-        entretientRepository.save(entretient1);
-        return ResponseEntity.ok(new MessageResponse("entretient supprimer avec success !"));
-    }
 
-     */
     @Override
     public Entretient Detailentretient(Long id) {
         Optional<Entretient> entretient = entretientRepository.findById(id);
