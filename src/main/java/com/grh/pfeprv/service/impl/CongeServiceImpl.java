@@ -91,21 +91,6 @@ public class CongeServiceImpl implements ICongeService {
         Conge conge1= conge.get();
         conge1.setDatedebut(congeRequest.getDatedebut());
         conge1.setDatefin(congeRequest.getDatefin());
-        conge1.setStatusConge(EStatusConge.DEMANDEENCOUR);
-       /*
-        if(congeRequest.getTypeConge().equals("anuelle"))
-        {
-            conge1.setTypeConge(ETypeConge.ANUELLE);
-        }
-        if(congeRequest.getTypeConge().equals("maladie"))
-        {
-            conge1.setTypeConge(ETypeConge.MALADIE);
-        }
-        if(congeRequest.getTypeConge().equals("maternité"))
-        {
-            conge1.setTypeConge(ETypeConge.MATERNITE);
-        }
-        */
         conge1.setTypeConge(congeRequest.getTypeConge());
         congeRepository.save(conge1);
         return   ResponseEntity.ok(new MessageResponse("congé modifier avec succeé"));
